@@ -1,7 +1,7 @@
 # Moby-Dick — Into the Unmeasured
 
-A working single-page prototype following `moby-dick-prototype-brief-v0.md`.
-An original parchment chart yields to a dark ocean and a layered sperm whale / giant squid reconstruction. Scroll position drives route drawing, map panning, dissolution, depth, and descent. Scrolling backward reverses the timeline. No accounts, API keys, backend, audio, or paid services.
+A working single-page prototype following `moby-dick-prototype-brief-v0.2.md`, building on the preserved v0.1 brief (`moby-dick-prototype-brief-v0.md`). See [iteration notes](docs/iteration-v02.md) for performance evidence, new source notes and remaining limitations.
+Candlelit trade documents and a reconstructed Nantucket harbor lead into an original parchment chart, which yields to a dark ocean and a layered sperm whale / giant squid reconstruction. Scroll position drives route drawing, map panning, dissolution, depth, and descent. Scrolling backward reverses the timeline. No accounts, API keys, backend, audio, or paid services.
 
 ## View the prototype
 
@@ -30,7 +30,7 @@ npx playwright install chromium
 npm test
 ```
 
-Tests use `/usr/bin/chromium` when available; set `CHROMIUM_PATH` to override. Otherwise Playwright uses its installed Chromium. Automated desktop (1440×900) and mobile (390×844) checks cover route advancement/reversal, intermediate blending, 1,800 m arrival, dialogs and Escape dismissal, overflow, script errors, keyboard skip, and reduced motion. Screenshots are written to ignored `test-results/`.
+Tests use `/usr/bin/chromium` when available; set `CHROMIUM_PATH` to override. Otherwise Playwright uses its installed Chromium. Automated desktop (1440×900) and mobile (390×844) checks cover the full five-scene sequence, route advancement/reversal, intermediate blending, 1,800 m arrival, dialogs and Escape dismissal, overflow, script errors, keyboard skip, reduced motion, focus restoration, refresh/resize, wheel continuity and emulated touch swipes. Screenshots are written to ignored `test-results/`.
 
 ### Manual review checklist
 
@@ -52,7 +52,7 @@ Tests use `/usr/bin/chromium` when available; set `CHROMIUM_PATH` to override. O
 
 ## Implementation / tradeoffs
 
-Vite and vanilla JavaScript; CSS custom properties updated once per animation frame. Native dialogs provide focus handling and keyboard dismissal. No scroll interception, WebGL, video, or animation framework. A dedicated text section provides the same literary anchor without animation. Reduced-motion users retain a shorter, scroll-linked opacity sequence with no atmospheric animation or chart panning. The original vector illustration prioritizes a lightweight, cohesive vertical slice over archival cartographic precision or photorealism. Chapter 60 is a future editorial direction, not a nonfunctional control.
+Vite and vanilla JavaScript; cached scene geometry and local opacity/transform updates rendered at most once per animation frame. Native dialogs provide focus handling and keyboard dismissal. No scroll interception, WebGL, video, or animation framework. Native touch remains one-to-one; desktop wheel visuals use a brief 65 ms catch-up. Filtered full-screen artwork has been removed to reduce rendering cost. A dedicated text section provides the same literary anchor without animation. Reduced-motion users retain a shorter, scroll-linked opacity sequence with no atmospheric animation or chart panning. The original vector illustrations prioritize a lightweight, cohesive vertical slice over archival cartographic precision or photorealism. Chapter 60 is a future editorial direction, not a nonfunctional control.
 
 ## GitHub Pages preview
 
