@@ -1,18 +1,22 @@
 import { test, expect } from "@playwright/test";
 async function seek(page, p) {
-  await page.evaluate((p) => {
+  const expected = await page.evaluate((p) => {
     const s = document.querySelector("#voyage");
     scrollTo(
       0,
       s.offsetTop +
         (s.offsetHeight - document.querySelector(".stage").offsetHeight) * p,
     );
+    return +(
+      scrollY /
+      (s.offsetHeight - document.querySelector(".stage").offsetHeight)
+    ).toFixed(5);
   }, p);
   await expect
     .poll(async () =>
       Number(await page.locator(".stage").getAttribute("data-progress")),
     )
-    .toBeCloseTo(p, 3);
+    .toBe(expected);
 }
 for (const viewport of [
   { width: 1440, height: 900 },
@@ -67,12 +71,26 @@ for (const viewport of [
           (e) => +getComputedStyle(e).strokeDashoffset.replace("px", ""),
         ),
     ).toBeLessThan(start);
+    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
+    await seek(page, 0.801);
+    expect(
+      await page
+        .locator("#route")
+        .evaluate((e) => Number(e.style.strokeDashoffset)),
+    ).toBe(0);
+    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
+    await page.screenshot({
+      path: `test-results/route-complete-${viewport.width}.png`,
+    });
+    await seek(page, 0.875);
+    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "1");
+    await expect(page.locator(".chart")).toHaveCSS("opacity", "0");
     await page.screenshot({
       path: `test-results/anatomy-${viewport.width}.png`,
     });
-    await seek(page, 0.83);
+    await seek(page, 0.925);
     const opacity = await page
-      .locator(".chart")
+      .locator(".anatomy-scene")
       .evaluate((e) => +getComputedStyle(e).opacity);
     expect(opacity).toBeGreaterThan(0);
     expect(opacity).toBeLessThan(1);
@@ -236,3 +254,44 @@ test("candle document fits a short phone and landscape viewport", async ({
     });
   }
 });
+
+for (const viewport of [
+  { width: 1440, height: 900 },
+  { width: 390, height: 844 },
+]) {
+  test(`candle rises from below before the manuscript at ${viewport.width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    const candle = page.locator(".candle");
+    const start = await candle.boundingBox();
+    expect(start.y).toBeGreaterThan(viewport.height);
+    await seek(page, 0.03);
+    const approaching = await candle.boundingBox();
+    expect(approaching.y).toBeLessThan(start.y);
+    await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
+    await page.screenshot({
+      path: `test-results/approach-${viewport.width}.png`,
+    });
+    await seek(page, 0.078);
+    const centered = await candle.boundingBox();
+    expect(
+      Math.abs(centered.y + centered.height / 2 - viewport.height / 2),
+    ).toBeLessThan(3);
+    expect(
+      Math.abs(centered.x + centered.width / 2 - viewport.width / 2),
+    ).toBeLessThan(3);
+    await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
+    await seek(page, 0.14);
+    await expect(page.locator(".ledger")).toContainText("Henry Smith");
+    await expect(page.locator(".ledger")).toContainText("735");
+    await expect(page.locator(".ledger")).toContainText("$5,882");
+    await expect(page.locator(".ledger")).toContainText("$571");
+    await seek(page, 0.078);
+    await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
+    await seek(page, 0.03);
+    const reversed = await candle.boundingBox();
+    expect(Math.abs(reversed.y - approaching.y)).toBeLessThan(2);
+  });
+}

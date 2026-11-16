@@ -1,6 +1,6 @@
 # Moby-Dick — Into the Unmeasured
 
-A working single-page prototype following `moby-dick-prototype-brief-v0.2.md`, building on the preserved v0.1 brief (`moby-dick-prototype-brief-v0.md`). See [iteration notes](docs/iteration-v02.md) for performance evidence, new source notes and remaining limitations.
+A working single-page prototype following `moby-dick-prototype-brief-v0.3.md`, building on the preserved v0.1 brief (`moby-dick-prototype-brief-v0.md`). See [v0.3 iteration notes](docs/iteration-v03.md) and [v0.2 performance notes](docs/iteration-v02.md) for performance evidence, new source notes and remaining limitations.
 Candlelit trade documents and a reconstructed Nantucket harbor lead into an original parchment chart, which yields to a dark ocean and a layered sperm whale / giant squid reconstruction. Scroll position drives route drawing, map panning, dissolution, depth, and descent. Scrolling backward reverses the timeline. No accounts, API keys, backend, audio, or paid services.
 
 ## View the prototype

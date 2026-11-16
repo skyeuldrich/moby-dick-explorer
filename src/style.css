@@ -1520,3 +1520,276 @@ header {
     padding: 5px 0;
   }
 }
+/* v0.3: approach the flame spatially; the plate follows the completed route. */
+.candle {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  margin: -115px 0 0 -30px;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+.bottom-glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -25%;
+  height: 65%;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    #b17b344f 0%,
+    #74512620 35%,
+    transparent 70%
+  );
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.ledger {
+  top: 12%;
+  padding: 22px 28px;
+}
+.ledger h3 {
+  font-size: 37px;
+  margin: 15px 0 10px;
+}
+.ledger blockquote {
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 15px 0 10px;
+}
+.quote-source {
+  font-size: 9px;
+  line-height: 1.6;
+  margin: 0 0 13px;
+}
+.ledger a {
+  font-size: 8px;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ledger-row {
+  padding: 12px 0 10px;
+}
+.ledger-row p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.ledger h4 {
+  font-size: 22px;
+}
+.wax-note {
+  font-size: 10px;
+  line-height: 1.6;
+  border-top: 1px solid #675f4540;
+  padding-top: 12px;
+  margin: 0;
+}
+.wax-note a {
+  display: inline;
+}
+.ledger strong {
+  font-weight: 500;
+}
+.anatomy-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: #ded2af;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.anatomy-scene .anatomy-plate {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  width: 80%;
+  max-width: 1100px;
+  padding: 40px;
+  transform: none;
+  box-shadow: none;
+  background: #e8ddbf;
+  border: 1px solid #80775a66;
+}
+.anatomy-scene .anatomy-plate .eyebrow {
+  font-size: 10px;
+}
+.anatomy-scene .anatomy-plate > p:last-child {
+  font-size: 16px;
+  line-height: 1.7;
+}
+.anatomy-scene .anatomy-plate svg {
+  margin: 20px 0;
+}
+.stage[data-scene="anatomy"] .bottom-bar {
+  color: #424d3d;
+}
+@media (max-width: 700px) {
+  .candle {
+    top: 50%;
+    left: 50%;
+    right: auto;
+  }
+  .ledger {
+    top: 32%;
+    right: 7%;
+    width: 86%;
+    padding: 17px 20px;
+  }
+  .ledger h3 {
+    font-size: 30px;
+    margin: 10px 0 8px;
+  }
+  .ledger blockquote {
+    font-size: 21px;
+    line-height: 1.15;
+    margin: 12px 0 8px;
+  }
+  .quote-source {
+    font-size: 8px;
+    margin-bottom: 10px;
+  }
+  .ledger-row {
+    padding: 9px 0;
+  }
+  .ledger h4 {
+    font-size: 19px;
+  }
+  .ledger-row p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .ledger a {
+    font-size: 7px;
+  }
+  .wax-note {
+    font-size: 9px;
+    padding-top: 8px;
+  }
+  .anatomy-scene .anatomy-plate {
+    width: 92%;
+    padding: 22px 10px;
+  }
+  .anatomy-scene .anatomy-plate .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1.3px;
+  }
+  .anatomy-scene .anatomy-plate > p:last-child {
+    font-size: 13px;
+  }
+  .candle-intro {
+    top: 11%;
+  }
+  .candle-intro h2 {
+    font-size: 31px;
+  }
+}
+@media (max-height: 730px) and (max-width: 700px) {
+  .ledger {
+    top: 29%;
+    padding: 11px 15px;
+  }
+  .ledger h3 {
+    font-size: 25px;
+    margin: 8px 0;
+  }
+  .ledger blockquote {
+    font-size: 18px;
+    margin: 9px 0;
+  }
+  .ledger-row {
+    padding: 6px 0;
+  }
+  .ledger-row p {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .ledger h4 {
+    font-size: 17px;
+  }
+  .wax-note {
+    font-size: 8px;
+    padding-top: 6px;
+  }
+  .quote-source {
+    font-size: 7px;
+    margin-bottom: 7px;
+  }
+  .candle-intro h2 {
+    font-size: 27px;
+  }
+}
+@media (max-height: 600px) and (min-width: 701px) {
+  .ledger {
+    top: 6%;
+    width: 58%;
+    padding: 10px 20px;
+  }
+  .ledger h3 {
+    font-size: 25px;
+    margin: 5px 0;
+  }
+  .ledger blockquote {
+    font-size: 18px;
+    margin: 7px 0;
+  }
+  .quote-source {
+    font-size: 7px;
+    margin: 0 0 6px;
+  }
+  .ledger-row {
+    padding: 5px 0;
+  }
+  .ledger-row p {
+    font-size: 9px;
+    line-height: 1.4;
+  }
+  .ledger h4 {
+    font-size: 17px;
+    margin-bottom: 3px;
+  }
+  .wax-note {
+    font-size: 8px;
+    padding-top: 5px;
+  }
+  .candle {
+    top: 50%;
+    left: 30%;
+  }
+  .anatomy-scene .anatomy-plate {
+    width: 65%;
+    padding: 12px 20px;
+  }
+  .anatomy-scene .anatomy-plate svg {
+    margin: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .candle,
+  .bottom-glow {
+    will-change: auto;
+  }
+}
+@media (max-width: 700px) {
+  .ledger {
+    top: 28%;
+    transform: rotate(1deg);
+  }
+}
+@media (max-height: 730px) and (max-width: 700px) {
+  .ledger {
+    top: 23%;
+  }
+  .ledger blockquote {
+    font-size: 17px;
+  }
+}
+@media (max-height: 600px) and (min-width: 701px) {
+  .ledger {
+    top: 4%;
+  }
+}

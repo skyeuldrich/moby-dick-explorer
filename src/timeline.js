@@ -23,9 +23,12 @@ export function initVoyage() {
       "rays",
       "candle-scene",
       "candle-intro",
+      "candle-caption",
       "ledger",
       "candle",
       "table-light",
+      "bottom-glow",
+      "anatomy-scene",
       "harbor-scene",
       "harbor-art",
       "anatomy-plate",
@@ -103,16 +106,33 @@ export function initVoyage() {
   ];
   function render(p) {
     const chart = ramp(p, 0.32, 0.81);
-    const chartOpacity = fade(p, 0.29, 0.35, 0.79, 0.87);
-    const abyss = smooth(ramp(p, 0.88, 0.97));
+    const chartOpacity = fade(p, 0.29, 0.35, 0.805, 0.85);
+    const abyss = smooth(ramp(p, 0.945, 0.99));
     opacity("candle-scene", 1 - smooth(ramp(p, 0.205, 0.275)));
-    opacity("candle", smooth(ramp(p, 0.012, 0.055)));
-    style(flame, "opacity", smooth(ramp(p, 0.008, 0.035)).toFixed(4));
-    style(halo, "opacity", smooth(ramp(p, 0.015, 0.07)).toFixed(4));
-    opacity("table-light", smooth(ramp(p, 0.02, 0.08)));
-    opacity("ledger", smooth(ramp(p, 0.045, 0.1)));
-    opacity("candle-intro", smooth(ramp(p, 0.025, 0.075)));
-    enable(nodes.ledger, p > 0.07 && p < 0.22);
+    const approach = smooth(ramp(p, 0.005, 0.078));
+    const reveal = smooth(ramp(p, 0.085, 0.13));
+    const phone = geometry.width <= 700;
+    const travel = reduced.matches
+      ? 0
+      : (1 - approach) * geometry.stageHeight * 0.78;
+    const moveAside = phone && !reduced.matches ? reveal : 0;
+    opacity("candle", smooth(ramp(p, 0.005, 0.025)));
+    transform(
+      "candle",
+      `translate3d(${(moveAside * geometry.width * 0.29).toFixed(2)}px,${(travel - moveAside * geometry.stageHeight * 0.28).toFixed(2)}px,0) scale(${phone ? 0.65 : 0.9})`,
+    );
+    style(flame, "opacity", smooth(ramp(p, 0.005, 0.025)).toFixed(4));
+    style(halo, "opacity", approach.toFixed(4));
+    opacity("bottom-glow", fade(p, 0.001, 0.035, 0.07, 0.105));
+    transform(
+      "bottom-glow",
+      `translate3d(0,${(-approach * 18).toFixed(2)}%,0)`,
+    );
+    opacity("table-light", smooth(ramp(p, 0.07, 0.14)));
+    opacity("ledger", reveal);
+    opacity("candle-intro", reveal);
+    opacity("candle-caption", reveal);
+    enable(nodes.ledger, p >= 0.12 && p < 0.22);
     opacity("harbor-scene", fade(p, 0.205, 0.275, 0.3, 0.355));
     if (p > 0.205 && p < 0.355)
       transform(
@@ -157,35 +177,35 @@ export function initVoyage() {
     text(waypoint.index, stops[waypointIndex][0]);
     text(waypoint.title, stops[waypointIndex][1]);
     text(waypoint.note, stops[waypointIndex][2]);
-    opacity("anatomy-plate", fade(p, 0.55, 0.59, 0.7, 0.75));
-    opacity("transition-copy", fade(p, 0.8, 0.835, 0.875, 0.91));
+    opacity("anatomy-scene", fade(p, 0.805, 0.85, 0.905, 0.945));
+    opacity("transition-copy", fade(p, 0.92, 0.945, 0.965, 0.985));
     opacity("abyss-copy", abyss);
-    enable(nodes["abyss-copy"], p >= 0.93);
-    opacity("creatures", smooth(ramp(p, 0.865, 0.96)));
+    enable(nodes["abyss-copy"], p >= 0.98);
+    opacity("creatures", smooth(ramp(p, 0.94, 0.995)));
     transform(
       "creatures",
       reduced.matches
         ? "none"
-        : `translate3d(0,${((1 - ramp(p, 0.85, 1)) * 100).toFixed(2)}px,0)`,
+        : `translate3d(0,${((1 - ramp(p, 0.94, 1)) * 100).toFixed(2)}px,0)`,
     );
     transform(
       "particles",
       reduced.matches
         ? "none"
-        : `translate3d(0,${(-ramp(p, 0.8, 1) * 60).toFixed(2)}px,0)`,
+        : `translate3d(0,${(-ramp(p, 0.92, 1) * 60).toFixed(2)}px,0)`,
     );
-    opacity("rays", (1 - ramp(p, 0.81, 0.99)) * 0.45);
-    opacity("depth", smooth(ramp(p, 0.79, 0.85)));
+    opacity("rays", (1 - ramp(p, 0.92, 0.99)) * 0.45);
+    opacity("depth", smooth(ramp(p, 0.93, 0.965)));
     style(
       marker,
       "transform",
-      `translate3d(0,${(ramp(p, 0.82, 1) * 120).toFixed(2)}px,0)`,
+      `translate3d(0,${(ramp(p, 0.94, 1) * 120).toFixed(2)}px,0)`,
     );
     text(
       depthValue,
-      p < 0.82
+      p < 0.94
         ? "SURFACE"
-        : `${Math.round(ramp(p, 0.82, 1) * 1800).toLocaleString("en-US")} M`,
+        : `${Math.round(ramp(p, 0.94, 1) * 1800).toLocaleString("en-US")} M`,
     );
     opacity("map-caption", chartOpacity);
     const scene =
@@ -193,16 +213,18 @@ export function initVoyage() {
         ? "light"
         : p < 0.325
           ? "harbor"
-          : p < 0.81
+          : p < 0.825
             ? "chart"
-            : p < 0.91
-              ? "threshold"
-              : "abyss";
+            : p < 0.925
+              ? "anatomy"
+              : p < 0.97
+                ? "threshold"
+                : "abyss";
     if (scene !== previousScene) {
       stage.dataset.scene = scene;
       header.classList.toggle(
         "on-paper",
-        scene === "harbor" || scene === "chart",
+        scene === "harbor" || scene === "chart" || scene === "anatomy",
       );
       text(
         progressLabel,
@@ -210,14 +232,15 @@ export function initVoyage() {
           light: "I · THE LIGHT",
           harbor: "II · NANTUCKET",
           chart: "III · THE CHART",
-          threshold: "IV · THE THRESHOLD",
-          abyss: "V · THE ABYSS",
+          anatomy: "IV · THE ANATOMY",
+          threshold: "V · THE THRESHOLD",
+          abyss: "VI · THE ABYSS",
         }[scene],
       );
       text(
         cue,
         scene === "light"
-          ? "SCROLL TO KINDLE THE LIGHT"
+          ? "SCROLL TOWARD THE LIGHT"
           : scene === "harbor"
             ? "SCROLL TO LEAVE THE HARBOR"
             : scene === "chart"
@@ -236,6 +259,7 @@ export function initVoyage() {
       range: Math.max(1, section.offsetHeight - stage.offsetHeight),
       width: innerWidth,
       height: innerHeight,
+      stageHeight: stage.offsetHeight,
     };
     measurePending = false;
   }
@@ -327,7 +351,7 @@ export function initVoyage() {
   });
   $(".continue").onclick = () => {
     discovery.close();
-    seek(0.83);
+    seek(0.875);
   };
   measure();
   target = current = clamp((scrollY - geometry.top) / geometry.range);
