@@ -53,3 +53,16 @@ Tests use `/usr/bin/chromium` when available; set `CHROMIUM_PATH` to override. O
 ## Implementation / tradeoffs
 
 Vite and vanilla JavaScript; CSS custom properties updated once per animation frame. Native dialogs provide focus handling and keyboard dismissal. No scroll interception, WebGL, video, or animation framework. A dedicated text section provides the same literary anchor without animation. Reduced-motion users retain a shorter, scroll-linked opacity sequence with no atmospheric animation or chart panning. The original vector illustration prioritizes a lightweight, cohesive vertical slice over archival cartographic precision or photorealism. Chapter 60 is a future editorial direction, not a nonfunctional control.
+
+## GitHub Pages preview
+
+The `Deploy literary prototype` workflow tests and builds pull requests, then deploys successful `main` builds to GitHub Pages. In repository **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. Merge the workflow, then watch **Actions → Deploy literary prototype**. The successful deployment's `github-pages` environment shows the published URL (expected: https://skyeuldrich.github.io/moby-dick-explorer/). This URL is not live until deployment succeeds. Pages must be available for the repository's visibility and GitHub plan.
+
+To reproduce that production path locally:
+
+```sh
+npm run build -- --base=/moby-dick-explorer/
+npm run preview -- --port 4173 --base=/moby-dick-explorer/
+```
+
+Open http://localhost:4173/moby-dick-explorer/ (or the corresponding forwarded cloud address). Both commands must use the same base path. Changing the repository name or attaching a custom domain requires updating the workflow's `--base` value.
