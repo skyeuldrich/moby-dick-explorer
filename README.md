@@ -83,8 +83,12 @@ The current moving chart is [William Heather, *A new chart of the Atlantic or We
 
 See [the first-half route evidence](docs/pequod-route-first-half.md) and [asset provenance](docs/asset-sources.md#nantucket--atlantic-correction--william-heather-1797). The original full-sheet JPEG, optimized 1.93 MB WebP, and institutional rights manifest are local. Keyboard/reduced-motion paths remain available; the direct `#chart` link opens near the departure. The Beale plate and abyss retain their existing order.
 
-### Owner-supplied abyss artwork
+### Previous opaque abyss artwork (superseded by Issue10)
 
 The final encounter now uses `public/assets/moby-dick-abyss-whale-squid.webp` (1672×941, 166,290 bytes), supplied and approved by the project owner. The file is unchanged. It replaces the inline SVG animals while retaining the scroll-driven movement, fade, mobile framing, and reversible transition. The viewport progressively uncovers the painting as it rises from below, revealing the whale before the lower squid; reduced motion removes travel. The complete composition fits at the ending, including narrow and landscape screens. Static edge feathering blends the sheet into the abyss.
 
 [Artwork provenance](docs/asset-sources.md#owner-supplied-whale-and-squid-painting). The test suite verifies the original file hash, local loading, staged reveal, reversal, responsive bounds/aspect ratio, reduced motion, and existing scene/literary behavior. The painting is not claimed to be an archival plate or a directly observed encounter.
+
+### Issue10 asset and motion revision
+
+The final encounter uses the transparent `moby-dick-whale-squid-final.webp`; the candle uses `moby-dick-spermaceti-candle-study.webp`. Both are AI-assisted modern reconstructions. Opening sea life swims with reversible scroll progress, with attached lights and reduced-motion support. The harbor image selection remains pending founder review: private neutral-grayscale previews compare the 1917 fishing fleet and Barber’s 1839 engraving. No unapproved or rights-unresolved photograph is deployed. See [implementation and source notes](docs/issue10-implementation.md).

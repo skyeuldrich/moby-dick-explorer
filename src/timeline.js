@@ -61,6 +61,9 @@ export function initVoyage() {
     title: $(".chart-waypoint h2"),
     note: $(".waypoint-note"),
   };
+  const swimmers = [
+    ...document.querySelectorAll(".candle-scene .abyss-organism"),
+  ];
   const gulls = [...document.querySelectorAll(".gull")];
   const landmarkNodes = [...document.querySelectorAll(".route-landmark")];
   const landmarkLabels = landmarkNodes.map((node) =>
@@ -121,15 +124,22 @@ export function initVoyage() {
     const chartOpacity = fade(p, 0.255, 0.3, 0.605, 0.635);
     opacity("candle-scene", 1 - smooth(ramp(p, 0.185, 0.235)));
     opacity("abyss-life", 1 - smooth(ramp(p, 0.025, 0.065)));
+    const swim = ramp(p, 0, 0.065);
+    swimmers.forEach((node, i) =>
+      style(
+        node,
+        "transform",
+        reduced.matches
+          ? "none"
+          : `translate3d(${((i % 2 ? 1 : -1) * swim * (28 + i * 9)).toFixed(2)}px,${(Math.sin(swim * 2.4 + i) * swim * (8 + i * 3)).toFixed(2)}px,0) rotate(${(Math.sin(swim * 2 + i) * swim * 5).toFixed(2)}deg)`,
+      ),
+    );
     opacity("desk", smooth(ramp(p, 0.04, 0.09)));
     opacity("candle", smooth(ramp(p, 0.005, 0.035)));
     const travel = reduced.matches
       ? 0
       : (1 - approach) * geometry.stageHeight * 1.1;
-    transform(
-      "candle",
-      `translate3d(0,${travel.toFixed(2)}px,0) scale(${phone ? 0.95 : 1.6})`,
-    );
+    transform("candle", `translate3d(0,${travel.toFixed(2)}px,0) scale(1)`);
     style(flame, "opacity", smooth(ramp(p, 0.005, 0.035)).toFixed(4));
     style(halo, "opacity", approach.toFixed(4));
     opacity(

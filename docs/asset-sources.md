@@ -1,3 +1,5 @@
+> **Issue10 update:** the encounter now uses the transparent final AI-assisted illustration; the realistic candle is also a modern AI-assisted reconstruction. See [Issue10 source and review notes](issue10-implementation.md) for hashes, historical comparisons, and unresolved 1917 reuse rights.
+
 > **Current encounter:** the [owner-supplied whale-and-squid painting](#owner-supplied-whale-and-squid-painting) replaces the earlier inline SVG tableau.
 
 > **Current voyage map:** William Heather’s genuine **1797 Atlantic sea chart**, described in [the Nantucket / Atlantic correction](#nantucket--atlantic-correction--william-heather-1797) below. The 1844 Pacific chart and earlier drawings document previous iterations.
