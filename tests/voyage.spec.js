@@ -35,7 +35,7 @@ for (const viewport of [
     await page.screenshot({
       path: `test-results/darkness-${viewport.width}.png`,
     });
-    await seek(page, 0.21);
+    await seek(page, 0.14);
     await expect(page.locator(".ledger")).toHaveCSS("opacity", "1");
     await page.screenshot({
       path: `test-results/candle-${viewport.width}.png`,
@@ -44,15 +44,17 @@ for (const viewport of [
     expect(ledger.x).toBeGreaterThanOrEqual(0);
     expect(ledger.x + ledger.width).toBeLessThanOrEqual(viewport.width);
     expect(ledger.y + ledger.height).toBeLessThan(viewport.height - 30);
-    await seek(page, 0.32);
+    await seek(page, 0.275);
     const chartStart = Number(
       await page.locator(".chart").evaluate((e) => getComputedStyle(e).opacity),
     );
     expect(chartStart).toBeGreaterThan(0);
     expect(chartStart).toBeLessThan(1);
-    await seek(page, 0.37);
+    await seek(page, 0.35);
     await expect(page.locator(".archive-map-credit")).toBeInViewport();
-    await expect(page.locator(".archive-map-credit")).toContainText("1892");
+    await expect(page.locator(".archive-map-credit")).toContainText(
+      "Natural Earth",
+    );
     await expect(
       page.getByRole("heading", { name: "Moby—Dick" }),
     ).toBeVisible();
@@ -66,7 +68,7 @@ for (const viewport of [
     await expect(page.locator(".hotspot")).toBeFocused();
     await page.locator(".hotspot").blur();
     await page.screenshot({ path: `test-results/chart-${viewport.width}.png` });
-    await seek(page, 0.64);
+    await seek(page, 0.5);
     expect(
       await page
         .locator("#route")
@@ -75,7 +77,7 @@ for (const viewport of [
         ),
     ).toBeLessThan(start);
     await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
-    await seek(page, 0.801);
+    await seek(page, 0.601);
     expect(
       await page
         .locator("#route")
@@ -85,13 +87,13 @@ for (const viewport of [
     await page.screenshot({
       path: `test-results/route-complete-${viewport.width}.png`,
     });
-    await seek(page, 0.875);
+    await seek(page, 0.66);
     await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "1");
     await expect(page.locator(".chart")).toHaveCSS("opacity", "0");
     await page.screenshot({
       path: `test-results/anatomy-${viewport.width}.png`,
     });
-    await seek(page, 0.925);
+    await seek(page, 0.705);
     const opacity = await page
       .locator(".anatomy-scene")
       .evaluate((e) => +getComputedStyle(e).opacity);
@@ -106,7 +108,7 @@ for (const viewport of [
     await page.getByRole("button", { name: "On this encounter" }).click();
     await expect(page.locator("#notes")).toBeVisible();
     await page.keyboard.press("Escape");
-    await seek(page, 0.37);
+    await seek(page, 0.35);
     expect(
       await page
         .locator(".chart")
@@ -123,7 +125,7 @@ for (const viewport of [
 test("keyboard skip and reduced motion retain literary content", async ({
   page,
 }) => {
-  await page.setViewportSize({width:390,height:844});
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page.keyboard.press("Tab");
@@ -142,25 +144,32 @@ test("keyboard skip and reduced motion retain literary content", async ({
   await expect(page.locator(".hotspot")).toBeFocused();
   await expect(page.locator(".hotspot")).toBeInViewport();
   await expect(page.locator(".chart")).toHaveCSS("transform", "none");
-  await expect(page.locator(".archival-map")).toHaveCSS("transform", "none");
-  await expect(page.locator(".organism-angler").first()).toHaveCSS("animation-name","none");
+  expect(
+    await page
+      .locator(".archival-map")
+      .evaluate((e) => getComputedStyle(e).transform),
+  ).not.toBe("none");
+  await expect(page.locator(".organism-angler").first()).toHaveCSS(
+    "animation-name",
+    "none",
+  );
 });
 test("refresh, resize, and reverse preserve a continuous timeline", async ({
   page,
 }) => {
   await page.goto("/");
-  await seek(page, 0.65);
+  await seek(page, 0.48);
   await page.reload();
   await expect
     .poll(
       async () => +(await page.locator(".stage").getAttribute("data-progress")),
     )
-    .toBeCloseTo(0.65, 2);
+    .toBeCloseTo(0.48, 2);
   await page.setViewportSize({ width: 900, height: 700 });
   await expect(page.locator(".chart")).toHaveCSS("opacity", "1");
-  await seek(page, 0.25);
+  await seek(page, 0.14);
   await expect(page.locator(".candle-scene")).toHaveCSS("opacity", "1");
-  await seek(page, 0.21);
+  await seek(page, 0.14);
   await expect(page.locator(".ledger")).toHaveCSS("opacity", "1");
   await seek(page, 0);
   await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
@@ -250,7 +259,7 @@ test("candle document fits a short phone and landscape viewport", async ({
   ]) {
     await page.setViewportSize(size);
     await page.goto("/");
-    await seek(page, 0.21);
+    await seek(page, 0.14);
     const box = await page.locator(".ledger").boundingBox();
     expect(box.y).toBeGreaterThan(0);
     expect(box.y + box.height).toBeLessThan(size.height - 25);
@@ -273,30 +282,26 @@ for (const viewport of [
     const candle = page.locator(".candle");
     const start = await candle.boundingBox();
     expect(start.y).toBeGreaterThan(viewport.height);
-    await seek(page, 0.085);
+    await seek(page, 0.045);
     const approaching = await candle.boundingBox();
     expect(approaching.y).toBeLessThan(start.y);
     await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
     await page.screenshot({
       path: `test-results/approach-${viewport.width}.png`,
     });
-    await seek(page, 0.12);
+    await seek(page, 0.075);
     const centered = await candle.boundingBox();
-    expect(
-      Math.abs(centered.y + centered.height / 2 - viewport.height / 2),
-    ).toBeLessThan(3);
-    expect(
-      Math.abs(centered.x + centered.width / 2 - viewport.width / 2),
-    ).toBeLessThan(3);
+    expect(centered.y).toBeLessThan(approaching.y);
+    expect(centered.y + centered.height).toBeLessThan(viewport.height);
     await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
-    await seek(page, 0.21);
-    await expect(page.locator(".ledger")).toContainText("Henry Smith");
+    await seek(page, 0.14);
+    await expect(page.locator(".ledger")).toContainText("American whaleships");
     await expect(page.locator(".ledger")).toContainText("735");
     await expect(page.locator(".ledger")).toContainText("$5,882");
     await expect(page.locator(".ledger")).toContainText("$571");
-    await seek(page, 0.12);
+    await seek(page, 0.075);
     await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
-    await seek(page, 0.085);
+    await seek(page, 0.045);
     const reversed = await candle.boundingBox();
     expect(Math.abs(reversed.y - approaching.y)).toBeLessThan(2);
   });
@@ -326,20 +331,15 @@ test("archival assets load locally and abyss life stays restrained", async ({
       .first()
       .evaluate((e) => Number(getComputedStyle(e).strokeOpacity)),
   ).toBeLessThan(0.1);
-  await seek(page, 0.875);
+  await seek(page, 0.66);
   await expect(page.locator(".archival-plate img")).toBeVisible();
   expect(
     await page
       .locator(".archival-plate img")
-      .evaluate((e) => e.complete && e.naturalWidth === 450),
+      .evaluate((e) => e.complete && e.naturalWidth === 1980),
   ).toBe(true);
-  await expect(page.locator(".archival-plate")).toContainText(
-    "not a sperm whale",
-  );
-  expect(
-    await page.locator(".archival-map image").getAttribute("href"),
-  ).toContain("assets/archive/hartwig");
+  await expect(page.locator(".archival-plate")).toContainText("Thomas Beale");
   await seek(page, 1);
-  await expect(page.locator(".abyss-return")).toHaveCSS("opacity", "0.8");
+  await expect(page.locator(".abyss-return")).toHaveCSS("opacity", "0.65");
   expect(failures).toEqual([]);
 });

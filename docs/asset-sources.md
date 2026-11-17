@@ -97,3 +97,30 @@ Images are local; no paid service, new runtime dependency, hotlinking or high-re
 ### Validation recorded for this pass
 
 The ten-test Chromium suite passed, followed by a focused phone reduced-motion check after disabling the new map camera in that mode. The production Pages-path build, desktop/phone asset and interaction smoke checks, and SHA-256 asset checks passed. Desktop and phone screenshots were inspected, including caption placement. A four-second synthetic production traversal at 390×844, DPR 3 and 4× CPU throttle recorded p95 16.8 ms, one interval over 50 ms and 1.757 s main-thread task time in that run; these are emulation observations, not a physical-phone FPS guarantee.
+
+## v0.4 superseding source audit and visible assets
+
+This section supersedes earlier descriptions of the *currently displayed* Hartwig map and Gray skull. Those files remain in the repository as prior-iteration sources; v0.4 displays the regional chart and Beale plate below.
+
+### Beale's sperm-whale outline — selected and verified
+
+Thomas Beale, *The Natural History of the Sperm Whale* (London: John Van Voorst, **1839**), printed p.23, Fig.1. Holding institution and digital source: **Wellcome Collection**. [Catalogue record](https://wellcomecollection.org/works/r9yqq4dt); [IIIF manifest](https://iiif.wellcomecollection.org/presentation/b29332576); [original full-resolution source](https://iiif.wellcomecollection.org/image/b29332576_0043.jp2/full/full/0/default.jpg).
+
+The record and IIIF manifest explicitly identify [Public Domain Mark 1.0](http://creativecommons.org/publicdomain/mark/1.0/). Scholar and lead inspected the image before implementation. Original page is preserved unchanged as `public/assets/archive/beale-1839-p23-source.jpg` (2033×3510). The display file `beale-1839-fig1.webp` is a lossless crop `[0,1500,1980,2070]` (1980×570), retaining Fig.1 heading and original anatomical letters. No anatomy was retouched; the source scan already clips the far-left fluke tip. Both full and derivative files have source/derivative hashes and processing records in `manifest.json`. Modern caption transcribes a=spout-hole, b=case, f=fin from Beale's printed key; it does not paint new labels onto the engraving.
+
+### Regional chart — original rendering, checked geography
+
+Natural Earth `ne_110m_land.geojson`, from [the maintainers' repository](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_land.geojson), saved as `src/data/land.geo.json`. [Source rights](https://github.com/nvkelso/natural-earth-vector/blob/master/LICENSE.md) explicitly state all versions of their vector/raster data are public domain. Main contributors: Tom Patterson, Nathaniel Vaughn Kelso and others. This is modern geography, **not an old chart**. `src/regional-chart.js` renders an original period-inspired Pacific coastal study and a continuous curved interpretive route in the same projection. The view follows offshore Central America, Ecuador, Peru and Chile. Automated independent ray-casting checks sample the rendered route against the land polygons; no land crossings are permitted. The old hemisphere-break mask is no longer used. No exact Pequod coordinates are asserted.
+
+### Economy and prose — sources actually fetched and read
+
+Direct source access was restored for this iteration. Melville Scholar verified the following against the live named pages:
+
+- [PBS American Experience, *Into the Deep* transcript](https://www.pbs.org/wgbh/americanexperience/films/whaling/), Eric Jay Dolin's “golden age” passage: 1846's 735 American whaleships out of 900 worldwide, 20,000 men aboard, $70 million infrastructure, 70,000 direct/indirect livelihoods. Displayed as historical estimates, not exact census counts or current dollars.
+- [New Bedford Whaling Museum, Whales and Hunting](https://www.whalingmuseum.org/research/research-resources/whaling-history/whales-and-hunting/): *Milton* (1836) captain $5,882 and worst-paid seaman $571; *Benjamin Tucker* (1851) 73,707 gallons whale oil, 5,348 gallons sperm oil, 30,012 pounds baleen, and $45,320 net profit after expenses. This profit includes owners' share; it is not crew pay or the price of one whale.
+- [Life Aboard](https://www.whalingmuseum.org/research/research-resources/whaling-history/life-aboard/): lays were percentage shares rather than conventional wages, with advances and store purchases charged against them. The interface says “subject to deductions”; it does not impose an unsupported universal accounting definition.
+- [Project Gutenberg #2701](https://www.gutenberg.org/files/2701/2701-h/2701-h.htm), Chapter 41: “all my means are sane, my motive and my object mad.” The preceding sentence imagines a glimpse into Ahab's heart; this is Ishmael's narration, not Ahab's spoken dialogue. Chapter 44 excerpt remains accurate, with editorial capitalization of the opening “Almost.” We verified Gutenberg, not an independent 1851 facsimile collation. The novel's original publication year is 1851.
+
+The economic sheet is modern annotation, not a fabricated manuscript. The *Marcella* quotation has been removed. The original candle, harbor, abyss organisms and whale/squid reconstruction retain their prior provenance/limitations; the encounter remains labeled an artistic reconstruction based on indirect evidence.
+
+The regional coastline is generated reproducibly by `scripts/build-chart.mjs` into `public/assets/regional-coast.svg`, which is served as a static image separate from the animated route. Both use `src/chart-geometry.js`; the original geometry remains in the repository for verification, not in the browser bundle. NHA's current verified fire reference is https://nha.org/nha-offers-new-tour-of-the-great-fire/ (July5 2018). Pair with https://nha.org/research/nantucket-history/history-topic/whaling/ for the island's industry into the1850s.

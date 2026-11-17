@@ -42,6 +42,48 @@
       "bytes": 143246,
       "processing": "Full source JPEG decoded and converted to lossless RGB WebP; no crop, retouching, recoloring or upscaling",
       "use": "Standalone cetological archive scene after the red route. Historical taxon name retained; explicitly identified as a baleen whale skull, not a sperm whale."
+    },
+    {
+      "id": "beale-1839-fig1",
+      "file": "beale-1839-fig1.webp",
+      "title": "Fig. 1, external form of the sperm whale, p. 23",
+      "creator": "Thomas Beale, The Natural History of the Sperm Whale, London: John Van Voorst",
+      "publicationYear": 1839,
+      "sourceInstitution": "Wellcome Collection",
+      "canonicalUrl": "https://wellcomecollection.org/works/r9yqq4dt",
+      "sourceFileUrl": "https://iiif.wellcomecollection.org/image/b29332576_0043.jp2/full/full/0/default.jpg",
+      "rights": "Public Domain Mark 1.0, explicitly stated by Wellcome and IIIF manifest",
+      "rightsEvidenceUrl": "https://iiif.wellcomecollection.org/presentation/b29332576",
+      "dimensions": [
+        1980,
+        570
+      ],
+      "sourceSha256": "86e9fd69b4d543d78a57b0d60c6c8864f2120f86d737aa6c9c4928d237b47872",
+      "sha256": "6ac23f325f490823ff167476200ffa8a950d45bafe0e66f6a5119e95258872e0",
+      "bytes": 326622,
+      "processing": "Crop [0,1500,1980,2070] of source JPEG, lossless WebP; no retouching. The source already clips the extreme left fluke tip.",
+      "use": "Separate sperm-whale anatomy scene, after route completion; source page also available locally."
+    },
+    {
+      "id": "beale-1839-p23-source",
+      "file": "beale-1839-p23-source.jpg",
+      "title": "Fig. 1, external form of the sperm whale, p. 23",
+      "creator": "Thomas Beale, The Natural History of the Sperm Whale, London: John Van Voorst",
+      "publicationYear": 1839,
+      "sourceInstitution": "Wellcome Collection",
+      "canonicalUrl": "https://wellcomecollection.org/works/r9yqq4dt",
+      "sourceFileUrl": "https://iiif.wellcomecollection.org/image/b29332576_0043.jp2/full/full/0/default.jpg",
+      "rights": "Public Domain Mark 1.0, explicitly stated by Wellcome and IIIF manifest",
+      "rightsEvidenceUrl": "https://iiif.wellcomecollection.org/presentation/b29332576",
+      "dimensions": [
+        2033,
+        3510
+      ],
+      "sourceSha256": "86e9fd69b4d543d78a57b0d60c6c8864f2120f86d737aa6c9c4928d237b47872",
+      "sha256": "86e9fd69b4d543d78a57b0d60c6c8864f2120f86d737aa6c9c4928d237b47872",
+      "bytes": 520703,
+      "processing": "Unmodified downloaded source page; retained for audit and full-page reading.",
+      "use": "Separate sperm-whale anatomy scene, after route completion; source page also available locally."
     }
   ]
 }
