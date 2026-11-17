@@ -1,3 +1,5 @@
+> **Current voyage map:** the genuine 1844 Norie nautical chart described in [the archival-chart correction](#archival-chart-correction--norie-1844) below. Earlier Hartwig and Natural Earth descriptions document previous iterations.
+
 # Historical asset sources — first implemented pass
 
 Scope: `feature/historical-asset-manifest`, following `moby-dick-asset-checklist.md`. This is an implementation manifest, not a claim that every asset category is finished. Two genuine archival images now replace the invented map and invented anatomy drawing. Five custom dim organism motifs, a spatial warm-light transition, a new candle study, and a less decorative editorial reading sheet accompany them. No stock art or generated archival facsimiles are used.
@@ -124,3 +126,30 @@ Direct source access was restored for this iteration. Melville Scholar verified 
 The economic sheet is modern annotation, not a fabricated manuscript. The *Marcella* quotation has been removed. The original candle, harbor, abyss organisms and whale/squid reconstruction retain their prior provenance/limitations; the encounter remains labeled an artistic reconstruction based on indirect evidence.
 
 The regional coastline is generated reproducibly by `scripts/build-chart.mjs` into `public/assets/regional-coast.svg`, which is served as a static image separate from the animated route. Both use `src/chart-geometry.js`; the original geometry remains in the repository for verification, not in the browser bundle. NHA's current verified fire reference is https://nha.org/nha-offers-new-tour-of-the-great-fire/ (July5 2018). Pair with https://nha.org/research/nantucket-history/history-topic/whaling/ for the island's industry into the1850s.
+
+## Archival chart correction — Norie, 1844
+
+This replaces the v0.4 Natural Earth drawing in the moving voyage. The actual scanned chart supplies all visible coastline, lettering, rhumb lines, soundings, and paper wear; no newly drawn coastline, faux grid, tint, or artificial aging is overlaid. The red route alone is a modern addition.
+
+- **Asset:** *The southern or lower part of the Pacific Ocean*.
+- **Creator/title/date:** J.W. Norie & Co.; Charles Wilson, publishers, London. Catalogue date 1844; edition “Additions 1839 & 44.” Call number G9251.P5 1844 .J82. Do not separately date or attribute the pencil annotations: the catalogue does not establish their date or ship.
+- **Holding institution:** Boston Public Library, Norman B. Leventhal Map & Education Center.
+- **Original record:** https://collections.leventhalmap.org/search/commonwealth:vt154w90j
+- **Archival identifier:** https://ark.digitalcommonwealth.org/ark:/50959/vt154w90j
+- **Rights evidence / IIIF manifest:** https://ark.digitalcommonwealth.org/ark:/50959/vt154w90j/manifest. Both record and manifest state **“No known copyright restrictions. No known restrictions on use.”** This is the institution's exact wording, not a formal Public Domain Mark. The underlying chart is a nineteenth-century published work; the repository retains a copy of the institution's manifest.
+- **Historical relevance:** catalogued as a blueback nautical chart with relief by hachures and depths by soundings. It covers the South Pacific and western South America, including Patagonia. The full sheet includes a note addressed to whalers about migration and currents near Australia, and manuscript ship tracks and whale sightings in pencil. The Australia note is outside the site's eastern crop; do not claim it is visible there or that Melville/Ahab used this particular sheet.
+- **Actual scan:** 25,176×11,262, image ID `commonwealth:h702vp38n`. Full sheet image service: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:h702vp38n/info.json
+- **Downloaded source crop:** https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:h702vp38n/17500,0,7676,11262/2400,/0/default.jpg. The IIIF region is x=17,500, y=0, width=7,676, height=11,262; server reduction yields 2400×3521. The crop selects western South America and nearby ocean so the visitor travels over a closer regional view rather than a distant complete Pacific sheet.
+- **Local files:** `public/assets/archive/norie-1844-pacific-east-source.jpg` (unmodified IIIF download); `norie-1844-pacific-east.webp` (quality-88 WebP, same pixels/dimensions); `norie-1844-iiif-manifest.json` (institutional evidence). Source and derivative sizes/hashes are recorded in `manifest.json` and checked by `scripts/verify-assets.mjs`. No hotlink at runtime.
+- **Site use:** sustained voyage between Nantucket and Beale's separate anatomy plate. The red route is registered directly in the scan's pixel space, remaining offshore along Ecuador, Peru, and Chile. It is interpretive, not precise Pequod coordinates or an archival record of one actual voyage. Original pencil markings remain visible and distinct from the red overlay. The map image is unchanged during scrolling; only the shared camera transform and red stroke change.
+- **Verification limits:** independent manually traced land envelopes in `tests/fixtures/norie-1844-land.json` catch gross route/coast collisions; these are not a new georeferenced historical survey. Rendered inspection against the scan is still required. The image is a regional crop, not a fine-print reader for the entire chart. Original repairs, handwriting, and catalogue stamps are retained.
+
+**Choice:** Norie's 1844 chart is both earlier than the novel and an actual navigational object with whaling annotations. Maury's alternative BPL sheet `ht250c50j` is also unrestricted but is primarily a monthly wind-rose pilot chart dated approximately 1851–1859; it is not embedded. Rumsey's Imray alternative was not used because the scan's stated license adds noncommercial/share-alike conditions.
+
+### Validation of the chart correction
+
+The bounded Melville Scholar pass independently checked the institutional record, nautical-chart classification, 1844 edition, rights wording, and limits on dating the manuscript marks. The Visual Director inspected actual start/middle/end screenshots at desktop and phone widths; its initial concern about a mobile panel covering the red line was repaired with a compact top-right panel, then visually rechecked with no remaining blocker. The lead inspected the rendered scan and retained the original scene order.
+
+All 20 Playwright tests passed, including 1,601 route samples against the independently traced scan land masks, actual served-image hash, viewport coverage, forward/reverse route progress, phone panel/route separation, reduced motion, existing literary dialogs, keyboard skip, and the complete scene sequence. Production build and six asset hash checks passed. The preview verifier passed seven scene checkpoints at 1440×900, 390×844, and 360×640 with no HTTP/script errors. Chromium phone emulation is not physical-device testing.
+
+The existing four-second full-sequence stress script, at 390×844 / DPR 3 / 4× emulated CPU slowdown, observed a 16.8 ms p95 RAF interval with two gaps over 50 ms. This synthetic result does not establish sustained physical-phone frame rate. The change keeps a static compressed raster beneath the lightweight vector route; there is no per-frame image processing or runtime archive request.

@@ -1,3 +1,4 @@
+import { chartWidth, chartHeight, chartInterior } from "./chart-geometry.js";
 const clamp = (value) => Math.max(0, Math.min(1, value));
 const ramp = (p, a, b) => clamp((p - a) / (b - a));
 const smooth = (value) => value * value * (3 - 2 * value);
@@ -154,16 +155,19 @@ export function initVoyage() {
       y: routeSamples[lo].y * (1 - f) + routeSamples[hi].y * f,
     };
     const scale = reduced.matches
-      ? Math.min(geometry.width / 1200, geometry.stageHeight / 1500)
-      : phone
-        ? 1
-        : 1.65;
+      ? Math.min(geometry.width / chartWidth, geometry.stageHeight / chartHeight)
+      : Math.max(phone ? 1 : 1.65,
+          geometry.width / (chartInterior.right - chartInterior.left),
+          geometry.stageHeight / (chartInterior.bottom - chartInterior.top));
+    // Keep actual paper beneath the viewport, including at the ends of the leg.
     const tx = reduced.matches
-      ? (geometry.width - 1200 * scale) / 2
-      : geometry.width * 0.47 - point.x * scale;
+      ? (geometry.width - chartWidth * scale) / 2
+      : Math.max(geometry.width - chartInterior.right * scale,
+          Math.min(-chartInterior.left * scale, geometry.width * 0.47 - point.x * scale));
     const ty = reduced.matches
-      ? (geometry.stageHeight - 1500 * scale) / 2
-      : geometry.stageHeight * 0.53 - point.y * scale;
+      ? (geometry.stageHeight - chartHeight * scale) / 2
+      : Math.max(geometry.stageHeight - chartInterior.bottom * scale,
+          Math.min(-chartInterior.top * scale, geometry.stageHeight * 0.53 - point.y * scale));
     transform(
       "map",
       `translate3d(${tx.toFixed(2)}px,${ty.toFixed(2)}px,0) scale(${scale})`,
@@ -172,7 +176,7 @@ export function initVoyage() {
     opacity("opening", fade(p, 0.27, 0.295, 0.32, 0.345));
     opacity("hotspot", fade(p, 0.29, 0.31, 0.585, 0.61));
     enable(nodes.hotspot, p >= 0.31 && p <= 0.595);
-    const index = Math.min(3, Math.floor(chartProgress * 4));
+    const index = point.y < 345 ? 0 : point.y < 435 ? 1 : point.y < 645 ? 2 : 3;
     const labels = [
       [
         "III / THE EASTERN PACIFIC",
@@ -180,7 +184,7 @@ export function initVoyage() {
         "An interpretive Pacific leg.",
       ],
       [
-        "III / EQUATORIAL WATERS",
+        "III / ECUADOR",
         "Following the coast.",
         "Ocean to the west. A continent to the east.",
       ],
@@ -198,7 +202,7 @@ export function initVoyage() {
     text(waypoint.index, labels[index][0]);
     text(waypoint.title, labels[index][1]);
     text(waypoint.note, labels[index][2]);
-    opacity("chart-waypoint", fade(p, 0.335, 0.36, 0.575, 0.605));
+    opacity("chart-waypoint", fade(p, 0.345, 0.36, 0.575, 0.605));
     opacity("map-caption", 0);
     opacity("archive-map-credit", chartOpacity);
     opacity("anatomy-scene", fade(p, 0.615, 0.64, 0.685, 0.72));
