@@ -8,6 +8,7 @@ Build an exceptional interactive companion to Herman Melville's *Moby-Dick*. Aim
 - Do not overwrite or invent founder preferences. For a significant proposed departure, describe its rationale and seek approval before implementation.
 - The current prototype is a vertical slice; preserve its existing structure unless the specific task asks for change.
 - Preserve literary claims' chapter and edition citations. Historical figures need dated sources; modern annotations must not masquerade as original primary sources.
+- For substantive literary research, read `docs/literary-source-access-gate.md`. The private source collection is at `skyeuldrich/moby-dick-literary-source-materials` with its `SOURCE_INVENTORY.md`; **test Codex's own access and file-text readability before claiming to use the books**. If access fails, report the precise limitation. Never copy the private books or unauthorized material to this public repository; verify rights/provenance restrictions and use lawful copies.
 - Use archival images only with documented provenance and reuse rights. Label original period-inspired illustrations as reconstructions.
 - The Pequod's red-line route is interpretive and should not be represented as exact historical coordinates.
 
