@@ -53,7 +53,7 @@ for (const viewport of [
     await seek(page, 0.35);
     await expect(page.locator(".archive-map-credit")).toBeInViewport();
     await expect(page.locator(".archive-map-credit")).toContainText(
-      "1844",
+      "1797",
     );
     await expect(
       page.getByRole("heading", { name: "Moby—Dick" }),

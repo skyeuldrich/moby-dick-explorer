@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 const scanMask = JSON.parse(
-  readFileSync(new URL("./fixtures/norie-1844-land.json", import.meta.url)),
+  readFileSync(new URL("./fixtures/heather-1797-land.json", import.meta.url)),
 );
 async function at(page, p) {
   await page.evaluate((p) => {
@@ -60,7 +60,7 @@ for (const size of [
     await at(page, 0.47);
     await expect(page.locator(".chart")).toHaveCSS("opacity", "1");
     await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
-    await page.screenshot({ path: `test-results/v04-peru-${size.width}.png` });
+    await page.screenshot({ path: `test-results/v04-azores-${size.width}.png` });
     await page.locator(".hotspot").click();
     await page.getByRole("button", { name: "Return to the voyage" }).click();
     expect(
@@ -139,7 +139,7 @@ test("field notes match displayed source and reading path includes Chapter 41", 
 }) => {
   await page.goto("/");
   await page.locator(".about-button").first().click();
-  await expect(page.locator("#notes")).toContainText("Norie");
+  await expect(page.locator("#notes")).toContainText("William Heather");
   await expect(page.locator("#notes")).toContainText("Thomas Beale");
   await expect(page.locator("#notes")).not.toContainText("Marcella");
   await page.keyboard.press("Escape");

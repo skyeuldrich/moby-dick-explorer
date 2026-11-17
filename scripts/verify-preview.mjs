@@ -36,7 +36,7 @@ try {
     for (const [label, p] of [
       ["desk", 0.14],
       ["harbor", 0.235],
-      ["peru", 0.47],
+      ["azores", 0.47],
       ["beale", 0.66],
       ["madness", 0.8],
       ["partial", 0.94],
@@ -58,12 +58,12 @@ try {
             +(await page.locator(".stage").getAttribute("data-progress")),
         )
         .toBeCloseTo(p, 3);
-      if (label === "peru") {
+      if (label === "azores") {
         await expect(page.locator(".chart-engraving")).toBeVisible();
         expect(
           await page
             .locator(".chart-engraving")
-            .evaluate((e) => e.complete && e.naturalWidth === 2400),
+            .evaluate((e) => e.complete && e.naturalWidth === 4001),
         ).toBe(true);
         await page.locator(".hotspot").click();
         await expect(page.locator("#discovery")).toBeVisible();

@@ -148,6 +148,56 @@
       "sha256": "170dec40df7e4bc4f502078e15a511fc872da6c2fe578930ddb9136b3428efa3",
       "bytes": 1503442,
       "processing": "Same complete downloaded eastern crop encoded as quality-88 WebP, retaining color and all original chart marks; no drawn replacement coastlines, retouching or artificial aging."
+    },
+    {
+      "title": "A new chart of the Atlantic or Western Ocean",
+      "creator": "William Heather; lower margin credits J. Norie, teacher of navigation",
+      "publicationYear": 1797,
+      "sourceInstitution": "Boston Public Library, Norman B. Leventhal Map & Education Center",
+      "canonicalUrl": "https://collections.leventhalmap.org/search/commonwealth:kk91fr56g",
+      "sourceFileUrl": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:kk91fr57r/full/4000,/0/default.jpg",
+      "rights": "No known copyright restrictions. No known restrictions on use. (institutional catalogue and IIIF manifest)",
+      "rightsEvidenceUrl": "https://ark.digitalcommonwealth.org/ark:/50959/kk91fr56g/manifest",
+      "fullScanDimensions": [
+        16097,
+        12195
+      ],
+      "dimensions": [
+        4001,
+        3031
+      ],
+      "sourceSha256": "6e1a2b80b224ce1f885e75aed9cbc149a5517a957a8daadfdd9576db20f9efa9",
+      "use": "Replaces Pacific leg with Nantucket departure, southward Atlantic passage, offshore Azores and Cape Verde grounds, following the named early-voyage sequence in Moby-Dick chapters22,28,51. Connecting ship positions are interpretive; original printed tracks are not the Pequod.",
+      "id": "heather-1797-atlantic-source",
+      "file": "heather-1797-atlantic-source.jpg",
+      "bytes": 2357291,
+      "sha256": "6e1a2b80b224ce1f885e75aed9cbc149a5517a957a8daadfdd9576db20f9efa9",
+      "processing": "Unmodified full-sheet IIIF JPEG download, requested at 4000px wide; server returns 4001x3031. No crop or retouching."
+    },
+    {
+      "title": "A new chart of the Atlantic or Western Ocean",
+      "creator": "William Heather; lower margin credits J. Norie, teacher of navigation",
+      "publicationYear": 1797,
+      "sourceInstitution": "Boston Public Library, Norman B. Leventhal Map & Education Center",
+      "canonicalUrl": "https://collections.leventhalmap.org/search/commonwealth:kk91fr56g",
+      "sourceFileUrl": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:kk91fr57r/full/4000,/0/default.jpg",
+      "rights": "No known copyright restrictions. No known restrictions on use. (institutional catalogue and IIIF manifest)",
+      "rightsEvidenceUrl": "https://ark.digitalcommonwealth.org/ark:/50959/kk91fr56g/manifest",
+      "fullScanDimensions": [
+        16097,
+        12195
+      ],
+      "dimensions": [
+        4001,
+        3031
+      ],
+      "sourceSha256": "6e1a2b80b224ce1f885e75aed9cbc149a5517a957a8daadfdd9576db20f9efa9",
+      "use": "Replaces Pacific leg with Nantucket departure, southward Atlantic passage, offshore Azores and Cape Verde grounds, following the named early-voyage sequence in Moby-Dick chapters22,28,51. Connecting ship positions are interpretive; original printed tracks are not the Pequod.",
+      "id": "heather-1797-atlantic",
+      "file": "heather-1797-atlantic.webp",
+      "bytes": 1930454,
+      "sha256": "a0cbea9ef88c2a7ae38ebc5b5e12753f818d229890caf4644a172f95838d7cfa",
+      "processing": "Complete same sheet and dimensions, encoded as quality-82 WebP. No crop, invented coastline, artificial aging or recoloring; lossy encoding changes pixel values."
     }
   ]
 }
