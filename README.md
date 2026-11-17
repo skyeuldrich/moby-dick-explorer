@@ -1,7 +1,7 @@
 # Moby-Dick — Into the Unmeasured
 
 A working single-page prototype following `moby-dick-prototype-brief-v0.3.md`, building on the preserved v0.1 brief (`moby-dick-prototype-brief-v0.md`). See [v0.3 iteration notes](docs/iteration-v03.md) and [v0.2 performance notes](docs/iteration-v02.md) for performance evidence, new source notes and remaining limitations.
-Candlelit trade documents and a reconstructed Nantucket harbor lead into an original parchment chart, which yields to a dark ocean and a layered sperm whale / giant squid reconstruction. Scroll position drives route drawing, map panning, dissolution, depth, and descent. Scrolling backward reverses the timeline. No accounts, API keys, backend, audio, or paid services.
+A deep-ocean opening and candlelit trade document lead into an archival ocean-current map, which yields to a cetological skull plate and a dark ocean and a layered sperm whale / giant squid reconstruction. Scroll position drives route drawing, map panning, dissolution, depth, and descent. Scrolling backward reverses the timeline. No accounts, API keys, backend, audio, or paid services.
 
 ## View the prototype
 
@@ -45,14 +45,14 @@ Tests use `/usr/bin/chromium` when available; set `CHROMIUM_PATH` to override. O
 ## Sources, assets, and rights
 
 - Literary quotation verified against Project Gutenberg eBook #2701, Chapter 44: “Almost every night some pencil marks were effaced, and others were substituted.” [Full chapter](https://www.gutenberg.org/files/2701/2701-h/2701-h.htm#link2HCH0044). [GITenberg mirror used for verification](https://github.com/GITenberg/Moby-Dick--Or-The-Whale_2701/blob/master/2701-h/2701-h.htm). Melville's 1851 text is public domain in the US; consult local law elsewhere. Interpretive prose is original.
-- All map, whale, squid and texture artwork is original inline SVG/CSS created for this prototype. No third-party image assets. The simplified chart is an artistic condensation, not precise geography or the documented route of the Pequod.
+- The map and cetological plate are now genuine public-domain images, served locally. See [asset sources](docs/asset-sources.md) and `public/assets/archive/manifest.json` for provenance, dates, rights evidence and exact hashes. The red route is a modern interpretation with a disclosed projection break; the 1871 skull plate is a baleen whale, not a sperm whale. Ocean life, candle and final whale/squid remain original reconstructions.
 - Historical reference: [Maury, Whale Chart, 1851 (UWM)](https://collections.lib.uwm.edu/digital/collection/agdm/id/322). Maury's image is not embedded or represented as Ahab's chart.
 - Encounter interpretation: [American Museum of Natural History](https://www.amnh.org/explore/videos/exhibits/the-squid-and-the-whale-evidence-for-an-epic-encounter). Indirect evidence, not an observed fight. The tableau is not to biological scale.
 - Cormorant Garamond and DM Sans are bundled through Fontsource under the SIL Open Font License; license files are included with the installed `@fontsource` packages. No runtime font network requests.
 
 ## Implementation / tradeoffs
 
-Vite and vanilla JavaScript; cached scene geometry and local opacity/transform updates rendered at most once per animation frame. Native dialogs provide focus handling and keyboard dismissal. No scroll interception, WebGL, video, or animation framework. Native touch remains one-to-one; desktop wheel visuals use a brief 65 ms catch-up. Filtered full-screen artwork has been removed to reduce rendering cost. A dedicated text section provides the same literary anchor without animation. Reduced-motion users retain a shorter, scroll-linked opacity sequence with no atmospheric animation or chart panning. The original vector illustrations prioritize a lightweight, cohesive vertical slice over archival cartographic precision or photorealism. Chapter 60 is a future editorial direction, not a nonfunctional control.
+Vite and vanilla JavaScript; cached scene geometry and local opacity/transform updates rendered at most once per animation frame. Native dialogs provide focus handling and keyboard dismissal. No scroll interception, WebGL, video, or animation framework. Native touch remains one-to-one; desktop wheel visuals use a brief 65 ms catch-up. Filtered full-screen artwork has been removed to reduce rendering cost. A dedicated text section provides the same literary anchor without animation. Reduced-motion users retain a shorter, scroll-linked opacity sequence with no atmospheric animation or chart panning. The new archival replacements preserve their source resolution and are clearly dated; they postdate the novel. The original final tableau remains stylized. The candle holder and manuscript facsimile research remain unfinished; no unverified archival scan is embedded. Chapter 60 is a future editorial direction, not a nonfunctional control.
 
 ## GitHub Pages preview
 
@@ -66,3 +66,7 @@ npm run preview -- --port 4173 --base=/moby-dick-explorer/
 ```
 
 Open http://localhost:4173/moby-dick-explorer/ (or the corresponding forwarded cloud address). Both commands must use the same base path. Changing the repository name or attaching a custom domain requires updating the workflow's `--base` value.
+
+## Historical asset branch
+
+Current pass: `feature/historical-asset-manifest`. It is not merged or deployed over the published site. See [the asset manifest](docs/asset-sources.md) for selected archival sources, pending verification and visual review choices. Verify local asset integrity with `node scripts/verify-assets.mjs`. The harbor illustration is retained in source but omitted from the current abyss → candle → map → cetology → abyss presentation.

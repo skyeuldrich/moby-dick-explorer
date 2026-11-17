@@ -1793,3 +1793,325 @@ header {
     top: 4%;
   }
 }
+/* Historical asset pass: deep water before the light, not a black backdrop. */
+.candle-scene {
+  background: radial-gradient(
+    ellipse at 35% 20%,
+    #071317 0%,
+    #030b10 42%,
+    #010509 100%
+  );
+}
+.table-light {
+  background:
+    radial-gradient(
+      ellipse at 61% 47%,
+      #57402270 0,
+      #2c251840 38%,
+      #080a09 76%
+    ),
+    repeating-linear-gradient(2deg, #37302011 0 1px, transparent 1px 9px);
+}
+.abyss-life {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  contain: layout paint;
+  will-change: opacity;
+}
+.abyss-organism {
+  position: absolute;
+  overflow: visible;
+  animation: abyss-drift 47s ease-in-out infinite alternate;
+  will-change: transform;
+  transform-origin: center;
+}
+.organism-body {
+  fill: #637974;
+  fill-opacity: 0.035;
+  stroke: #79908b;
+  stroke-opacity: 0.075;
+  stroke-width: 0.65;
+}
+.organism-light {
+  fill: #afc5b7;
+  opacity: 0.32;
+}
+.organism-rim {
+  stroke: #a0b5aa;
+  stroke-width: 0.6;
+  opacity: 0.14;
+}
+.organism-angler {
+  left: 67%;
+  top: 31%;
+  width: 62px;
+  animation-duration: 53s;
+  rotate: -11deg;
+}
+.organism-colony {
+  left: 26%;
+  top: 16%;
+  height: 110px;
+  animation-duration: 61s;
+  animation-delay: -12s;
+  rotate: 19deg;
+}
+.organism-jelly {
+  left: 80%;
+  top: 63%;
+  width: 44px;
+  animation-duration: 44s;
+  animation-delay: -23s;
+}
+.organism-small {
+  left: 15%;
+  top: 65%;
+  width: 22px;
+  animation-duration: 57s;
+  animation-delay: -8s;
+}
+.organism-thread {
+  left: 45%;
+  top: 79%;
+  width: 63px;
+  animation-duration: 67s;
+  animation-delay: -35s;
+}
+.abyss-snow {
+  position: absolute;
+  inset: 0;
+}
+.abyss-snow i {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: #98b3ad;
+  opacity: 0.13;
+}
+@keyframes abyss-drift {
+  from {
+    transform: translate3d(-5px, 4px, 0) rotate(-2deg);
+  }
+  to {
+    transform: translate3d(8px, -9px, 0) rotate(3deg);
+  }
+}
+.stage:not([data-scene="opening-abyss"]):not([data-scene="light"])
+  .abyss-organism {
+  animation-play-state: paused;
+}
+@media (max-width: 700px) {
+  .organism-angler {
+    left: 64%;
+    width: 48px;
+  }
+  .organism-colony {
+    left: 21%;
+    height: 86px;
+  }
+  .organism-jelly {
+    left: 79%;
+    width: 32px;
+  }
+  .organism-small {
+    left: 12%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .abyss-organism {
+    animation: none;
+    will-change: auto;
+  }
+}
+.candle-study {
+  position: absolute;
+  width: 100px;
+  height: auto;
+  top: 37px;
+  left: -21px;
+}
+.candle .flame {
+  top: 0;
+}
+.candle .flame-halo {
+  top: -105px;
+}
+.candle {
+  height: 230px;
+}
+.abyss-return {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.abyss-return .abyss-organism {
+  animation-play-state: running !important;
+}
+.stage:not([data-scene="abyss"]) .abyss-return .abyss-organism {
+  animation-play-state: paused !important;
+}
+.ocean {
+  background: radial-gradient(
+    ellipse at 47% 80%,
+    #0b2226,
+    #030c12 65%,
+    #010509
+  );
+}
+.rays {
+  display: none;
+}
+.chart {
+  background: #cfc6a8;
+}
+.chart .archival-map {
+  filter: none;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  opacity: 1;
+  will-change: transform;
+}
+.archive-map-credit {
+  position: absolute;
+  bottom: 6%;
+  left: 8%;
+  font-size: 9px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  color: #3e4736;
+  background: #e9e1c8e8;
+  padding: 8px 12px;
+  border: 1px solid #81765c40;
+}
+.chart #route {
+  stroke: #a63829;
+  stroke-width: 2.2;
+}
+.chart .route-ghost {
+  stroke-width: 1;
+  opacity: 0.1;
+}
+.anatomy-scene .archival-plate {
+  margin: 0;
+  max-width: 760px;
+  padding: 26px 35px;
+  text-align: center;
+  background: #e8dfbf;
+}
+.archival-plate img {
+  display: block;
+  max-height: 48svh;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  margin: 20px auto;
+  object-fit: contain;
+}
+.archival-plate figcaption p {
+  font:
+    15px/1.65 "Cormorant Garamond",
+    Georgia,
+    serif;
+  margin: 8px 0;
+}
+.archival-plate figcaption a {
+  font-size: 10px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  pointer-events: auto;
+}
+.archival-plate .citation {
+  font-size: 10px !important;
+}
+.anatomy-scene {
+  pointer-events: auto;
+}
+.anatomy-scene[inert] {
+  pointer-events: none;
+}
+.ledger {
+  background-color: #d6ccb0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 29px,
+    #53462905 29px 30px
+  );
+  transform: rotate(1deg);
+  box-shadow: 0 5px 14px #0003;
+}
+.document-label {
+  letter-spacing: 0.8px;
+}
+@media (max-width: 700px) {
+  .chart .archival-map {
+    width: 230%;
+    max-width: none;
+    transform: none;
+  }
+  .archive-map-credit {
+    bottom: 8%;
+    left: 7%;
+    right: 14%;
+    font-size: 7px;
+    padding: 7px 9px;
+  }
+  .anatomy-scene .archival-plate {
+    width: 92%;
+    padding: 22px 13px;
+  }
+  .archival-plate img {
+    max-height: 43svh;
+  }
+  .archival-plate figcaption p {
+    font-size: 13px;
+  }
+  .archival-plate figcaption a {
+    font-size: 9px;
+  }
+  .anatomy-scene .archival-plate .eyebrow {
+    letter-spacing: 1px;
+  }
+}
+@media (max-height: 600px) and (min-width: 701px) {
+  .anatomy-scene .archival-plate {
+    padding: 12px 25px;
+  }
+  .archival-plate img {
+    max-height: 40svh;
+    margin: 5px auto;
+  }
+  .archival-plate figcaption p {
+    font-size: 12px;
+    margin: 3px 0;
+  }
+  .archive-map-credit {
+    font-size: 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .abyss-return .abyss-organism {
+    animation: none !important;
+  }
+}
+.candle-study {
+  width: 76px;
+  left: -9px;
+}
+.stage > .archive-map-credit {
+  z-index: 3;
+  bottom: 9%;
+  pointer-events: none;
+  will-change: opacity;
+}
+@media (max-width: 700px) {
+  .stage > .archive-map-credit {
+    bottom: 6%;
+    font-size: 7px;
+    left: 7%;
+    right: 7%;
+  }
+}
+@media(prefers-reduced-motion:reduce){.chart .archival-map{will-change:auto}}

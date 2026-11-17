@@ -1,0 +1,47 @@
+{
+  "assets": [
+    {
+      "id": "hartwig-ocean-currents-1892",
+      "file": "hartwig-ocean-currents-1892.webp",
+      "title": "Map of the Globe, showing the direction of the Ocean Currents, Cotidal Lines, &c.",
+      "creator": "Cartographer not established from this scan; reproduced in Georg Hartwig, The Sea and Its Living Wonders, seventh edition",
+      "publicationYear": 1892,
+      "sourceInstitution": "Longmans, Green, and Co. (publisher); Internet Archive scans, Project Gutenberg transcription, GITenberg mirror",
+      "canonicalUrl": "https://www.gutenberg.org/ebooks/62011",
+      "sourceFileUrl": "https://raw.githubusercontent.com/GITenberg/The-Sea-and-Its-Living-Wonders-A-Popular-Account-of-the-Marvels-of-the-Deep-and-of-the-Progre__62011/077c350ec1dc7ef1b9f5dbfa98e3fab0ed30a8e8/62011-h/images/world_map_lg.png",
+      "rights": "Public domain in the USA (source metadata.yaml); reproduced nineteenth-century plate, no modern illustration added",
+      "rightsEvidenceUrl": "https://github.com/GITenberg/The-Sea-and-Its-Living-Wonders-A-Popular-Account-of-the-Marvels-of-the-Deep-and-of-the-Progre__62011/blob/077c350ec1dc7ef1b9f5dbfa98e3fab0ed30a8e8/metadata.yaml",
+      "dimensions": [
+        1200,
+        706
+      ],
+      "sourceSha256": "65f54e0579ccff00c7bcd85e553fe5d8aa7cbefc0408fefda3a420e103af1061",
+      "sha256": "a6fed4b7124a2627a9116da8bc722c5731ca7cabae300eb9a9af88464959dd01",
+      "bytes": 371742,
+      "processing": "Full source image converted to lossless RGB WebP; no crop, artificial aging, recoloring, retouching or upscaling",
+      "use": "Voyage map, with a separate modern red overlay. Two hemispheres require a clearly disclosed projection break. Edition postdates Moby-Dick."
+    },
+    {
+      "id": "gray-cetology-skull-1871",
+      "file": "gray-cetology-skull-1871.webp",
+      "title": "Figures 1 and 2: side and top views of the skull of Neobalæna marginata",
+      "creator": "John Edward Gray, catalogue author; caption credits Dr. Hector’s figures; engraver unidentified",
+      "publicationYear": 1871,
+      "sourceInstitution": "British Museum (original catalogue); Internet Archive/Canadian Libraries scans; Project Gutenberg; GITenberg mirror",
+      "canonicalUrl": "https://www.gutenberg.org/ebooks/69699",
+      "originalScanUrl": "https://archive.org/details/supplcataseal00brituoft",
+      "sourceFileUrl": "https://raw.githubusercontent.com/GITenberg/Supplement-to-the-catalogue-of-seals-and-whales-in-the-British-Museum_69699/e6bfb7ed62a4284298eed154cbb60487b6859751/69699-h/images/figure01-02.jpg",
+      "rights": "Public domain in the USA (source metadata.yaml); original publication 1871",
+      "rightsEvidenceUrl": "https://github.com/GITenberg/Supplement-to-the-catalogue-of-seals-and-whales-in-the-British-Museum_69699/blob/e6bfb7ed62a4284298eed154cbb60487b6859751/metadata.yaml",
+      "dimensions": [
+        450,
+        475
+      ],
+      "sourceSha256": "4fcbcfba3cb873ee3e3c0f37f57ffecab0505f5f900a77f75cc5020dd8933f65",
+      "sha256": "5cfc729b1e97489feccf903ec4b8d7905e8b0d9815e371748800050743edea73",
+      "bytes": 143246,
+      "processing": "Full source JPEG decoded and converted to lossless RGB WebP; no crop, retouching, recoloring or upscaling",
+      "use": "Standalone cetological archive scene after the red route. Historical taxon name retained; explicitly identified as a baleen whale skull, not a sperm whale."
+    }
+  ]
+}

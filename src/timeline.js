@@ -22,6 +22,7 @@ export function initVoyage() {
       "particles",
       "rays",
       "candle-scene",
+      "abyss-life",
       "candle-intro",
       "candle-caption",
       "ledger",
@@ -29,12 +30,12 @@ export function initVoyage() {
       "table-light",
       "bottom-glow",
       "anatomy-scene",
-      "harbor-scene",
-      "harbor-art",
-      "anatomy-plate",
+      "abyss-return",
+      "map",
       "chart-waypoint",
       "depth",
       "map-caption",
+      "archive-map-credit",
     ].map((name) => [name, $(`.${name}`)]),
   );
   const flame = $(".flame");
@@ -44,7 +45,6 @@ export function initVoyage() {
   const progressLabel = $(".progress-label");
   const cue = $(".scroll-cue span");
   const marker = $(".depth b");
-  const gulls = [...document.querySelectorAll(".gull")];
   const waypoint = {
     index: $(".chart-waypoint .eyebrow"),
     title: $(".chart-waypoint h2"),
@@ -108,51 +108,38 @@ export function initVoyage() {
     const chart = ramp(p, 0.32, 0.81);
     const chartOpacity = fade(p, 0.29, 0.35, 0.805, 0.85);
     const abyss = smooth(ramp(p, 0.945, 0.99));
-    opacity("candle-scene", 1 - smooth(ramp(p, 0.205, 0.275)));
-    const approach = smooth(ramp(p, 0.005, 0.078));
-    const reveal = smooth(ramp(p, 0.085, 0.13));
+    opacity("candle-scene", 1 - smooth(ramp(p, 0.27, 0.35)));
+    opacity("abyss-life", 1 - smooth(ramp(p, 0.09, 0.18)));
+    const approach = smooth(ramp(p, 0.04, 0.12));
+    const reveal = smooth(ramp(p, 0.13, 0.18));
     const phone = geometry.width <= 700;
     const travel = reduced.matches
       ? 0
       : (1 - approach) * geometry.stageHeight * 0.78;
     const moveAside = phone && !reduced.matches ? reveal : 0;
-    opacity("candle", smooth(ramp(p, 0.005, 0.025)));
+    opacity("candle", smooth(ramp(p, 0.055, 0.085)));
     transform(
       "candle",
-      `translate3d(${(moveAside * geometry.width * 0.29).toFixed(2)}px,${(travel - moveAside * geometry.stageHeight * 0.28).toFixed(2)}px,0) scale(${phone ? 0.65 : 0.9})`,
+      `translate3d(${(moveAside * geometry.width * 0.29).toFixed(2)}px,${(travel - moveAside * geometry.stageHeight * 0.32).toFixed(2)}px,0) scale(${phone ? 0.65 : 0.9})`,
     );
-    style(flame, "opacity", smooth(ramp(p, 0.005, 0.025)).toFixed(4));
+    style(flame, "opacity", smooth(ramp(p, 0.055, 0.085)).toFixed(4));
     style(halo, "opacity", approach.toFixed(4));
-    opacity("bottom-glow", fade(p, 0.001, 0.035, 0.07, 0.105));
+    opacity("bottom-glow", fade(p, 0.025, 0.08, 0.12, 0.18));
     transform(
       "bottom-glow",
       `translate3d(0,${(-approach * 18).toFixed(2)}%,0)`,
     );
-    opacity("table-light", smooth(ramp(p, 0.07, 0.14)));
+    opacity("table-light", smooth(ramp(p, 0.12, 0.19)));
     opacity("ledger", reveal);
     opacity("candle-intro", reveal);
     opacity("candle-caption", reveal);
-    enable(nodes.ledger, p >= 0.12 && p < 0.22);
-    opacity("harbor-scene", fade(p, 0.205, 0.275, 0.3, 0.355));
-    if (p > 0.205 && p < 0.355)
-      transform(
-        "harbor-art",
-        reduced.matches
-          ? "none"
-          : `translate3d(0,${((0.28 - p) * 55).toFixed(2)}px,0) scale(1.025)`,
-      );
-    if (p > 0.205 && p < 0.355)
-      gulls.forEach((bird, i) => {
-        const angle = (p - 0.2) * 29 + i * 2;
-        style(
-          bird,
-          "transform",
-          reduced.matches
-            ? "none"
-            : `translate3d(${(Math.sin(angle) * 30).toFixed(2)}px,${(Math.cos(angle) * 12).toFixed(2)}px,0) rotate(${(Math.cos(angle) * 8).toFixed(2)}deg)`,
-        );
-      });
+    enable(nodes.ledger, p >= 0.17 && p < 0.3);
     opacity("chart", chartOpacity);
+    transform(
+      "map",
+      phone && !reduced.matches ? `translate3d(${(-chart * 43).toFixed(3)}%,0,0)` : "none",
+    );
+    opacity("abyss-return", smooth(ramp(p, 0.93, 0.99)) * 0.8);
     // Gentle, continuous eastward/downward camera; no stepped scene transforms.
     transform(
       "chart",
@@ -178,6 +165,7 @@ export function initVoyage() {
     text(waypoint.title, stops[waypointIndex][1]);
     text(waypoint.note, stops[waypointIndex][2]);
     opacity("anatomy-scene", fade(p, 0.805, 0.85, 0.905, 0.945));
+    enable(nodes["anatomy-scene"], p >= 0.84 && p <= 0.925);
     opacity("transition-copy", fade(p, 0.92, 0.945, 0.965, 0.985));
     opacity("abyss-copy", abyss);
     enable(nodes["abyss-copy"], p >= 0.98);
@@ -208,11 +196,12 @@ export function initVoyage() {
         : `${Math.round(ramp(p, 0.94, 1) * 1800).toLocaleString("en-US")} M`,
     );
     opacity("map-caption", chartOpacity);
+    opacity("archive-map-credit", chartOpacity);
     const scene =
-      p < 0.23
-        ? "light"
+      p < 0.08
+        ? "opening-abyss"
         : p < 0.325
-          ? "harbor"
+          ? "light"
           : p < 0.825
             ? "chart"
             : p < 0.925
@@ -229,7 +218,8 @@ export function initVoyage() {
       text(
         progressLabel,
         {
-          light: "I · THE LIGHT",
+          "opening-abyss": "I · THE DEEP",
+          light: "II · THE LIGHT",
           harbor: "II · NANTUCKET",
           chart: "III · THE CHART",
           anatomy: "IV · THE ANATOMY",
@@ -239,7 +229,7 @@ export function initVoyage() {
       );
       text(
         cue,
-        scene === "light"
+        scene === "light" || scene === "opening-abyss"
           ? "SCROLL TOWARD THE LIGHT"
           : scene === "harbor"
             ? "SCROLL TO LEAVE THE HARBOR"
