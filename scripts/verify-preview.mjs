@@ -77,7 +77,7 @@ try {
             .evaluate(
               (e) =>
                 e.complete &&
-                e.naturalWidth === 1672 &&
+                e.naturalWidth === 1671 &&
                 e.naturalHeight === 941,
             ),
         ).toBe(true);

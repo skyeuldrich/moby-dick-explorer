@@ -27,7 +27,7 @@ test("the encounter serves the unchanged owner-supplied WebP instead of vector a
   const img = page.locator(".encounter-image");
   await expect(img).toHaveAttribute(
     "src",
-    /assets\/moby-dick-abyss-whale-squid\.webp$/,
+    /assets\/moby-dick-whale-squid-final\.webp$/,
   );
   const response = await page.request.get(await img.getAttribute("src"));
   expect(response.ok()).toBe(true);
@@ -35,11 +35,11 @@ test("the encounter serves the unchanged owner-supplied WebP instead of vector a
     createHash("sha256")
       .update(await response.body())
       .digest("hex"),
-  ).toBe("3d99db544201f8b49a7208c1a49aef2436d73353f282b2ba6313ef1f7b7b752b");
+  ).toBe("9c8d32f85e93d3d679b430e15e052d89620df808f0dfd33a566c736532c02c8c");
   await expect
     .poll(() =>
       img.evaluate(
-        (e) => e.complete && e.naturalWidth === 1672 && e.naturalHeight === 941,
+        (e) => e.complete && e.naturalWidth === 1671 && e.naturalHeight === 941,
       ),
     )
     .toBe(true);
@@ -79,7 +79,7 @@ for (const size of [
     expect(image.y).toBeGreaterThanOrEqual(0);
     expect(image.x + image.width).toBeLessThanOrEqual(size.width);
     expect(image.y + image.height).toBeLessThanOrEqual(size.height);
-    expect(image.width / image.height).toBeCloseTo(1672 / 941, 3);
+    expect(image.width / image.height).toBeCloseTo(1671 / 941, 3);
     if (size.width < 700) {
       const text = await page.locator(".abyss-copy").boundingBox();
       expect(text.y + text.height).toBeLessThan(image.y);
