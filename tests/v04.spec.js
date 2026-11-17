@@ -90,11 +90,11 @@ for (const size of [
     await page.screenshot({
       path: `test-results/v04-partial-${size.width}.png`,
     });
-    const before = await page.locator(".whale").boundingBox();
+    const before = await page.locator(".encounter-image").boundingBox();
     expect(before.y + before.height).toBeGreaterThan(size.height);
     await at(page, 1);
       if(size.width<=700) await expect(page.locator(".depth")).toHaveCSS("opacity","0");
-    for (const name of [".whale", ".squid"]) {
+    for (const name of [".encounter-image"]) {
       const b = await page.locator(name).boundingBox();
       expect(b.x).toBeGreaterThanOrEqual(0);
       expect(b.x + b.width).toBeLessThan(size.width);

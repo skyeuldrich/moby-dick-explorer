@@ -69,6 +69,20 @@ try {
         await expect(page.locator("#discovery")).toBeVisible();
         await page.keyboard.press("Escape");
       }
+      if (label === "encounter") {
+        await expect(page.locator(".encounter-image")).toBeVisible();
+        expect(
+          await page
+            .locator(".encounter-image")
+            .evaluate(
+              (e) =>
+                e.complete &&
+                e.naturalWidth === 1672 &&
+                e.naturalHeight === 941,
+            ),
+        ).toBe(true);
+        await expect(page.locator("svg.creatures")).toHaveCount(0);
+      }
       if (label === "madness") {
         await expect(page.locator(".descent-quote")).toHaveCSS("opacity", "1");
         await expect(page.locator(".creatures")).toHaveCSS("opacity", "0");

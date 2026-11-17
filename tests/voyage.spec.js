@@ -137,7 +137,7 @@ test("keyboard skip and reduced motion retain literary content", async ({
   ).toBeInViewport();
   expect(
     await page
-      .locator(".whale")
+      .locator(".encounter-image")
       .evaluate((e) => getComputedStyle(e).animationName),
   ).toBe("none");
   await page.getByRole("link", { name: "Return to the chart" }).click();

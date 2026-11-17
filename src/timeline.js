@@ -62,7 +62,6 @@ export function initVoyage() {
     note: $(".waypoint-note"),
   };
   const gulls = [...document.querySelectorAll(".gull")];
-  const squid = $(".squid");
   const landmarkNodes = [...document.querySelectorAll(".route-landmark")];
   const landmarkLabels = landmarkNodes.map((node) =>
     node.querySelector("text"),
@@ -302,7 +301,6 @@ export function initVoyage() {
         ? "none"
         : `translate3d(0,${((1 - encounter) * geometry.stageHeight * 0.95).toFixed(2)}px,0) scale(${framing.toFixed(4)})`,
     );
-    style(squid, "opacity", smooth(ramp(p, 0.92, 0.985)).toFixed(4));
     opacity("abyss-copy", smooth(ramp(p, 0.975, 1)));
     enable(nodes["abyss-copy"], p >= 0.99);
     opacity("abyss-return", smooth(ramp(p, 0.71, 0.83)) * 0.65);

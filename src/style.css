@@ -362,19 +362,6 @@ h1 {
   z-index: 1;
   filter: drop-shadow(0 25px 30px #0008);
 }
-.whale {
-  animation: drift 14s ease-in-out infinite alternate;
-  transform-origin: center;
-}
-.squid {
-  animation: drift 17s ease-in-out infinite alternate-reverse;
-  transform-origin: center;
-}
-@keyframes drift {
-  to {
-    transform: translate(6px, -9px) rotate(-1deg);
-  }
-}
 .abyss-copy {
   position: absolute;
   top: 17%;
@@ -756,8 +743,6 @@ header.on-paper {
 .ocean:after {
   opacity: 0.4;
 }
-.whale,
-.squid,
 .particles i {
   animation: none;
 }
@@ -2770,3 +2755,43 @@ header {
 .route-transcript p, .route-transcript li { font: 14px/1.8 "DM Sans", sans-serif; }
 .route-transcript ol { padding-left: 22px; }
 .route-transcript li { margin: 8px 0; }
+
+/* Owner-supplied painting replaces the separate vector animals. */
+.creatures.encounter-artwork {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100%;
+  margin: 0;
+  padding: 2vw;
+  display: grid;
+  place-items: center;
+  transform-origin: 50% 50%;
+}
+.encounter-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  /* Feather only the outer edge; retain the complete supplied composition. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent), linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent), linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+@media (max-width: 700px) {
+  .creatures.encounter-artwork { padding-top: 16svh; }
+}
+.creatures.encounter-artwork { grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
+.encounter-image { min-width: 0; min-height: 0; }
+@media (min-width: 701px) {
+  .encounter-artwork::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 8% 15%, #01090fbd, #01090f60 26%, transparent 52%);
+  }
+}
