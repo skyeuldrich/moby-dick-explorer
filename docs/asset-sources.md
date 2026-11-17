@@ -1,4 +1,4 @@
-> **Current voyage map:** the genuine 1844 Norie nautical chart described in [the archival-chart correction](#archival-chart-correction--norie-1844) below. Earlier Hartwig and Natural Earth descriptions document previous iterations.
+> **Current voyage map:** William Heather’s genuine **1797 Atlantic sea chart**, described in [the Nantucket / Atlantic correction](#nantucket--atlantic-correction--william-heather-1797) below. The 1844 Pacific chart and earlier drawings document previous iterations.
 
 # Historical asset sources — first implemented pass
 
@@ -153,3 +153,19 @@ The bounded Melville Scholar pass independently checked the institutional record
 All 20 Playwright tests passed, including 1,601 route samples against the independently traced scan land masks, actual served-image hash, viewport coverage, forward/reverse route progress, phone panel/route separation, reduced motion, existing literary dialogs, keyboard skip, and the complete scene sequence. Production build and six asset hash checks passed. The preview verifier passed seven scene checkpoints at 1440×900, 390×844, and 360×640 with no HTTP/script errors. Chromium phone emulation is not physical-device testing.
 
 The existing four-second full-sequence stress script, at 390×844 / DPR 3 / 4× emulated CPU slowdown, observed a 16.8 ms p95 RAF interval with two gaps over 50 ms. This synthetic result does not establish sustained physical-phone frame rate. The change keeps a static compressed raster beneath the lightweight vector route; there is no per-frame image processing or runtime archive request.
+
+## Nantucket / Atlantic correction — William Heather, 1797
+
+The founder corrected the voyage’s geography: it must begin at Nantucket and follow Melville’s actual narrative, rather than an unrelated Pacific coastal leg. [The first-half route reading](pequod-route-first-half.md) documents the text, first-half scope, quotations, route sequence, and limits.
+
+- **Asset name/title/date:** *A new chart of the Atlantic or Western Ocean*, William Heather, 1797. The catalogue notes “by J. Norie, teacher of navigation, Leadenhall Street” in the lower-left margin. Do not confuse the chart’s publication year with the Pequod’s departure year, which chapter 22 does not supply.
+- **Holding institution:** Boston Public Library, Norman B. Leventhal Map & Education Center.
+- **Original URL:** https://collections.leventhalmap.org/search/commonwealth:kk91fr56g
+- **Rights / provenance:** https://ark.digitalcommonwealth.org/ark:/50959/kk91fr56g/manifest. Record and IIIF manifest state **“No known copyright restrictions. No known restrictions on use.”** Quote the institutional statement rather than inventing a formal Public Domain Mark. A copy of the institutional manifest is retained locally.
+- **Historical relevance:** a genuine North Atlantic navigation chart, with soundings, prevailing-current arrows, tracks of 1790s voyages, and seven coastal views. It includes Nantucket, the Azores/Western Isles, and Cape Verde. It is not presented as a specific chart used by Melville or Ahab. Existing printed voyage tracks and manuscript marks are not the Pequod’s.
+- **Full scan:** 16097×12195, IIIF image ID `commonwealth:kk91fr57r`. https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:kk91fr57r/info.json
+- **Downloaded image:** https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:kk91fr57r/full/4000,/0/default.jpg — the image service returns 4001×3031. This is a reduced complete sheet, not a crop.
+- **Local assets:** `public/assets/archive/heather-1797-atlantic-source.jpg` (unmodified download, 2,357,291 bytes); `heather-1797-atlantic.webp` (complete same sheet, 1,930,454 bytes, quality-82 lossy encoding); `heather-1797-iiif-manifest.json`. Source/derivative SHA-256 and exact dimensions/processing are in the archive manifest and verified by the asset script. Lossy encoding changes pixel values; there is no recoloring, invented aging, retouching, or replacement coastline.
+- **Site use:** sustained map sequence begins just seaward of the small printed Nantucket island. A single red line follows the narrated southward departure, crosses toward the Azores, and continues south toward Cape Verde. The actual scan and route share one pixel-space camera. Raster, red route, and modern labels remain distinct. Dots mark reconstructed offshore positions; marker labels fade after a ground is passed to keep the mobile view clear.
+- **Literary rights/source:** Melville’s nineteenth-century text is public domain in the US. Chapter 51 supplies the sequence of cruising grounds; chapters 22 and 28 anchor departure and initial southward motion. Exact ship fixes are absent. Full citations and the successfully inspected pinned Gutenberg mirror are recorded in the route reading.
+- **Limits:** this chart shows the **beginning**, ending at Cape Verde. The remaining first-half itinerary is in the accessible reading alternative and notes, not drawn onto geography the chart does not include. The single-sheet view remains static for reduced motion. The old Pacific assets remain preserved as prior-iteration sources; they are no longer displayed.

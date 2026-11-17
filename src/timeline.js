@@ -1,4 +1,9 @@
-import { chartWidth, chartHeight, chartInterior } from "./chart-geometry.js";
+import {
+  chartWidth,
+  chartHeight,
+  chartInterior,
+  routeLandmarks,
+} from "./chart-geometry.js";
 const clamp = (value) => Math.max(0, Math.min(1, value));
 const ramp = (p, a, b) => clamp((p - a) / (b - a));
 const smooth = (value) => value * value * (3 - 2 * value);
@@ -58,10 +63,26 @@ export function initVoyage() {
   };
   const gulls = [...document.querySelectorAll(".gull")];
   const squid = $(".squid");
+  const landmarkNodes = [...document.querySelectorAll(".route-landmark")];
+  const landmarkLabels = landmarkNodes.map((node) =>
+    node.querySelector("text"),
+  );
   const length = route.getTotalLength();
   const routeSamples = Array.from({ length: 257 }, (_, i) =>
     route.getPointAtLength((length * i) / 256),
   );
+  const landmarkProgress = routeLandmarks.map(({ point }) => {
+    let best = 0,
+      distance = Infinity;
+    routeSamples.forEach((p, i) => {
+      const d = Math.hypot(p.x - point[0], p.y - point[1]);
+      if (d < distance) {
+        distance = d;
+        best = i;
+      }
+    });
+    return best / 256;
+  });
   route.style.strokeDasharray = length;
   const cache = new WeakMap();
   // No selectors, layout reads, inherited custom-property writes or unchanged text writes in a frame.
@@ -155,19 +176,34 @@ export function initVoyage() {
       y: routeSamples[lo].y * (1 - f) + routeSamples[hi].y * f,
     };
     const scale = reduced.matches
-      ? Math.min(geometry.width / chartWidth, geometry.stageHeight / chartHeight)
-      : Math.max(phone ? 1 : 1.65,
+      ? Math.min(
+          geometry.width / chartWidth,
+          geometry.stageHeight / chartHeight,
+        )
+      : Math.max(
+          phone ? 1.8 : 2.2,
           geometry.width / (chartInterior.right - chartInterior.left),
-          geometry.stageHeight / (chartInterior.bottom - chartInterior.top));
+          geometry.stageHeight / (chartInterior.bottom - chartInterior.top),
+        );
     // Keep actual paper beneath the viewport, including at the ends of the leg.
     const tx = reduced.matches
       ? (geometry.width - chartWidth * scale) / 2
-      : Math.max(geometry.width - chartInterior.right * scale,
-          Math.min(-chartInterior.left * scale, geometry.width * 0.47 - point.x * scale));
+      : Math.max(
+          geometry.width - chartInterior.right * scale,
+          Math.min(
+            -chartInterior.left * scale,
+            geometry.width * 0.47 - point.x * scale,
+          ),
+        );
     const ty = reduced.matches
       ? (geometry.stageHeight - chartHeight * scale) / 2
-      : Math.max(geometry.stageHeight - chartInterior.bottom * scale,
-          Math.min(-chartInterior.top * scale, geometry.stageHeight * 0.53 - point.y * scale));
+      : Math.max(
+          geometry.stageHeight - chartInterior.bottom * scale,
+          Math.min(
+            -chartInterior.top * scale,
+            geometry.stageHeight * 0.53 - point.y * scale,
+          ),
+        );
     transform(
       "map",
       `translate3d(${tx.toFixed(2)}px,${ty.toFixed(2)}px,0) scale(${scale})`,
@@ -176,33 +212,78 @@ export function initVoyage() {
     opacity("opening", fade(p, 0.27, 0.295, 0.32, 0.345));
     opacity("hotspot", fade(p, 0.29, 0.31, 0.585, 0.61));
     enable(nodes.hotspot, p >= 0.31 && p <= 0.595);
-    const index = point.y < 345 ? 0 : point.y < 435 ? 1 : point.y < 645 ? 2 : 3;
+    landmarkNodes.forEach((node, i) => {
+      style(
+        node,
+        "opacity",
+        (i === 0
+          ? 1
+          : smooth(
+              ramp(
+                chartProgress,
+                landmarkProgress[i] - 0.025,
+                landmarkProgress[i],
+              ),
+            )
+        ).toFixed(4),
+      );
+      // Keep visited dots; let the active leg's labels breathe on a small screen.
+      style(
+        landmarkLabels[i],
+        "opacity",
+        (
+          1 -
+          smooth(
+            ramp(
+              chartProgress,
+              landmarkProgress[i] + 0.03,
+              landmarkProgress[i] + 0.12,
+            ),
+          )
+        ).toFixed(4),
+      );
+    });
+    const index =
+      chartProgress < 0.07
+        ? 0
+        : chartProgress < landmarkProgress[1] - 0.1
+          ? 1
+          : chartProgress < landmarkProgress[1] + 0.06
+            ? 2
+            : chartProgress < 0.95
+              ? 3
+              : 4;
     const labels = [
       [
-        "III / THE EASTERN PACIFIC",
-        "Offshore, a line begins.",
-        "An interpretive Pacific leg.",
+        "CHAPTER 22 / CHRISTMAS",
+        "Nantucket. Departure.",
+        "The Pequod leaves the island for the wintry Atlantic.",
       ],
       [
-        "III / ECUADOR",
-        "Following the coast.",
-        "Ocean to the west. A continent to the east.",
+        "CHAPTER 28 / SOUTHWARD",
+        "Leaving winter.",
+        "With each degree of latitude, the cold falls astern.",
       ],
       [
-        "III / PERU",
-        "The coast of Peru.",
-        "A sustained passage beyond the equator.",
+        "CHAPTER 51 / THE AZORES",
+        "Off the Azores.",
+        "Cruising offshore; no port call is narrated.",
       ],
       [
-        "III / CHILE",
-        "Toward colder waters.",
-        "The chart ends. The ocean continues.",
+        "CHAPTER 51 / SOUTHWARD",
+        "Toward Cape Verde.",
+        "The second named ground lies farther south.",
+      ],
+      [
+        "CHAPTER 51 / CAPE VERDE",
+        "Off Cape Verde.",
+        "The voyage continues beyond this chart.",
       ],
     ];
     text(waypoint.index, labels[index][0]);
     text(waypoint.title, labels[index][1]);
     text(waypoint.note, labels[index][2]);
-    opacity("chart-waypoint", fade(p, 0.345, 0.36, 0.575, 0.605));
+    opacity("chart-waypoint", fade(p, 0.345, 0.36, 0.6, 0.615));
     opacity("map-caption", 0);
     opacity("archive-map-credit", chartOpacity);
     opacity("anatomy-scene", fade(p, 0.615, 0.64, 0.685, 0.72));
@@ -354,7 +435,7 @@ export function initVoyage() {
     schedule();
   }
   function handleHash() {
-    if (location.hash === "#chart") seek(0.35);
+    if (location.hash === "#chart") seek(0.315);
     else {
       instant = true;
       schedule();
@@ -364,7 +445,7 @@ export function initVoyage() {
   $(".return").addEventListener("click", (event) => {
     event.preventDefault();
     history.pushState(null, "", "#chart");
-    seek(0.35);
+    seek(0.315);
     nodes.hotspot.focus({ preventScroll: true });
   });
   const discovery = $("#discovery");

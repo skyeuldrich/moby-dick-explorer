@@ -2753,3 +2753,20 @@ header {
   .chart-waypoint h2 { margin: 0; font-size: 29px; line-height: 1.05; }
   .chart-waypoint .waypoint-note { display: none; }
 }
+
+/* Atlantic opening: original full-sheet scan, shared raster/route camera. */
+.chart .regional-map,
+.chart-engraving,
+.route-layer { width: 1200px; height: 909.072731817px; }
+.route-landmark { opacity: 0; }
+.route-landmark circle { fill: #a12923; stroke: #efdfba; stroke-width: 1; }
+.route-landmark text { font: 8px "DM Sans", sans-serif; fill: #752b25; paint-order: stroke; stroke: #e5d2ac; stroke-width: 2.5px; stroke-linejoin: round; }
+@media (max-width: 700px) {
+  .chart-waypoint { left: auto; right: 6%; width: 130px; }
+  .chart-waypoint h2 { font-size: 26px; }
+}
+.route-transcript { margin: 48px 0; max-width: 800px; }
+.route-transcript summary { cursor: pointer; font: 26px/1.3 "Cormorant Garamond", serif; }
+.route-transcript p, .route-transcript li { font: 14px/1.8 "DM Sans", sans-serif; }
+.route-transcript ol { padding-left: 22px; }
+.route-transcript li { margin: 8px 0; }
