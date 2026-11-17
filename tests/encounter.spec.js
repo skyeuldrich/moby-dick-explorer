@@ -66,12 +66,11 @@ for (const size of [
     const firstVisible = await visibleFraction(page, size.height),
       firstRect = await page.locator(".encounter-image").boundingBox();
     expect(firstVisible).toBeGreaterThan(0);
-    expect(firstVisible).toBeLessThan(1);
-    expect(firstRect.y + firstRect.height).toBeGreaterThan(size.height);
+    expect(firstVisible).toBeCloseTo(1,2);
+    const firstMask=await page.locator(".encounter-image").evaluate(e=>getComputedStyle(e).maskImage);
+    expect(firstMask).toContain("radial-gradient");
     await at(page, 0.97);
-    expect(await visibleFraction(page, size.height)).toBeGreaterThan(
-      firstVisible,
-    );
+    expect(await page.locator(".encounter-image").evaluate(e=>getComputedStyle(e).maskImage)).not.toBe(firstMask);
     await at(page, 1);
     expect(await visibleFraction(page, size.height)).toBeCloseTo(1, 3);
     const image = await page.locator(".encounter-image").boundingBox();

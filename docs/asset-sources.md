@@ -1,3 +1,5 @@
+> **Issue 14:** the earlier five SVG marine motifs are replaced by three owner-approved transparent painterly reconstructions. See [species, biology references, motion and limitations](issue14-implementation.md). Historical entries below are retained as the previous asset record.
+
 > **Current harbor:** the founder selected Barber’s 1839 engraving and requested animated original gulls. See [the implemented adaptation](barber-animated-gulls.md). Earlier pending-selection notes below document the preceding review.
 
 > **Issue10 update:** the encounter now uses the transparent final AI-assisted illustration; the realistic candle is also a modern AI-assisted reconstruction. See [Issue10 source and review notes](issue10-implementation.md) for hashes, historical comparisons, and unresolved 1917 reuse rights.

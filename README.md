@@ -96,3 +96,7 @@ The final encounter uses the transparent `moby-dick-whale-squid-final.webp`; the
 ### Barber’s animated archival harbor
 
 The founder selected Barber’s 1839 Nantucket engraving and asked for its own gulls to wheel with scrolling. The harbor now uses that public-domain print with three original-image bird cutouts on subtle reversible paths. The original page is preserved and linked; reduced motion restores the untouched birds. See [source and adaptation notes](docs/barber-animated-gulls.md).
+
+## Deep-sea motion review
+
+The three approved painterly organisms and spatial whale/squid reveal are documented in [Issue 14 implementation and scientific references](docs/issue14-implementation.md). They are modern artistic reconstructions with biology-informed 2D movement, not archival plates or exact species simulations.

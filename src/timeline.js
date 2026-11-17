@@ -1,3 +1,4 @@
+import { initSpeciesLife } from "./abyss.js";
 import {
   chartWidth,
   chartHeight,
@@ -61,9 +62,8 @@ export function initVoyage() {
     title: $(".chart-waypoint h2"),
     note: $(".waypoint-note"),
   };
-  const swimmers = [
-    ...document.querySelectorAll(".candle-scene .abyss-organism"),
-  ];
+  const updateSpecies = initSpeciesLife();
+  const encounterImage = $(".encounter-image");
   const gulls = [...document.querySelectorAll(".engraved-gull")];
   const landmarkNodes = [...document.querySelectorAll(".route-landmark")];
   const landmarkLabels = landmarkNodes.map((node) =>
@@ -124,16 +124,7 @@ export function initVoyage() {
     const chartOpacity = fade(p, 0.255, 0.3, 0.605, 0.635);
     opacity("candle-scene", 1 - smooth(ramp(p, 0.185, 0.235)));
     opacity("abyss-life", 1 - smooth(ramp(p, 0.025, 0.065)));
-    const swim = ramp(p, 0, 0.065);
-    swimmers.forEach((node, i) =>
-      style(
-        node,
-        "transform",
-        reduced.matches
-          ? "none"
-          : `translate3d(${((i % 2 ? 1 : -1) * swim * (28 + i * 9)).toFixed(2)}px,${(Math.sin(swim * 2.4 + i) * swim * (8 + i * 3)).toFixed(2)}px,0) rotate(${(Math.sin(swim * 2 + i) * swim * 5).toFixed(2)}deg)`,
-      ),
-    );
+    updateSpecies(p, reduced.matches);
     opacity("desk", smooth(ramp(p, 0.04, 0.09)));
     opacity("candle", smooth(ramp(p, 0.005, 0.035)));
     const travel = reduced.matches
@@ -302,15 +293,17 @@ export function initVoyage() {
     opacity("descent-quote", fade(p, 0.755, 0.785, 0.825, 0.855));
     enable(nodes["descent-quote"], p >= 0.78 && p <= 0.84);
     const encounter = ramp(p, 0.87, 1);
-    const framing = phone ? 1.35 - 0.35 * smooth(encounter) : 1;
+    const framing = reduced.matches ? 1 : (phone ? 1.18 : 1.035) - (phone ? .18 : .035) * smooth(encounter);
     stage.dataset.encounter = encounter.toFixed(5);
-    opacity("creatures", smooth(ramp(p, 0.87, 0.91)));
-    transform(
-      "creatures",
-      reduced.matches
-        ? "none"
-        : `translate3d(0,${((1 - encounter) * geometry.stageHeight * 0.95).toFixed(2)}px,0) scale(${framing.toFixed(4)})`,
-    );
+    opacity("creatures", .62 * smooth(encounter));
+    transform("creatures", reduced.matches ? "none" : `translate3d(0,${((1-encounter)*18).toFixed(2)}px,0) scale(${framing.toFixed(4)})`);
+    const headRadius = 5 + encounter * 155;
+    const armsRadius = 3 + smooth(ramp(encounter,.12,1)) * 150;
+    const torsoRadius = 2 + smooth(ramp(encounter,.38,1)) * 150;
+    const field = (x,y,r) => `radial-gradient(ellipse ${r.toFixed(2)}% ${(r*.9).toFixed(2)}% at ${x}% ${y}%, #000 0%, #000 32%, #000b 60%, transparent 100%)`;
+    const mask = reduced.matches ? "none" : [field(58,45,headRadius),field(68,65,armsRadius),field(30,42,torsoRadius)].join(",");
+    style(encounterImage,"maskImage",mask);
+    style(encounterImage,"webkitMaskImage",mask);
     opacity("abyss-copy", smooth(ramp(p, 0.975, 1)));
     enable(nodes["abyss-copy"], p >= 0.99);
     opacity("abyss-return", smooth(ramp(p, 0.71, 0.83)) * 0.65);
