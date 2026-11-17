@@ -1,5 +1,7 @@
 # Melville source access and verification gate
 
+**Private owner-supplied corpus:** The founder has uploaded reference PDFs and ebooks to a separate **private** repository: https://github.com/skyeuldrich/moby-dick-literary-source-materials . Its `SOURCE_INVENTORY.md` records the currently listed works, per-file verification status and rights limitations. **Test whether the Codex workspace has authorized read access to that private repository before promising research from it**: this ChatGPT connection can list files but does not establish the Codex task's GitHub access. Verify text extraction on real pages and document the result. Work outside this public site's Git tree, and never deploy or commit source books here. If authentication, permissions, or extraction fails, disclose the failure and request a lawful source. 
+
 **Purpose:** Prevent the literary agent from quietly citing inaccessible criticism, laundering model recall into an attributed claim, or producing apparently exhaustive interpretations from partial evidence. This is an **intake protocol**, not a claim that the source corpus is already installed.
 
 ## What is available now (verified only to the extent stated)
