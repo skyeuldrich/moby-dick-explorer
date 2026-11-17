@@ -23,25 +23,6 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm test
       - run: npm run build -- --base=/moby-dick-explorer/
-        if: github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main'
-      - run: npm run build -- --base=/moby-dick-explorer/preview/issue14/
-        if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
-      - uses: actions/checkout@v4
-        if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
-        with:
-          ref: main
-          path: production
-      - name: Preserve production and add isolated review
-        if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
-        run: |
-          cd production
-          npm ci
-          npm run build -- --base=/moby-dick-explorer/
-          cd ..
-          mv dist candidate-dist
-          cp -R production/dist dist
-          mkdir -p dist/preview/issue14
-          cp -R candidate-dist/. dist/preview/issue14/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

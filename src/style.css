@@ -2775,11 +2775,11 @@ header {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  /* Feather only the outer edge; retain the complete supplied composition. */
+  /* Spatial reveal fields overlap additively; intersecting them hides early contours. */
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent), linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
   mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent), linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
 }
 @media (max-width: 700px) {
   .creatures.encounter-artwork { padding-top: 16svh; }

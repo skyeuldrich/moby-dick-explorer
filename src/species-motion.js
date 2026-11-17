@@ -18,7 +18,7 @@ export function deform(id,x,y,phase){
   const pulse=phase<.22?Math.sin(phase/.22*Math.PI/2):.5+.5*Math.cos((phase-.22)/.78*Math.PI);
   const bell=clamp((x-.40)/.23)*clamp((.58-y)/.19);
   const tentacle=1-clamp((x-.34)/.36)*clamp((.56-y)/.17);
-  return [x+(x-.75)*pulse*.10*bell+tentacle*Math.sin(t-.9+y*3)*.012,y+(y-.18)*pulse*.12*bell+tentacle*Math.sin(t-1.3+x*3)*.012-pulse*.007];
+  return [x+(x-.75)*pulse*.16*bell+tentacle*Math.sin(t-.9+y*3)*.018+pulse*.007,y+(y-.18)*pulse*.18*bell+tentacle*Math.sin(t-1.3+x*3)*.018];
  }
  const tail=clamp((x-.27)/.73), active=Math.pow(Math.max(0,Math.cos(t)),4);
  return [x,y+Math.sin(t*3-x*9)*tail*tail*.025*active];

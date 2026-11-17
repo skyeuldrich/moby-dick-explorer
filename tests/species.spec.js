@@ -37,3 +37,25 @@ test('deformation is local and species-specific, with dark bodies and anatomical
  for(const entry of species)expect(entry.alpha).toBeLessThan(.15);
  expect(species[0].lights).toHaveLength(1);expect(species[2].lights[0][0]).toBeCloseTo(.161,3);
 });
+
+test('rendered encounter gains real visible contours before the complete painting',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/');
+ await at(page,.925);await page.locator('.encounter-image').evaluate(e=>e.decode());
+ // Sample actual composited screenshot pixels, not the source image or CSS opacity.
+ const light=async()=>{
+  const box=await page.locator('.encounter-image').boundingBox();
+  const png=(await page.screenshot()).toString('base64');
+  return page.evaluate(async({png,box})=>{
+   const image=new Image();image.src=`data:image/png;base64,${png}`;await image.decode();
+   const c=document.createElement('canvas');c.width=image.width;c.height=image.height;
+   const ctx=c.getContext('2d');ctx.drawImage(image,0,0);
+   const data=ctx.getImageData(Math.round(box.x+box.width*.55),Math.round(box.y+box.height*.39),20,20).data;
+   let sum=0;for(let i=0;i<data.length;i+=4)sum+=(data[i]+data[i+1]+data[i+2])/3;return sum/(data.length/4);
+  },{png,box});
+ };
+ await at(page,.87);const dark=await light();
+ await at(page,.925);const contour=await light();
+ await at(page,1);const complete=await light();
+ expect(contour).toBeGreaterThan(dark+1);expect(complete).toBeGreaterThan(contour+5);
+ await at(page,.925);expect(await light()).toBeCloseTo(contour,0);
+});
