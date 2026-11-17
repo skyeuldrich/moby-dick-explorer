@@ -92,3 +92,7 @@ The final encounter now uses `public/assets/moby-dick-abyss-whale-squid.webp` (1
 ### Issue10 asset and motion revision
 
 The final encounter uses the transparent `moby-dick-whale-squid-final.webp`; the candle uses `moby-dick-spermaceti-candle-study.webp`. Both are AI-assisted modern reconstructions. Opening sea life swims with reversible scroll progress, with attached lights and reduced-motion support. The harbor image selection remains pending founder review: private neutral-grayscale previews compare the 1917 fishing fleet and Barber’s 1839 engraving. No unapproved or rights-unresolved photograph is deployed. See [implementation and source notes](docs/issue10-implementation.md).
+
+### Barber’s animated archival harbor
+
+The founder selected Barber’s 1839 Nantucket engraving and asked for its own gulls to wheel with scrolling. The harbor now uses that public-domain print with three original-image bird cutouts on subtle reversible paths. The original page is preserved and linked; reduced motion restores the untouched birds. See [source and adaptation notes](docs/barber-animated-gulls.md).

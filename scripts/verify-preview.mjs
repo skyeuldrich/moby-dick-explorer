@@ -58,6 +58,14 @@ try {
             +(await page.locator(".stage").getAttribute("data-progress")),
         )
         .toBeCloseTo(p, 3);
+      if (label === "harbor") {
+        await expect(page.locator(".barber-harbor")).toBeVisible();
+        await expect(page.locator(".engraved-gull")).toHaveCount(3);
+        await expect(page.locator("#barber-sheet")).toHaveAttribute(
+          "href",
+          /assets\/archive\/barber-1839-source.jpg$/,
+        );
+      }
       if (label === "azores") {
         await expect(page.locator(".chart-engraving")).toBeVisible();
         expect(
