@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
-const land = JSON.parse(
-  readFileSync(new URL("../src/data/land.geo.json", import.meta.url)),
+const scanMask = JSON.parse(
+  readFileSync(new URL("./fixtures/norie-1844-land.json", import.meta.url)),
 );
 async function at(page, p) {
   await page.evaluate((p) => {
@@ -116,12 +116,7 @@ function inRing([x, y], ring) {
   }
   return hit;
 }
-const polygons = land.features.flatMap((f) =>
-  f.geometry.type === "Polygon"
-    ? [f.geometry.coordinates]
-    : f.geometry.coordinates,
-);
-test("continuous curved route remains offshore in shared geography", async ({
+test("continuous curved route stays in water on the actual archival scan", async ({
   page,
 }) => {
   await page.goto("/");
@@ -131,15 +126,12 @@ test("continuous curved route remains offshore in shared geography", async ({
   const points = await page.locator("#route").evaluate((e) =>
     Array.from({ length: 1601 }, (_, i) => {
       const p = e.getPointAtLength((e.getTotalLength() * i) / 1600);
-      return [(p.x * 70) / 1200 - 120, 20 - (p.y * 80) / 1500];
+      return [p.x, p.y];
     }),
   );
   for (const p of points)
     expect(
-      polygons.some(
-        (poly) =>
-          inRing(p, poly[0]) && !poly.slice(1).some((h) => inRing(p, h)),
-      ),
+      scanMask.polygons.some((poly) => inRing(p, poly)),
     ).toBe(false);
 });
 test("field notes match displayed source and reading path includes Chapter 41", async ({
@@ -147,7 +139,7 @@ test("field notes match displayed source and reading path includes Chapter 41", 
 }) => {
   await page.goto("/");
   await page.locator(".about-button").first().click();
-  await expect(page.locator("#notes")).toContainText("Natural Earth");
+  await expect(page.locator("#notes")).toContainText("Norie");
   await expect(page.locator("#notes")).toContainText("Thomas Beale");
   await expect(page.locator("#notes")).not.toContainText("Marcella");
   await page.keyboard.press("Escape");

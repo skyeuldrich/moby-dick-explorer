@@ -2731,3 +2731,25 @@ header {
   transform: translateZ(0);
   overflow: visible;
 }
+
+/* Genuine 1844 chart scan; no invented grid, labels or aging over the paper. */
+.chart { background: #cbbb98; background-image: none; }
+.chart .regional-map,
+.chart-engraving,
+.route-layer { width: 1200px; height: 1760.5px; }
+.chart-engraving { object-fit: fill; }
+.chart #route { stroke-width: 2.6; stroke: #a12923; }
+@media (max-width: 700px) {
+  /* Keep the voyage's western water corridor clear of its editorial label. */
+  .chart-waypoint {
+    left: auto;
+    right: 6%;
+    top: 11%;
+    width: min(190px, 52vw);
+    max-width: none;
+    padding: 10px 12px;
+  }
+  .chart-waypoint .eyebrow { margin: 0 0 8px; font-size: 8px; }
+  .chart-waypoint h2 { margin: 0; font-size: 29px; line-height: 1.05; }
+  .chart-waypoint .waypoint-note { display: none; }
+}

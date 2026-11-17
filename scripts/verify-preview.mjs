@@ -63,7 +63,7 @@ try {
         expect(
           await page
             .locator(".chart-engraving")
-            .evaluate((e) => e.complete && e.naturalWidth === 1200),
+            .evaluate((e) => e.complete && e.naturalWidth === 2400),
         ).toBe(true);
         await page.locator(".hotspot").click();
         await expect(page.locator("#discovery")).toBeVisible();

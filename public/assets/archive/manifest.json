@@ -24,8 +24,8 @@
     {
       "id": "gray-cetology-skull-1871",
       "file": "gray-cetology-skull-1871.webp",
-      "title": "Figures 1 and 2: side and top views of the skull of Neobalæna marginata",
-      "creator": "John Edward Gray, catalogue author; caption credits Dr. Hector’s figures; engraver unidentified",
+      "title": "Figures 1 and 2: side and top views of the skull of Neobal\u00e6na marginata",
+      "creator": "John Edward Gray, catalogue author; caption credits Dr. Hector\u2019s figures; engraver unidentified",
       "publicationYear": 1871,
       "sourceInstitution": "British Museum (original catalogue); Internet Archive/Canadian Libraries scans; Project Gutenberg; GITenberg mirror",
       "canonicalUrl": "https://www.gutenberg.org/ebooks/69699",
@@ -84,6 +84,70 @@
       "bytes": 520703,
       "processing": "Unmodified downloaded source page; retained for audit and full-page reading.",
       "use": "Separate sperm-whale anatomy scene, after route completion; source page also available locally."
+    },
+    {
+      "title": "The southern or lower part of the Pacific Ocean",
+      "creator": "J.W. Norie & Co.; Charles Wilson, publishers, London",
+      "publicationYear": 1844,
+      "edition": "Additions 1839 & 44",
+      "sourceInstitution": "Boston Public Library, Norman B. Leventhal Map & Education Center",
+      "canonicalUrl": "https://collections.leventhalmap.org/search/commonwealth:vt154w90j",
+      "sourceFileUrl": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:h702vp38n/17500,0,7676,11262/2400,/0/default.jpg",
+      "rights": "No known copyright restrictions. No known restrictions on use. (BPL catalogue and IIIF manifest; not a formal Public Domain Mark)",
+      "rightsEvidenceUrl": "https://ark.digitalcommonwealth.org/ark:/50959/vt154w90j/manifest",
+      "fullScanDimensions": [
+        25176,
+        11262
+      ],
+      "sourceRegion": [
+        17500,
+        0,
+        7676,
+        11262
+      ],
+      "dimensions": [
+        2400,
+        3521
+      ],
+      "sourceSha256": "c01f2677cb852e5cbc9a60cc853553a694e8ce2279ce7d2faeb759b30af93712",
+      "use": "Actual archival nautical chart beneath a separate modern interpretive red route, progressively panned along western South America. Pencil annotations are not attributed to a specific vessel or date.",
+      "id": "norie-1844-pacific-east-source",
+      "file": "norie-1844-pacific-east-source.jpg",
+      "sha256": "c01f2677cb852e5cbc9a60cc853553a694e8ce2279ce7d2faeb759b30af93712",
+      "bytes": 1539115,
+      "processing": "Unmodified IIIF download: eastern region of the full sheet, server reduced to 2400 px wide; no retouching or artificial aging."
+    },
+    {
+      "title": "The southern or lower part of the Pacific Ocean",
+      "creator": "J.W. Norie & Co.; Charles Wilson, publishers, London",
+      "publicationYear": 1844,
+      "edition": "Additions 1839 & 44",
+      "sourceInstitution": "Boston Public Library, Norman B. Leventhal Map & Education Center",
+      "canonicalUrl": "https://collections.leventhalmap.org/search/commonwealth:vt154w90j",
+      "sourceFileUrl": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:h702vp38n/17500,0,7676,11262/2400,/0/default.jpg",
+      "rights": "No known copyright restrictions. No known restrictions on use. (BPL catalogue and IIIF manifest; not a formal Public Domain Mark)",
+      "rightsEvidenceUrl": "https://ark.digitalcommonwealth.org/ark:/50959/vt154w90j/manifest",
+      "fullScanDimensions": [
+        25176,
+        11262
+      ],
+      "sourceRegion": [
+        17500,
+        0,
+        7676,
+        11262
+      ],
+      "dimensions": [
+        2400,
+        3521
+      ],
+      "sourceSha256": "c01f2677cb852e5cbc9a60cc853553a694e8ce2279ce7d2faeb759b30af93712",
+      "use": "Actual archival nautical chart beneath a separate modern interpretive red route, progressively panned along western South America. Pencil annotations are not attributed to a specific vessel or date.",
+      "id": "norie-1844-pacific-east",
+      "file": "norie-1844-pacific-east.webp",
+      "sha256": "170dec40df7e4bc4f502078e15a511fc872da6c2fe578930ddb9136b3428efa3",
+      "bytes": 1503442,
+      "processing": "Same complete downloaded eastern crop encoded as quality-88 WebP, retaining color and all original chart marks; no drawn replacement coastlines, retouching or artificial aging."
     }
   ]
 }
