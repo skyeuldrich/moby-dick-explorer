@@ -1,7 +1,7 @@
 # Next prototype PR — Three biological deep-sea creatures + whale/squid materialization
 
-**Status:** Approved creative direction; implement on a NEW feature branch after completing active work from latest `main`.  
-**Artwork status:** Three new transparent creature stickers are being prepared in ChatGPT. **Do not claim uploaded images exist until the founder uploads them to `public/assets/`.** Do not substitute new crude inline SVG drawings.
+**Status:** Approved creative direction; implement on a NEW feature branch from latest `main`. The prior candle/Nantucket/transparent whale art tasks in **Issue #10 were merged**; preserve those changes.  
+**Artwork status:** Three final alpha-transparent PNGs have been generated and verified in ChatGPT, but **are not yet uploaded to GitHub**. The founder will upload all three through the GitHub `public/assets/` upload page. **Do not claim uploaded images exist until you check.** Do not substitute new crude inline SVG drawings.
 
 ## Mission
 Replace the existing simplified first-screen SVG motifs with **three distinctive species**, each with a correctly located bioluminescent light source and a biological locomotion cycle. Make the approved transparent whale-and-squid painting **materialize gradually out of black water** as the visitor descends; no abrupt solid cutout or rectangular image edge.
@@ -35,7 +35,7 @@ Maintain almost-total darkness and deep-sea dread. The user expects to need to r
 - Match the historical/natural-history painterly whale/squid: fluid painted volumes, subdued greys and faint bioluminescent pigments; no vector-cartoon look, hyper-real concept-art gloss, or false archival labeling. These are **modern original period-inspired reconstructions**, not historic scans.
 - Preserve the creatures' native silhouettes and alpha edges, with no rectangular tinted/opaque backgrounds.
 - Light halos should preferably be **code layers anchored to specific anatomical landmarks** (lure tip, jelly bell, loosejaw suborbital photophore and photophores) rather than oversized halos baked into the image. On scroll and when the candle approaches, lights and bodies fade together.
-- Asset filenames suggested: `anglerfish-deepsea.png`, `jellyfish-deepsea.png`, `stoplight-loosejaw-deepsea.png`; optimize WebP derivatives if warranted. The developer should not scrape scientific photos without license.
+- **Exact filenames to expect in `public/assets/`: `moby-dick-anglerfish.png` (1702×848), `moby-dick-jellyfish.png` (948×586), `moby-dick-stoplight-loosejaw.png` (1616×349).** All three are RGBA with transparent corners, verified in the authoring session. Use these names in code and tests, then optimize WebP derivatives if warranted. Do not use the single flattened preview composite. Do not scrape scientific photos without license.
 
 ## 2 — Motion architecture: *two different kinds of movement*
 
