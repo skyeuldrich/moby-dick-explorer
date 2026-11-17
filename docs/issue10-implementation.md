@@ -1,3 +1,5 @@
+> **Current harbor:** the founder selected Barber’s 1839 engraving and requested animated original gulls. See [the implemented adaptation](barber-animated-gulls.md). Earlier pending-selection notes below document the preceding review.
+
 # Issue10 implementation and pending harbor decision
 
 Implemented the founder-uploaded transparent final whale/squid (1671×941, SHA256 9c8d32f85e93d3d679b430e15e052d89620df808f0dfd33a566c736532c02c8c) and realistic transparent candle (1024×1536, SHA256 646cca7b8dd052bda2230de5e91284f75566232e4bc2f927e052dc27c3af585c). Both are original AI-assisted, period-inspired illustrations, not archival art. Their bytes are unchanged. Removed the image-edge mask and box shading from the transparent encounter. Local shading belongs only behind the text. The candle has separate scroll-dependent ambient illumination and a contact shadow aligned to its holder.

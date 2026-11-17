@@ -64,7 +64,7 @@ export function initVoyage() {
   const swimmers = [
     ...document.querySelectorAll(".candle-scene .abyss-organism"),
   ];
-  const gulls = [...document.querySelectorAll(".gull")];
+  const gulls = [...document.querySelectorAll(".engraved-gull")];
   const landmarkNodes = [...document.querySelectorAll(".route-landmark")];
   const landmarkLabels = landmarkNodes.map((node) =>
     node.querySelector("text"),
@@ -170,7 +170,7 @@ export function initVoyage() {
           "transform",
           reduced.matches
             ? "none"
-            : `translate(${(Math.sin(p * 30 + i * 2) * 22).toFixed(2)}px,${(Math.cos(p * 30 + i * 2) * 8).toFixed(2)}px)`,
+            : `translate(${(Math.sin(ramp(p, 0.185, 0.3) * 2.4 + i) * ramp(p, 0.185, 0.3) * (70 + i * 18)).toFixed(2)}px,${((Math.cos(ramp(p, 0.185, 0.3) * 3 + i) - Math.cos(i)) * ramp(p, 0.185, 0.3) * 30).toFixed(2)}px) rotate(${(Math.sin(ramp(p, 0.185, 0.3) * 3 + i) * ramp(p, 0.185, 0.3) * 12).toFixed(2)}deg)`,
         ),
       );
     }
@@ -444,6 +444,7 @@ export function initVoyage() {
   }
   function handleHash() {
     if (location.hash === "#chart") seek(0.315);
+    else if (location.hash === "#harbor") seek(0.235);
     else {
       instant = true;
       schedule();

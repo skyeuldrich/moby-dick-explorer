@@ -2828,3 +2828,19 @@ header {
  .abyss-copy { isolation: isolate; }
  .abyss-copy::before { content: ""; position: absolute; inset: -45px -65px; z-index: -1; background: radial-gradient(ellipse, #020a0ee8, #020a0e70 45%, transparent 73%); pointer-events: none; }
 }
+/* Barber's complete harbor composition, with separate editorial text. */
+.harbor-scene { background: #e7e6df; }
+.harbor-scene .barber-harbor { position:absolute; left:4%; top:23%; width:92%; height:63%; filter:grayscale(1); }
+.engraved-gull { transform-box:view-box; will-change:transform; }
+.harbor-note { bottom:4%; font-size:8px; padding:5px 10px; }
+.harbor-note p { font-size:11px; margin:5px 0; }
+@media(max-width:700px) {
+ .harbor-scene .barber-harbor { left:2%; width:96%; top:26%; height:48%; }
+ .harbor-note { bottom:12%; }
+}
+@media(prefers-reduced-motion:reduce) { .barber-adaptation { display:none; } .engraved-gull { will-change:auto; } }
+.harbor-scene .barber-harbor { margin-left:0; max-width:none; }
+.harbor-copy { max-width:none; right:7%; }
+@media(min-width:701px) { .harbor-copy h2 { font-size:45px; } .harbor-copy { top:4%; } }
+
+.harbor-scene .barber-harbor { filter:none; }

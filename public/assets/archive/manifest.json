@@ -198,6 +198,27 @@
       "bytes": 1930454,
       "sha256": "a0cbea9ef88c2a7ae38ebc5b5e12753f818d229890caf4644a172f95838d7cfa",
       "processing": "Complete same sheet and dimensions, encoded as quality-82 WebP. No crop, invented coastline, artificial aging or recoloring; lossy encoding changes pixel values."
+    },
+    {
+      "id": "barber-1839-source",
+      "file": "barber-1839-source.jpg",
+      "title": "South-Eastern View of Nantucket, Mass.",
+      "creator": "John Warner Barber, drawing; S. E. Brown, Boston, engraving",
+      "publicationYear": 1839,
+      "sourceInstitution": "Internet Archive, digitized Historical Collections of Massachusetts",
+      "canonicalUrl": "https://archive.org/details/historicalcollec00barb_0/page/n480/mode/1up",
+      "sourceFileUrl": "https://archive.org/download/historicalcollec00barb_0/page/n480.jpg",
+      "rights": "Underlying US1839 publication: copyright expired. No claim that the animated adaptation is an untouched archival image.",
+      "rightsEvidenceUrl": "https://copyright.cornell.edu/publicdomain",
+      "dimensions": [
+        2302,
+        4031
+      ],
+      "sourceSha256": "ac6c4b020e99baa11919eb446828d00000a5caf2ac541661254b8f31912aba73",
+      "sha256": "ac6c4b020e99baa11919eb446828d00000a5caf2ac541661254b8f31912aba73",
+      "bytes": 1821499,
+      "processing": "Unchanged full source JPEG. Browser rotates/crops and renders neutral grayscale; tiny source bird cutouts move above sampled cloud-paper covers in an explicitly labeled SVG adaptation.",
+      "use": "Nantucket harbor; original gull marks wheel on reversible scroll paths. Reduced motion presents the untouched original birds. Original full page linked in Field notes."
     }
   ]
 }
