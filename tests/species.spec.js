@@ -59,3 +59,12 @@ test('rendered encounter gains real visible contours before the complete paintin
  expect(contour).toBeGreaterThan(dark+1);expect(complete).toBeGreaterThan(contour+5);
  await at(page,.925);expect(await light()).toBeCloseTo(contour,0);
 });
+
+
+test('jelly bell contracts briefly then relaxes over the longer cycle',()=>{
+ const span=phase=>deform('jelly',.8,.45,phase)[1]-deform('jelly',.8,.1,phase)[1];
+ const resting=span(0),contracted=span(.22),relaxing=span(.8);
+ expect(contracted).toBeLessThan(resting-.015);
+ expect(relaxing).toBeGreaterThan(contracted);
+ expect(relaxing).toBeLessThan(resting+.01);
+});
