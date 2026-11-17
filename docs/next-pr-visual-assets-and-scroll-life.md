@@ -6,7 +6,7 @@
 
 ## Overall direction
 
-The founder likes the site's experience but considers the current candle and Nantucket scene too diagrammatic. Replace those with convincing historical or materially realistic imagery, keep the scroll journey and editorial information intact, and make the tiny creatures in the opening darkness **swim in response to scroll progress** before candlelight erases them.
+The founder likes the site's experience but considers the current candle and Nantucket scene too diagrammatic. Replace those with convincing archival or materially realistic imagery, keep the scroll journey and editorial information intact, and make the tiny creatures in the opening darkness **swim in response to scroll progress** before candlelight erases them.
 
 **Priority order:**
 1. Use the already-uploaded **transparent whale + squid artwork** in the abyss.
@@ -34,22 +34,28 @@ The founder likes the site's experience but considers the current candle and Nan
 - Respect `prefers-reduced-motion`: hold a still, readable candlelit composition with no distracting flame motion.
 - On mobile, keep candle large enough to read and prevent the candle/manuscript from colliding; verify light and paper contrast. Don't replace the entire scene with a static raster screenshot.
 
-### 3. Replace Nantucket SVG with real nineteenth-century imagery: required
+### 3. Replace Nantucket SVG: new photo preference and historical accuracy
 
-**Current problem:** The harbor is a simplified vector cartoon; large title overlaps the warehouses and masts.
+**Founder update, November 17, 2026:** The founder REJECTS the previously suggested yellow-toned historical photograph as the final artwork. The NEW preferred *composition* is the uploaded panoramic postcard photograph titled in handwriting **"No. 2749"**, featuring a sheltered basin, a dense forest of sailing masts on both shores, small boats in the foreground and open sky. File attached in the ChatGPT discussion as `PC-easybasin-1.jpg`. Source: https://nantucketpreservation.org/keeping-history-above-water-nantucket-historic-flooding-on-nantucket-part-1-7249/ ; image URL: https://nantucketpreservation.org/wp-content/uploads/2019/01/PC-easybasin-1.jpg
 
-**Preferred primary reference:** John Warner Barber, *South-Eastern View of Nantucket, Mass.* (1839), engraved by S. E. Brown; originally published in Barber's *Historical Collections of Massachusetts* (1839). This is a genuinely contemporary view, **not** a modern scene painted to look historical.
+**Essential date correction:** The historic caption identifies this exact image as **the Easy Street boat basin in 1917, with a fishing fleet sheltering during a storm** (Nantucket Historical Association collection), **not** Nantucket in the Pequod's 1840s–1850s whaling era. See also https://www.coastalresiliencewalk.org/easy-street-basin . The handwritten **No. 2749** is a photographic/collection annotation, not part of the nineteenth-century harbor. **Never display this 1917 image with the existing caption "Nantucket harbor · circa 1840s–1850s," or imply that the boats are whalers.**
 
-- Historical source/scan leads:
-  - Barber full-view 1839 book: https://books.google.com/books?id=NtwtjM0nTr8C
-  - Original digitization via Wikimedia/Internet Archive: https://commons.wikimedia.org/wiki/File:Historical_collections_-_being_a_general_collection_of_interesting_facts,_traditions,_biographical_sketches,_anecdotes,_etc.,_relating_to_the_history_and_antiquities_of_e_(IA_historicalcolle00barbuoft).pdf
-  - Nantucket Historical Association's collection records for **South-Eastern View of Nantucket, Mass.**: https://nantuckethistory.org/webcat/request/Action?CMD_%28SearchRequest%29%5B12%5D=&ClientSession=48c5db7%3A19fc782410d%3A-2a29&Keyword=0&POI31_3683=-KEY_msub27&ParamID=&PromptID=&RequesterType=SearchTemplate&TemplateProcessID=6000_3635&bCachable=1&browseData=1&fromTitle=Subject+Topical+-+Harbor
-- Obtain the best **legally reusable original scan**, verify it depicts Nantucket and can withstand the desired crop, and record **actual reproduction rights, creator, date, institutional source URL** in the asset manifest/README. Do **not** use seller product photography or a watermarked reproduction as the final site asset.
-- **Fallback if 1839 scan is too small:** the Kilburn Brothers historical photograph *Nantucket Harbor, from the Tower* (mid-to-late nineteenth century). Wikimedia hosts a 2683×1382 public-domain scan: https://commons.wikimedia.org/wiki/File:Nantucket_Harbor,_from_the_tower,_by_Kilburn_Brothers.jpg . Since it is **later than 1851**, label its actual or approximate period instead of implying it records Nantucket when the Pequod departed.
-- Avoid John Stobart's *Nantucket: The Celebrated Whaling Port in 1835*: despite the title it was made in **1974**, not in the whaling era, and should not be assumed public domain.
-- Optimize selected archival image for web, preserving the original art's visible character, not running it through a generic AI-upscaler or oil-paint effect.
-- Use enough editorial contrast for the headline and notes, with an intentional text-safe region or subtle localized backing. The text must not run across ships' masts/warehouses as in the supplied screenshot. Retain the gulls as a sparing animated layer if they enhance the authentic engraving; adapt style and density to avoid looking like clip art.
-- Preserve the Nantucket → chart transition and interpretive voyage context.
+**New visual requirements:**
+- Remove the strong yellow/ochre/sepia color cast from whichever historical photograph is selected; render in **neutral charcoal-to-silver monochrome** with preserved photographic grain and rich tonal range. No fake AI repainting, no thick distress filter. A subtle warm candle tone is not appropriate to the harbor.
+- Preserve the selected photo's deep harbor perspective, dense masts, boat silhouettes and editorial atmospheric character. Favor compositions where foreground water and upper sky give latitude for text overlays without colliding with rigging.
+- Correct the current overlaid heading that crosses ships and buildings; prefer a separate text-safe region, a carefully placed dark scrim, or a clear typographic overlay outside the principal silhouettes.
+- For the uploaded 1917 image, crop out the handwritten "No. 2749" if possible without harming the composition, while preserving the **unaltered** image separately and citing the scan. Don't crop away important ship or harbor context.
+- Verify whether the hosted postcard scan is reusable and whether the project can serve an optimized derivative; collection possession alone doesn't establish permissions. Record source, publisher/photographer (if known), exact or approximate date and license basis. Do not declare public domain without supporting evidence.
+- When using the 1917 photo in the site, **label it accurately** (e.g., "Easy Street Basin, Nantucket · 1917 · fishing vessels sheltering during a storm"). Do not change an accurate caption to suggest this image depicts 1851.
+
+**Historically closer comparison before final choice:**
+1. **Nantucket whaling waterfront, circa 1862**, photographed by **Edward T. Whitney**, known through Henry S. Wyer's later reproduction. Historians Ryan Cooper and Robert Hellman identified and evaluated the surviving original stereograph in *Historic Nantucket* (Winter 2005). It actually depicts square-rigged whaling vessels and Straight Wharf, closer to the novel's industrial setting. Read: https://hellmanwhalingcollection.org/wp-content/uploads/22A-Photographic-Mystery-Solved-the-Origin-of-Wyers-Famous-View-of-Nantucket-Wharves22-Winter-2005.pdf . Find a clean copy in an archive and verify reuse rights; do not use a low-resolution screenshot from the article as the final asset.
+2. **John Warner Barber, *South-Eastern View of Nantucket, Mass.* (1839)**, historically closest in date, but an engraving rather than a photograph. Source lead: https://books.google.com/books?id=NtwtjM0nTr8C .
+3. The **user-provided 1917 Easy Street photograph**—currently favored for its dynamic composition, but fifty-plus years later than the whaling era. Only use with 1917 identification.
+
+**Founder-facing decision:** Produce a quick **side-by-side desktop/mobile preview** of (a) the uploaded 1917 photograph in **neutral grayscale**, and (b) the best available rights-cleared genuinely whaling-era view (prefer Whitney c. 1862, otherwise Barber 1839). Explain the chronological tradeoff. **Do not silently substitute the previous yellow photo**. Make the preferred 1917 version available for visual feedback before merging the Nantucket image swap. Other approved work (whale/squid, candle, marine-life motion) can proceed independently.
+
+Do not run new gull animations over the archival photo until the visual director has confirmed they look authentic; they risk turning the photograph into a composite of mismatched periods.
 
 ### 4. Deep-water lights: swim as the visitor scrolls toward the candle
 
@@ -65,8 +71,8 @@ The founder likes the site's experience but considers the current candle and Nan
 - [ ] The abyss uses `moby-dick-whale-squid-final.webp`, and the previous rectangular-background edge is gone throughout its reveal.
 - [ ] Candle body, flame, wick and metal holder look plausible and sit on the desk; the first scroll still reveals the glow rising from below.
 - [ ] Candle illuminates the manuscript without unreadable text, flattened lighting or overlap at 390×844 and 1440×900.
-- [ ] Historical Nantucket uses an authentic sourced period image (prefer 1839 Barber); document date, rights and exact provenance.
-- [ ] Nantucket headline and notes do not obscure principal ships or make text illegible.
+- [ ] Nantucket art preview compares the user-supplied **1917 Easy Street photograph in neutral grayscale** with a more whaling-era image (Whitney c. 1862 or Barber 1839); founder preference respected, chronological accuracy/source/rights verified, no yellow cast and no false 1840s caption.
+- [ ] Nantucket headline and notes do not obscure ships or masts; any 1917 image is identified as **1917 fishing fleet**, never the Pequod's harbor.
 - [ ] Deep creatures **swim with scroll progress**, lights attached, dimming/disappearing before candle fully arrives.
 - [ ] Existing route, later anatomical plate, extended abyss, Ahab Chapter 41 quote, Chapter 44 discovery and reduced-motion access survive.
 - [ ] Scroll backward reverses reveals without jumps; touch/wheel input feels stable.
