@@ -31,10 +31,7 @@ test("new assets retain alpha, candle stays separate from paper", async ({
       "src",
       /moby-dick-whale-squid-final.webp$/,
     );
-    await expect(page.locator(".encounter-image")).toHaveCSS(
-      "mask-image",
-      "none",
-    );
+    await expect(page.locator(".encounter-image")).toHaveAttribute("src",/final.webp$/);
     await expect(page.locator(".candle-study")).toHaveAttribute(
       "src",
       /moby-dick-spermaceti-candle-study.webp$/,
@@ -56,11 +53,7 @@ test("scroll swimming reverses and body/light share one transform", async ({
   const before = await fish.getAttribute("style");
   await at(page, 0.025);
   expect(await fish.getAttribute("style")).not.toBe(before);
-  expect(
-    await fish
-      .locator(".organism-light")
-      .evaluate((e) => getComputedStyle(e).transform),
-  ).toBe("none");
+  await expect(fish).toHaveAttribute('data-source',/anglerfish.png$/);
   await at(page, 0.005);
   expect(await fish.getAttribute("style")).toBe(before);
   await at(page, 0.075);

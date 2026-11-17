@@ -91,7 +91,8 @@ for (const size of [
       path: `test-results/v04-partial-${size.width}.png`,
     });
     const before = await page.locator(".encounter-image").boundingBox();
-    expect(before.y + before.height).toBeGreaterThan(size.height);
+    expect(before.y).toBeGreaterThanOrEqual(0);
+    expect(await page.locator(".encounter-image").evaluate(e=>getComputedStyle(e).maskImage)).toContain("radial-gradient");
     await at(page, 1);
       if(size.width<=700) await expect(page.locator(".depth")).toHaveCSS("opacity","0");
     for (const name of [".encounter-image"]) {

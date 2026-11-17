@@ -1,0 +1,10 @@
+.species-life .species-animal { height:auto; overflow:visible; animation:none !important; rotate:none; transform-origin:center; filter:none; }
+.species-life .organism-angler { left:65%;top:24%;width:180px; }
+.species-life .organism-jelly { left:23%;top:49%;width:125px; }
+.species-life .organism-loosejaw { left:12%;top:73%;width:210px; }
+@media(max-width:700px){
+ .species-life .organism-angler {left:57%;width:145px;top:25%;}
+ .species-life .organism-jelly {left:17%;width:105px;top:49%;}
+ .species-life .organism-loosejaw {left:7%;width:175px;top:73%;}
+}
+@media(prefers-reduced-motion:reduce){.species-life .species-animal{will-change:auto}}

@@ -315,7 +315,7 @@ test("archival assets load locally and abyss life stays restrained", async ({
     if (r.status() >= 400) failures.push(r.url());
   });
   await page.goto("/");
-  await expect(page.locator(".candle-scene .abyss-organism")).toHaveCount(5);
+  await expect(page.locator(".candle-scene .abyss-organism")).toHaveCount(3);
   await expect(page.locator(".candle-scene .abyss-life")).toHaveCSS(
     "opacity",
     "1",
@@ -325,12 +325,8 @@ test("archival assets load locally and abyss life stays restrained", async ({
       .locator(".candle-scene")
       .evaluate((e) => getComputedStyle(e).backgroundImage),
   ).toContain("radial-gradient");
-  expect(
-    await page
-      .locator(".organism-body")
-      .first()
-      .evaluate((e) => Number(getComputedStyle(e).strokeOpacity)),
-  ).toBeLessThan(0.1);
+  await expect.poll(()=>page.locator('html').getAttribute('data-species-ready')).toBe('true');
+  await expect(page.locator('.candle-scene canvas[data-species]')).toHaveCount(3);
   await seek(page, 0.66);
   await expect(page.locator(".archival-plate img")).toBeVisible();
   expect(
