@@ -1,0 +1,8 @@
+# Project-specific Codex agent defaults.
+# If the active client/cloud task does not support these custom-agent settings,
+# AGENTS.md still explains the workflow and bounded specialist review expectations.
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 2
+default_subagent_model = "gpt-6.1-sol"
+default_subagent_reasoning_effort = "medium"
