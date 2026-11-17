@@ -36,6 +36,11 @@ export function initVoyage() {
       "depth",
       "map-caption",
       "archive-map-credit",
+      "desk",
+      "harbor-scene",
+      "harbor-art",
+      "descent-quote",
+      "descent-darkness",
     ].map((name) => [name, $(`.${name}`)]),
   );
   const flame = $(".flame");
@@ -50,7 +55,12 @@ export function initVoyage() {
     title: $(".chart-waypoint h2"),
     note: $(".waypoint-note"),
   };
+  const gulls = [...document.querySelectorAll(".gull")];
+  const squid = $(".squid");
   const length = route.getTotalLength();
+  const routeSamples = Array.from({ length: 257 }, (_, i) =>
+    route.getPointAtLength((length * i) / 256),
+  );
   route.style.strokeDasharray = length;
   const cache = new WeakMap();
   // No selectors, layout reads, inherited custom-property writes or unchanged text writes in a frame.
@@ -82,164 +92,200 @@ export function initVoyage() {
     measurePending = true,
     instant = true;
   let previousScene = "";
-  const stops = [
-    [
-      "III / NORTH ATLANTIC",
-      "A course is a question.",
-      "Outward from Nantucket · the voyage begins.",
-    ],
-    [
-      "III / SOUTH ATLANTIC",
-      "Beyond familiar waters.",
-      "Across the equator, toward the Cape of Good Hope.",
-    ],
-    [
-      "III / INDIAN OCEAN",
-      "The world grows wider.",
-      "Ahab’s imagined certainty meets an ocean of currents.",
-    ],
-    [
-      "III / OPEN WATER",
-      "No line can hold it.",
-      "An interpretive route · not documented Pequod coordinates.",
-    ],
-  ];
   function render(p) {
-    const chart = ramp(p, 0.32, 0.81);
-    const chartOpacity = fade(p, 0.29, 0.35, 0.805, 0.85);
-    const abyss = smooth(ramp(p, 0.945, 0.99));
-    opacity("candle-scene", 1 - smooth(ramp(p, 0.27, 0.35)));
-    opacity("abyss-life", 1 - smooth(ramp(p, 0.09, 0.18)));
-    const approach = smooth(ramp(p, 0.04, 0.12));
-    const reveal = smooth(ramp(p, 0.13, 0.18));
     const phone = geometry.width <= 700;
+    const approach = smooth(ramp(p, 0.001, 0.075));
+    const reveal = smooth(ramp(p, 0.075, 0.105));
+    const chartProgress = ramp(p, 0.3, 0.6);
+    const chartOpacity = fade(p, 0.255, 0.3, 0.605, 0.635);
+    opacity("candle-scene", 1 - smooth(ramp(p, 0.185, 0.235)));
+    opacity("abyss-life", 1 - smooth(ramp(p, 0.025, 0.065)));
+    opacity("desk", smooth(ramp(p, 0.04, 0.09)));
+    opacity("candle", smooth(ramp(p, 0.005, 0.035)));
     const travel = reduced.matches
       ? 0
-      : (1 - approach) * geometry.stageHeight * 0.78;
-    const moveAside = phone && !reduced.matches ? reveal : 0;
-    opacity("candle", smooth(ramp(p, 0.055, 0.085)));
+      : (1 - approach) * geometry.stageHeight * 1.1;
     transform(
       "candle",
-      `translate3d(${(moveAside * geometry.width * 0.29).toFixed(2)}px,${(travel - moveAside * geometry.stageHeight * 0.32).toFixed(2)}px,0) scale(${phone ? 0.65 : 0.9})`,
+      `translate3d(0,${travel.toFixed(2)}px,0) scale(${phone ? 0.95 : 1.6})`,
     );
-    style(flame, "opacity", smooth(ramp(p, 0.055, 0.085)).toFixed(4));
+    style(flame, "opacity", smooth(ramp(p, 0.005, 0.035)).toFixed(4));
     style(halo, "opacity", approach.toFixed(4));
-    opacity("bottom-glow", fade(p, 0.025, 0.08, 0.12, 0.18));
+    opacity(
+      "bottom-glow",
+      (0.3 * smooth(ramp(p, 0, 0.0025)) + 0.7 * smooth(ramp(p, 0, 0.022))) *
+        (1 - smooth(ramp(p, 0.075, 0.115))),
+    );
     transform(
       "bottom-glow",
-      `translate3d(0,${(-approach * 18).toFixed(2)}%,0)`,
+      `translate3d(0,${(-approach * 25).toFixed(2)}%,0) scale(${(1 + approach).toFixed(3)})`,
     );
-    opacity("table-light", smooth(ramp(p, 0.12, 0.19)));
+    opacity("table-light", smooth(ramp(p, 0.025, 0.105)));
     opacity("ledger", reveal);
     opacity("candle-intro", reveal);
-    opacity("candle-caption", reveal);
-    enable(nodes.ledger, p >= 0.17 && p < 0.3);
+    opacity("candle-caption", 0);
+    enable(nodes.ledger, p >= 0.1 && p < 0.205);
+    opacity("harbor-scene", fade(p, 0.185, 0.235, 0.255, 0.3));
+    if (p > 0.185 && p < 0.3) {
+      transform(
+        "harbor-art",
+        reduced.matches
+          ? "none"
+          : `translate3d(0,${((0.235 - p) * 45).toFixed(2)}px,0) scale(1.025)`,
+      );
+      gulls.forEach((bird, i) =>
+        style(
+          bird,
+          "transform",
+          reduced.matches
+            ? "none"
+            : `translate(${(Math.sin(p * 30 + i * 2) * 22).toFixed(2)}px,${(Math.cos(p * 30 + i * 2) * 8).toFixed(2)}px)`,
+        ),
+      );
+    }
     opacity("chart", chartOpacity);
+    transform("chart", "none");
+    const pointIndex = chartProgress * (routeSamples.length - 1),
+      lo = Math.floor(pointIndex),
+      hi = Math.min(routeSamples.length - 1, lo + 1),
+      f = pointIndex - lo;
+    const point = {
+      x: routeSamples[lo].x * (1 - f) + routeSamples[hi].x * f,
+      y: routeSamples[lo].y * (1 - f) + routeSamples[hi].y * f,
+    };
+    const scale = reduced.matches
+      ? Math.min(geometry.width / 1200, geometry.stageHeight / 1500)
+      : phone
+        ? 1
+        : 1.65;
+    const tx = reduced.matches
+      ? (geometry.width - 1200 * scale) / 2
+      : geometry.width * 0.47 - point.x * scale;
+    const ty = reduced.matches
+      ? (geometry.stageHeight - 1500 * scale) / 2
+      : geometry.stageHeight * 0.53 - point.y * scale;
     transform(
       "map",
-      phone && !reduced.matches ? `translate3d(${(-chart * 43).toFixed(3)}%,0,0)` : "none",
+      `translate3d(${tx.toFixed(2)}px,${ty.toFixed(2)}px,0) scale(${scale})`,
     );
-    opacity("abyss-return", smooth(ramp(p, 0.93, 0.99)) * 0.8);
-    // Gentle, continuous eastward/downward camera; no stepped scene transforms.
-    transform(
-      "chart",
-      reduced.matches
-        ? "none"
-        : `translate3d(${(-chart * 7).toFixed(3)}%,${(-chart * 9).toFixed(3)}%,0) scale(1.12)`,
-    );
-    style(
-      route,
-      "strokeDashoffset",
-      (length * (1 - ramp(p, 0.34, 0.8))).toFixed(2),
-    );
-    opacity("opening", fade(p, 0.315, 0.36, 0.405, 0.45));
-    opacity("hotspot", fade(p, 0.34, 0.37, 0.77, 0.8));
-    enable(nodes.hotspot, p >= 0.36 && p <= 0.78);
-    const waypointIndex = Math.min(3, Math.floor(ramp(p, 0.45, 0.79) * 4));
-    const local = ramp(p, 0.45, 0.79) * 4 - waypointIndex;
-    opacity(
-      "chart-waypoint",
-      fade(p, 0.435, 0.46, 0.775, 0.8) * fade(local, 0, 0.12, 0.82, 1),
-    );
-    text(waypoint.index, stops[waypointIndex][0]);
-    text(waypoint.title, stops[waypointIndex][1]);
-    text(waypoint.note, stops[waypointIndex][2]);
-    opacity("anatomy-scene", fade(p, 0.805, 0.85, 0.905, 0.945));
-    enable(nodes["anatomy-scene"], p >= 0.84 && p <= 0.925);
-    opacity("transition-copy", fade(p, 0.92, 0.945, 0.965, 0.985));
-    opacity("abyss-copy", abyss);
-    enable(nodes["abyss-copy"], p >= 0.98);
-    opacity("creatures", smooth(ramp(p, 0.94, 0.995)));
+    style(route, "strokeDashoffset", (length * (1 - chartProgress)).toFixed(2));
+    opacity("opening", fade(p, 0.27, 0.295, 0.32, 0.345));
+    opacity("hotspot", fade(p, 0.29, 0.31, 0.585, 0.61));
+    enable(nodes.hotspot, p >= 0.31 && p <= 0.595);
+    const index = Math.min(3, Math.floor(chartProgress * 4));
+    const labels = [
+      [
+        "III / THE EASTERN PACIFIC",
+        "Offshore, a line begins.",
+        "An interpretive Pacific leg.",
+      ],
+      [
+        "III / EQUATORIAL WATERS",
+        "Following the coast.",
+        "Ocean to the west. A continent to the east.",
+      ],
+      [
+        "III / PERU",
+        "The coast of Peru.",
+        "A sustained passage beyond the equator.",
+      ],
+      [
+        "III / CHILE",
+        "Toward colder waters.",
+        "The chart ends. The ocean continues.",
+      ],
+    ];
+    text(waypoint.index, labels[index][0]);
+    text(waypoint.title, labels[index][1]);
+    text(waypoint.note, labels[index][2]);
+    opacity("chart-waypoint", fade(p, 0.335, 0.36, 0.575, 0.605));
+    opacity("map-caption", 0);
+    opacity("archive-map-credit", chartOpacity);
+    opacity("anatomy-scene", fade(p, 0.615, 0.64, 0.685, 0.72));
+    enable(nodes["anatomy-scene"], p >= 0.635 && p <= 0.705);
+    opacity("transition-copy", fade(p, 0.7, 0.73, 0.75, 0.77));
+    opacity("descent-darkness", smooth(ramp(p, 0.7, 0.91)) * 0.75);
+    opacity("descent-quote", fade(p, 0.755, 0.785, 0.825, 0.855));
+    enable(nodes["descent-quote"], p >= 0.78 && p <= 0.84);
+    const encounter = ramp(p, 0.87, 1);
+    const framing = phone ? 1.35 - 0.35 * smooth(encounter) : 1;
+    stage.dataset.encounter = encounter.toFixed(5);
+    opacity("creatures", smooth(ramp(p, 0.87, 0.91)));
     transform(
       "creatures",
       reduced.matches
         ? "none"
-        : `translate3d(0,${((1 - ramp(p, 0.94, 1)) * 100).toFixed(2)}px,0)`,
+        : `translate3d(0,${((1 - encounter) * geometry.stageHeight * 0.95).toFixed(2)}px,0) scale(${framing.toFixed(4)})`,
     );
+    style(squid, "opacity", smooth(ramp(p, 0.92, 0.985)).toFixed(4));
+    opacity("abyss-copy", smooth(ramp(p, 0.975, 1)));
+    enable(nodes["abyss-copy"], p >= 0.99);
+    opacity("abyss-return", smooth(ramp(p, 0.71, 0.83)) * 0.65);
     transform(
       "particles",
       reduced.matches
         ? "none"
-        : `translate3d(0,${(-ramp(p, 0.92, 1) * 60).toFixed(2)}px,0)`,
+        : `translate3d(0,${(-ramp(p, 0.7, 1) * 160).toFixed(2)}px,0)`,
     );
-    opacity("rays", (1 - ramp(p, 0.92, 0.99)) * 0.45);
-    opacity("depth", smooth(ramp(p, 0.93, 0.965)));
+    opacity("rays", 0);
+    opacity(
+      "depth",
+      smooth(ramp(p, 0.7, 0.74)) *
+        (phone ? 1 - smooth(ramp(p, 0.865, 0.91)) : 1),
+    );
     style(
       marker,
       "transform",
-      `translate3d(0,${(ramp(p, 0.94, 1) * 120).toFixed(2)}px,0)`,
+      `translate3d(0,${(ramp(p, 0.71, 1) * 120).toFixed(2)}px,0)`,
     );
     text(
       depthValue,
-      p < 0.94
+      p < 0.71
         ? "SURFACE"
-        : `${Math.round(ramp(p, 0.94, 1) * 1800).toLocaleString("en-US")} M`,
+        : `${Math.round(ramp(p, 0.71, 1) * 1800).toLocaleString("en-US")} M`,
     );
-    opacity("map-caption", chartOpacity);
-    opacity("archive-map-credit", chartOpacity);
     const scene =
-      p < 0.08
+      p < 0.04
         ? "opening-abyss"
-        : p < 0.325
+        : p < 0.215
           ? "light"
-          : p < 0.825
-            ? "chart"
-            : p < 0.925
-              ? "anatomy"
-              : p < 0.97
-                ? "threshold"
-                : "abyss";
+          : p < 0.28
+            ? "harbor"
+            : p < 0.62
+              ? "chart"
+              : p < 0.71
+                ? "anatomy"
+                : p < 0.87
+                  ? "threshold"
+                  : "abyss";
     if (scene !== previousScene) {
       stage.dataset.scene = scene;
       header.classList.toggle(
         "on-paper",
-        scene === "harbor" || scene === "chart" || scene === "anatomy",
+        ["harbor", "chart", "anatomy"].includes(scene),
       );
       text(
         progressLabel,
         {
           "opening-abyss": "I · THE DEEP",
           light: "II · THE LIGHT",
-          harbor: "II · NANTUCKET",
-          chart: "III · THE CHART",
-          anatomy: "IV · THE ANATOMY",
-          threshold: "V · THE THRESHOLD",
-          abyss: "VI · THE ABYSS",
+          harbor: "III · NANTUCKET",
+          chart: "IV · THE VOYAGE",
+          anatomy: "V · THE ARCHIVE",
+          threshold: "VI · THE DESCENT",
+          abyss: "VII · THE UNMEASURED",
         }[scene],
       );
       text(
         cue,
-        scene === "light" || scene === "opening-abyss"
+        ["opening-abyss", "light"].includes(scene)
           ? "SCROLL TOWARD THE LIGHT"
-          : scene === "harbor"
-            ? "SCROLL TO LEAVE THE HARBOR"
-            : scene === "chart"
-              ? "SCROLL TO FOLLOW THE LINE"
-              : "SCROLL INTO THE UNMEASURED",
+          : scene === "chart"
+            ? "FOLLOW THE LINE"
+            : "CONTINUE THE VOYAGE",
       );
       previousScene = scene;
     }
-    // Local progress is exposed for repeatable interaction tests, not a separate animation state.
     stage.dataset.progress = p.toFixed(5);
   }
   function measure() {
@@ -304,7 +350,7 @@ export function initVoyage() {
     schedule();
   }
   function handleHash() {
-    if (location.hash === "#chart") seek(0.37);
+    if (location.hash === "#chart") seek(0.35);
     else {
       instant = true;
       schedule();
@@ -314,7 +360,7 @@ export function initVoyage() {
   $(".return").addEventListener("click", (event) => {
     event.preventDefault();
     history.pushState(null, "", "#chart");
-    seek(0.37);
+    seek(0.35);
     nodes.hotspot.focus({ preventScroll: true });
   });
   const discovery = $("#discovery");
@@ -341,7 +387,6 @@ export function initVoyage() {
   });
   $(".continue").onclick = () => {
     discovery.close();
-    seek(0.875);
   };
   measure();
   target = current = clamp((scrollY - geometry.top) / geometry.range);
