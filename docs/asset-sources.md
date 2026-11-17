@@ -1,3 +1,5 @@
+> **Current encounter:** the [owner-supplied whale-and-squid painting](#owner-supplied-whale-and-squid-painting) replaces the earlier inline SVG tableau.
+
 > **Current voyage map:** William Heather’s genuine **1797 Atlantic sea chart**, described in [the Nantucket / Atlantic correction](#nantucket--atlantic-correction--william-heather-1797) below. The 1844 Pacific chart and earlier drawings document previous iterations.
 
 # Historical asset sources — first implemented pass
@@ -169,3 +171,14 @@ The founder corrected the voyage’s geography: it must begin at Nantucket and f
 - **Site use:** sustained map sequence begins just seaward of the small printed Nantucket island. A single red line follows the narrated southward departure, crosses toward the Azores, and continues south toward Cape Verde. The actual scan and route share one pixel-space camera. Raster, red route, and modern labels remain distinct. Dots mark reconstructed offshore positions; marker labels fade after a ground is passed to keep the mobile view clear.
 - **Literary rights/source:** Melville’s nineteenth-century text is public domain in the US. Chapter 51 supplies the sequence of cruising grounds; chapters 22 and 28 anchor departure and initial southward motion. Exact ship fixes are absent. Full citations and the successfully inspected pinned Gutenberg mirror are recorded in the route reading.
 - **Limits:** this chart shows the **beginning**, ending at Cape Verde. The remaining first-half itinerary is in the accessible reading alternative and notes, not drawn onto geography the chart does not include. The single-sheet view remains static for reduced motion. The old Pacific assets remain preserved as prior-iteration sources; they are no longer displayed.
+
+## Owner-supplied whale-and-squid painting
+
+- **Asset:** `public/assets/moby-dick-abyss-whale-squid.webp`.
+- **Creator/title/date:** creator and creation date were not supplied. The filename is the project owner’s supplied name; no historical artist attribution or publication date is inferred from the style.
+- **Source:** image supplied and approved by the project owner in this conversation, then uploaded directly to the repository in commit [`c18caa6`](https://github.com/skyeuldrich/moby-dick-explorer/commit/c18caa668d2b90a8f3bc2674b4fe616190a83c79). [Exact uploaded file](https://github.com/skyeuldrich/moby-dick-explorer/blob/c18caa668d2b90a8f3bc2674b4fe616190a83c79/public/assets/moby-dick-abyss-whale-squid.webp).
+- **Rights/use:** the project owner explicitly requested its use in the website. No public-domain, open-license, museum, or archival provenance is asserted for this supplied artwork.
+- **Original bytes:** WebP, RGB, 1672×941, 166,290 bytes; SHA-256 `3d99db544201f8b49a7208c1a49aef2436d73353f282b2ba6313ef1f7b7b752b`. The uploaded file is served unchanged; no recompression, pixel edits, crop, or generated replacement. The browser applies only layout, edge feathering, ambient shading, and a scroll-linked reveal.
+- **Site use:** replaces the complete inline SVG whale-and-squid illustration in the final abyss scene. The existing encounter wrapper continues to fade, translate, and scale with reversible native scrolling. The viewport progressively uncovers the painting as it rises from below; its lower squid and tentacles enter view gradually. Since both animals are one image, there is no separate per-animal opacity animation.
+- **Responsive/accessibility:** explicit image dimensions reserve its aspect ratio; it fits within desktop, phone, and landscape viewports at the ending. The phone caption remains above the image. Reduced motion shows the whole painting without travel. Alt text and field notes identify an artistic reconstruction; indirect-evidence interpretation and the AMNH link remain.
+- **Historical distinction:** Beale’s separately displayed 1839 whale plate remains the archival illustration. This painting is an artistic reconstruction, not another historical anatomical plate and not documentation of a directly witnessed fight. Earlier descriptions of an original stylized SVG encounter record previous iterations.
