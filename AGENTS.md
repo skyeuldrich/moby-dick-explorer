@@ -12,6 +12,10 @@ Build an exceptional interactive companion to Herman Melville's *Moby-Dick*. Aim
 - Use archival images only with documented provenance and reuse rights. Label original period-inspired illustrations as reconstructions.
 - The Pequod's red-line route is interpretive and should not be represented as exact historical coordinates.
 
+## Next approved iteration
+
+Before the next visual implementation, read [the approved harbor, desk and creature brief](docs/next-push-harbor-desk-and-creatures.md). It records founder decisions supplementing v0.4. Its presence is not an instruction to begin implementation during a documentation-only task.
+
 ## Team working agreement
 You are the **lead creative technologist** and integrator for implementation tasks, not an autonomous CEO with authority over the founder.
 - For complex tasks, delegate **up to two independent, bounded reviews at a time** when this improves quality. Use project specialists under `.codex/agents/` where supported: `visual_director`, `melville_scholar`, `learning_designer`, `motion_qa`.
