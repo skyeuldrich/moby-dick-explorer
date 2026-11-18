@@ -2686,3 +2686,147 @@ header {
 @media(min-width:701px) { .harbor-copy h2 { font-size:45px; } .harbor-copy { top:4%; } }
 
 .harbor-scene .barber-harbor { filter:none; }
+
+
+/* D1 / 1851's working chart. The underlying Heather scan stays pristine. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  clip-path: inset(50%) !important;
+}
+.opening {
+  top: 16%;
+  left: 7%;
+  max-width: min(66vw, 430px);
+}
+.opening .map-departure {
+  color: #303b2f;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: 1.75px;
+  text-shadow: 0 1px 6px #f1e9d9, 0 -1px 4px #f1e9d9;
+}
+.route-landmark text {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  fill: #2e382e;
+  paint-order: stroke;
+  stroke: #eee5d2;
+  stroke-width: 0.7px;
+  stroke-linejoin: round;
+}
+.route-landmark circle {
+  fill: #a12923;
+  stroke: #f7ead5;
+  stroke-width: 0.85px;
+}
+.graphite-annotations {
+  pointer-events: none;
+  color: #515650;
+}
+.graphite-phase,
+.graphite-erasure { opacity: 0; }
+.graphite-stroke,
+.graphite-notation,
+.graphite-erasure {
+  fill: none;
+  stroke: #48544d;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.graphite-stroke { stroke-width: 1.4; }
+.graphite-notation { stroke-width: 0.85; opacity: 0.74; }
+.graphite-erasure { stroke-width: 2.9; stroke-dasharray: 1.2 4; stroke: #5c655b; }
+.graphite-annotations text {
+  font: italic 10px "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.3px;
+  fill: #4d554e;
+  stroke: #e9dfc7;
+  stroke-width: 0.45px;
+  paint-order: stroke;
+}
+.pencil-comparison {
+  position: absolute;
+  z-index: 4;
+  top: 52%;
+  left: 7%;
+  width: min(315px, 40vw);
+  padding: 12px 15px 11px;
+  color: #343e33;
+  background: #eae0c9d9;
+  border: 1px solid #82775760;
+  opacity: 0;
+  font-family: "DM Sans", sans-serif;
+}
+.pencil-kicker {
+  margin: 0 0 6px;
+  letter-spacing: 1.4px;
+  font-size: 8px;
+  font-weight: 500;
+}
+.pencil-key {
+  margin: 0 0 8px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.pencil-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.pencil-controls button {
+  border: 1px solid #7b7564;
+  color: #383e35;
+  background: #f6f0e4aa;
+  padding: 6px 8px;
+  min-height: 30px;
+  font: 10px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.pencil-controls button[aria-pressed="true"] {
+  background: #3b443b;
+  color: #f8f1df;
+  border-color: #3b443b;
+}
+.pencil-controls button:focus-visible {
+  outline: 2px solid #842d1d;
+  outline-offset: 2px;
+}
+.pencil-inquiry {
+  margin: 9px 0 0;
+  font: italic 17px/1.18 "Cormorant Garamond", Georgia, serif;
+}
+@media (max-width: 700px) {
+  .opening { top: 13%; left: 7%; max-width: 76vw; }
+  .opening .map-departure { font-size: 7px; letter-spacing: 1.3px; }
+  .pencil-comparison {
+    top: 34%;
+    left: 5%;
+    width: min(240px, 66vw);
+    padding: 8px 9px;
+  }
+  .pencil-kicker { font-size: 7px; margin-bottom: 4px; }
+  .pencil-key { font-size: 9px; margin-bottom: 5px; }
+  .pencil-inquiry { font-size: 14px; margin-top: 5px; }
+  .pencil-controls { gap: 3px; }
+  .pencil-controls button { font-size: 9px; padding: 4px 5px; min-height: 30px; }
+  .route-landmark text { font-size: 13px; }
+}
+@media (max-height: 650px) and (max-width: 700px) {
+  .pencil-comparison { top: 32%; }
+  .pencil-inquiry { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .graphite-annotations,
+  .pencil-comparison { transition: none !important; }
+}
