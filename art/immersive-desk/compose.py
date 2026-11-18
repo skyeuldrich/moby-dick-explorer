@@ -16,8 +16,8 @@ def transfer(base, scan, region, corners, strength):
     coeff=np.linalg.solve(rows,v)
     mask=alpha.transform(base.size,Image.Transform.PERSPECTIVE,coeff,Image.Resampling.BICUBIC)
     return Image.composite(Image.new('RGB',base.size,(27,23,19)),base,mask)
-def paint(orientation, quad, whales):
-    base=Image.open(root/f'art/immersive-desk/{orientation}-plate.webp').convert('RGB')
+def paint(orientation, quad, whales, beale):
+    base=Image.open(root/f'art/immersive-desk/beale-{orientation}-plate.webp').convert('RGB')
     archive=root/'public/assets/archive'
     scan=Image.open(archive/'whalemens-shipping-paper.webp')
     w,h=scan.size
@@ -25,7 +25,9 @@ def paint(orientation, quad, whales):
     log=Image.open(archive/'bloomfield-indian-chief-1842-44.webp')
     w,h=log.size
     base=transfer(base,log,(int(.05*w),int(.04*h),int(.35*w),int(.54*h)),whales,.85)
+    plate=Image.open(archive/'beale-1839-fig1.webp')
+    base=transfer(base,plate,(0,0,*plate.size),beale,1)
     base.save(root/f'public/assets/desk-{orientation}.webp',quality=88,method=6)
 if __name__=='__main__':
-    paint('landscape',[(342,91),(994,28),(1229,857),(443,975)],[(8,604),(330,502),(373,791),(58,899)])
-    paint('portrait',[(195,611),(711,551),(846,1201),(284,1280)],[(21,804),(186,750),(218,980),(66,1020)])
+    paint('landscape',[(342,91),(994,28),(1185,712),(430,818)],[(8,604),(330,502),(373,791),(58,899)],[(480,850),(1290,750),(1370,895),(485,995)])
+    paint('portrait',[(195,611),(711,551),(829,1130),(275,1200)],[(21,804),(186,750),(218,980),(66,1020)],[(180,1245),(690,1195),(735,1365),(210,1410)])

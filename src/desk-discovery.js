@@ -8,6 +8,9 @@ export const deskObjects = `
   </button>
   <button type="button" class="desk-object inspect-ledger" data-inspect="records" aria-haspopup="dialog" aria-controls="desk-inspector">
     <span class="desk-object-mark" aria-hidden="true">+</span><span>Voyage records</span>
+  </button>
+  <button type="button" class="desk-object inspect-beale" data-inspect="beale" aria-haspopup="dialog" aria-controls="desk-inspector">
+    <span class="desk-object-mark" aria-hidden="true">+</span><span>Whale diagram</span>
   </button>`;
 
 function documentImage(file, description, caption) {
@@ -19,6 +22,23 @@ function documentImage(file, description, caption) {
 }
 
 const readings = {
+  beale: {
+    title: 'Looking at a whale',
+    record: 'Thomas Beale · The Natural History of the Sperm Whale · 1839',
+    file: 'beale-1839-fig1.webp',
+    description: 'Original lettered sperm-whale outline, Figure 1, page 23. The head is at right, with the lower jaw below; the flipper bears f. The extreme left fluke tip is clipped in the archive scan.',
+    caption: 'Wellcome Collection · p. 23, fig. 1 · Public Domain Mark. The archive scan clips the far-left fluke tip.',
+    text: `<h3>Beale’s lettered key</h3>
+      <p><i>a</i> · spout-hole<br><i>b</i> · case<br><i>f</i> · fin</p>
+      <h3>Inspect the figure</h3>
+      <p>Follow the letters across the outline. Compare the small lower jaw beneath the head with the flipper marked <i>f</i> and the divided regions along the body. Open the full-size figure to examine the original lettering.</p>
+      <h3>From diagram to living whale</h3>
+      <p>What can this diagram explain, and what does it leave out about a living whale?</p>
+      <p>Continue with Chapter 32, “Cetology,” and Chapters 55–57, on pictures and representations of whales.</p>
+      <p class="inspection-sources"><a href="https://wellcomecollection.org/works/r9yqq4dt" target="_blank" rel="noopener noreferrer">Original volume · Wellcome Collection ↗</a>
+      <a href="${assets}beale-1839-p23-source.jpg" target="_blank" rel="noopener noreferrer">Full source page ↗</a>
+      <a href="https://www.gutenberg.org/ebooks/2701" target="_blank" rel="noopener noreferrer">Read Moby-Dick · Chapters 32 and 55–57 ↗</a></p>`,
+  },
   agreement: {
     title: 'A share of the voyage',
     record: 'Whalemen’s Shipping Paper · late nineteenth century',

@@ -23,7 +23,7 @@ export const candleScene = `<section class="candle-scene" aria-label="A candleli
   <div class="desk-tableau"><div class="desk-framing"><div class="desk-plane">
     <picture class="desk-picture">
       <source media="(orientation:portrait)" srcset="${deskAsset('portrait')}"/>
-      <img src="${deskAsset('landscape')}" alt="By the light of a brass chamberstick, a whaling agreement rests beside an illustrated voyage record, quill and glass inkwell."/>
+      <img src="${deskAsset('landscape')}" alt="By the light of a brass chamberstick, a whaling agreement overlaps Beale’s lettered sperm-whale diagram, beside an illustrated voyage record, quill and glass inkwell."/>
     </picture>
     <div class="desk-objects" inert>${deskObjects}</div>
   </div></div></div>

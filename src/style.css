@@ -818,32 +818,6 @@ header.on-paper {
   line-height: 1.9;
   max-width: 260px;
 }
-.anatomy-plate {
-  position: absolute;
-  bottom: 15%;
-  right: 14%;
-  width: 47%;
-  padding: 15px 22px 12px;
-  background: #e8ddbfeb;
-  border: 1px solid #80775a66;
-  transform: rotate(-3deg);
-  box-shadow: 0 3px 12px #3b32201a;
-}
-.anatomy-plate svg {
-  width: 100%;
-  display: block;
-}
-.anatomy-plate .eyebrow {
-  font-size: 8px;
-}
-.anatomy-plate > p:last-child {
-  font:
-    italic 12px/1.6 "Cormorant Garamond",
-    Georgia,
-    serif;
-  text-align: center;
-  margin-top: 0;
-}
 .candle-scene,
 .harbor-scene {
   position: absolute;
@@ -1163,18 +1137,6 @@ dialog hr {
   .waypoint-note {
     font-size: 11px;
     max-width: 210px;
-  }
-  .anatomy-plate {
-    width: 78%;
-    right: 9%;
-    bottom: 30%;
-    padding: 10px 12px;
-  }
-  .anatomy-plate .eyebrow {
-    font-size: 6px;
-  }
-  .anatomy-plate > p:last-child {
-    font-size: 10px;
   }
   .creatures {
     top: 25%;
@@ -1576,43 +1538,6 @@ header {
 .ledger strong {
   font-weight: 500;
 }
-.anatomy-scene {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: #ded2af;
-  opacity: 0;
-  pointer-events: none;
-  will-change: opacity;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.anatomy-scene .anatomy-plate {
-  position: relative;
-  bottom: auto;
-  right: auto;
-  width: 80%;
-  max-width: 1100px;
-  padding: 40px;
-  transform: none;
-  box-shadow: none;
-  background: #e8ddbf;
-  border: 1px solid #80775a66;
-}
-.anatomy-scene .anatomy-plate .eyebrow {
-  font-size: 10px;
-}
-.anatomy-scene .anatomy-plate > p:last-child {
-  font-size: 16px;
-  line-height: 1.7;
-}
-.anatomy-scene .anatomy-plate svg {
-  margin: 20px 0;
-}
-.stage[data-scene="anatomy"] .bottom-bar {
-  color: #424d3d;
-}
 @media (max-width: 700px) {
   .candle {
     top: 50%;
@@ -1654,17 +1579,6 @@ header {
   .wax-note {
     font-size: 9px;
     padding-top: 8px;
-  }
-  .anatomy-scene .anatomy-plate {
-    width: 92%;
-    padding: 22px 10px;
-  }
-  .anatomy-scene .anatomy-plate .eyebrow {
-    font-size: 7px;
-    letter-spacing: 1.3px;
-  }
-  .anatomy-scene .anatomy-plate > p:last-child {
-    font-size: 13px;
   }
   .candle-intro {
     top: 11%;
@@ -1744,13 +1658,6 @@ header {
   .candle {
     top: 50%;
     left: 30%;
-  }
-  .anatomy-scene .anatomy-plate {
-    width: 65%;
-    padding: 12px 20px;
-  }
-  .anatomy-scene .anatomy-plate svg {
-    margin: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1979,44 +1886,6 @@ header {
   stroke-width: 1;
   opacity: 0.1;
 }
-.anatomy-scene .archival-plate {
-  margin: 0;
-  max-width: 760px;
-  padding: 26px 35px;
-  text-align: center;
-  background: #e8dfbf;
-}
-.archival-plate img {
-  display: block;
-  max-height: 48svh;
-  max-width: 100%;
-  height: auto;
-  width: auto;
-  margin: 20px auto;
-  object-fit: contain;
-}
-.archival-plate figcaption p {
-  font:
-    15px/1.65 "Cormorant Garamond",
-    Georgia,
-    serif;
-  margin: 8px 0;
-}
-.archival-plate figcaption a {
-  font-size: 10px;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  pointer-events: auto;
-}
-.archival-plate .citation {
-  font-size: 10px !important;
-}
-.anatomy-scene {
-  pointer-events: auto;
-}
-.anatomy-scene[inert] {
-  pointer-events: none;
-}
 .ledger {
   background-color: #d6ccb0;
   background-image: repeating-linear-gradient(
@@ -2043,35 +1912,8 @@ header {
     font-size: 7px;
     padding: 7px 9px;
   }
-  .anatomy-scene .archival-plate {
-    width: 92%;
-    padding: 22px 13px;
-  }
-  .archival-plate img {
-    max-height: 43svh;
-  }
-  .archival-plate figcaption p {
-    font-size: 13px;
-  }
-  .archival-plate figcaption a {
-    font-size: 9px;
-  }
-  .anatomy-scene .archival-plate .eyebrow {
-    letter-spacing: 1px;
-  }
 }
 @media (max-height: 600px) and (min-width: 701px) {
-  .anatomy-scene .archival-plate {
-    padding: 12px 25px;
-  }
-  .archival-plate img {
-    max-height: 40svh;
-    margin: 5px auto;
-  }
-  .archival-plate figcaption p {
-    font-size: 12px;
-    margin: 3px 0;
-  }
   .archive-map-credit {
     font-size: 7px;
   }
