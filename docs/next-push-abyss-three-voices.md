@@ -38,7 +38,7 @@ Source: Melville, *Moby-Dick*, Ch. 37. [Public primary-text chapter](https://www
 
 Source: Melville, *Moby-Dick*, Ch. 132. [Public primary-text chapter](https://www.gutenberg.org/files/2701/2701-h/2701-h.htm#link2HCH0132).
 
-**Verification:** The founder-supplied Norton Critical Edition (third ed., 2018), EPUB in the private ChatGPT project, was inspected for all three passages. Do not assume Codex/Copilot can open Project-attached files; verify the lines against the public-domain novel in the linked chapters when implementing. The Norton file contains note markers (not part of these quotations); never surface those markers as the novel's prose. Quote marks are presentation punctuation, not a claim that line 1 is dialogue.
+**Verification:** The founder-supplied Norton Critical Edition (third ed., 2018), EPUB in the private ChatGPT project, was inspected for all three passages. Do not assume Codex/Copilot can open Project-attached files; the three quoted strings and speaker labels in this document are **approved copy**. Implement them as supplied, preserving punctuation and links. Do not do an independent critical reading or launch literary subagents. Flag any evident textual discrepancy rather than spending the coding session researching it. The Norton file contains note markers (not part of these quotations); never surface those markers as the novel's prose. Quote marks are presentation punctuation, not a claim that line 1 is dialogue.
 
 Use restrained chapter/speaker captions and a chapter link for each, displayed while its quotation is present. Keep attribution legible and accurate on mobile.
 
@@ -85,6 +85,6 @@ Use restrained chapter/speaker captions and a chapter link for each, displayed w
 
 ## Handoff
 
-Use the site's existing `descent-quote`/darkness/encounter orchestration as the integration point, but choose a data-driven three-voice implementation rather than copying the current one-quote markup three times into brittle scroll conditionals. Preserve the available literary source, the dark ocean animals and final painterly whale/squid encounter. Have the Melville Scholar check attribution and the Visual Director + Motion & QA check the visual result.
+Use the site's existing `descent-quote`/darkness/encounter orchestration as the integration point, but choose a data-driven three-voice implementation rather than copying the current one-quote markup three times into brittle scroll conditionals. Preserve the available literary source, the dark ocean animals and final painterly whale/squid encounter. The founder's literary-analysis agent has responsibility for scholarly attribution; **do not summon Melville Scholar during implementation**. Use the Visual Director and Motion & QA standards to check the visual result.
 
 **No implementation in this documentation-only commit.**
