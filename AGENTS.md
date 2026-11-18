@@ -3,8 +3,19 @@
 ## Mission
 Build an exceptional interactive companion to Herman Melville's *Moby-Dick*. Aim for historical authenticity, atmospheric visual design, intuitive exploration, literary rigor, and smooth interaction. The visitor should return to Melville's prose with greater understanding and curiosity. Treat the founder as final creative decision-maker; avoid jargon in reports.
 
+## CURRENT NEXT PUSH — November 18, 2026
+
+**Read [docs/next-push-maps-and-continuity.md](docs/next-push-maps-and-continuity.md) FIRST for the next assignment.** It supersedes the outdated A/B/C queue in `docs/next-visual-push-execution-plan.md`. PR A (Beale), PR B (three quotes into black water), and PR C (candle/Smithsonian engraving inspector) **have already merged into `main`**. Do not redo them.
+
+The new bounded order is:
+- **Issue #25 / PR D1:** remove giant map title, restore elegant place-label typography, animate Ahab's reversible erasing/penciled hypotheses on the genuine Atlantic chart.
+- **Issue #26 / PR D2:** unify Barber's engraving/wave travel; center the emerging warm light on the candle wick and frame the candle; ensure Beale's whale is visible in the desktop desk.
+- **Issue #27 / PR E:** design an archival, **17-stage transoceanic route**. **Storyboard and missing-asset gate first; code only after founder signoff.** Use `docs/pequod-itinerary-17-stages.md`, not invented nautical fixes or a screenshot of the copyrighted Norton map.
+
+**Founder visual constraint: no new AI-generated illustrations.** Prefer actual sourced historical maps/engravings, existing assets, optical effects and archival image edits. Animations derive from source images, not generated pictorial slides. Codex handles design, code and QA; scholar/religious interpretation is the founder's literary-agent work. **One draft PR per bounded coding assignment, founder review before merge.**
+
 ## Source of truth
-- **For the next visual work, read `docs/next-visual-push-execution-plan.md` FIRST.** It audits implemented vs pending work, PR boundaries, asset dependencies and founder sign-off. `moby-dick-prototype-brief-v0.4.md` is the legacy technical baseline, **not** authority to restore superseded scenes. The task's detailed artistic brief controls design decisions subject to the execution plan's status and sequencing.
+- **For any newly assigned work read `docs/next-push-maps-and-continuity.md` FIRST** and the scoped Issue #25/#26/#27. The older `docs/next-visual-push-execution-plan.md` is historical record of merged PRs A/B/C, **not pending tasks**. `moby-dick-prototype-brief-v0.4.md` is the legacy baseline; later founder decisions supersede it.
 - Do not overwrite or invent founder preferences. For a significant proposed departure, describe its rationale and seek approval before implementation.
 - The current prototype is a vertical slice; preserve its existing structure unless the specific task asks for change.
 - Preserve literary claims' chapter and edition citations. Historical figures need dated sources; modern annotations must not masquerade as original primary sources.
