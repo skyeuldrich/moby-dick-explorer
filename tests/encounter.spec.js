@@ -1,19 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { createHash } from "node:crypto";
-async function at(page, p) {
-  const expected = await page.evaluate((p) => {
-    const range =
-      document.querySelector("#voyage").offsetHeight -
-      document.querySelector(".stage").offsetHeight;
-    scrollTo(0, range * p);
-    return +(scrollY / range).toFixed(5);
-  }, p);
-  await expect
-    .poll(
-      async () => +(await page.locator(".stage").getAttribute("data-progress")),
-    )
-    .toBe(expected);
-}
+import {seek as at} from "./helpers/seek.js";
 const visibleFraction = async (page, height) => {
   const b = await page.locator(".encounter-image").boundingBox();
   return (
@@ -58,18 +45,18 @@ for (const size of [
     await page.setViewportSize(size);
     await page.goto("/");
     await page.locator(".encounter-image").evaluate((e) => e.decode());
-    await at(page, 0.8);
-    await expect(page.locator(".descent-quote")).toHaveCSS("opacity", "1");
+    await at(page, 0.76);
+    await expect(page.locator(".descent-quote").first()).toHaveCSS("opacity", "1");
     await expect(page.locator(".creatures")).toHaveCSS("opacity", "0");
-    await at(page, 0.94);
-    await expect(page.locator(".descent-quote")).toHaveCSS("opacity", "0");
+    await at(page, 0.97);
+    await expect(page.locator(".descent-quote").first()).toHaveCSS("opacity", "0");
     const firstVisible = await visibleFraction(page, size.height),
       firstRect = await page.locator(".encounter-image").boundingBox();
     expect(firstVisible).toBeGreaterThan(0);
     expect(firstVisible).toBeCloseTo(1,2);
     const firstMask=await page.locator(".encounter-image").evaluate(e=>getComputedStyle(e).maskImage);
     expect(firstMask).toContain("radial-gradient");
-    await at(page, 0.97);
+    await at(page, 0.985);
     expect(await page.locator(".encounter-image").evaluate(e=>getComputedStyle(e).maskImage)).not.toBe(firstMask);
     await at(page, 1);
     expect(await visibleFraction(page, size.height)).toBeCloseTo(1, 3);
@@ -83,14 +70,14 @@ for (const size of [
       const text = await page.locator(".abyss-copy").boundingBox();
       expect(text.y + text.height).toBeLessThan(image.y);
     }
-    await at(page, 0.94);
+    await at(page, 0.97);
     expect(await visibleFraction(page, size.height)).toBeCloseTo(
       firstVisible,
       2,
     );
     const reverse = await page.locator(".encounter-image").boundingBox();
     expect(Math.abs(reverse.y - firstRect.y)).toBeLessThan(2);
-    await at(page, 0.86);
+    await at(page, 0.93);
     await expect(page.locator(".creatures")).toHaveCSS("opacity", "0");
   });
 }

@@ -2,23 +2,7 @@ import { test, expect } from "@playwright/test";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
-async function seek(page, p) {
-  await page.evaluate(
-    (p) =>
-      scrollTo(
-        0,
-        (document.querySelector("#voyage").offsetHeight -
-          document.querySelector(".stage").offsetHeight) *
-          p,
-      ),
-    p,
-  );
-  await expect
-    .poll(
-      async () => +(await page.locator(".stage").getAttribute("data-progress")),
-    )
-    .toBeCloseTo(p, 3);
-}
+import {seek as seek} from "./helpers/seek.js";
 
 test("voyage embeds the documented archival raster and links its institutional record", async ({
   page,

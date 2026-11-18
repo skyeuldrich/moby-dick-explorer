@@ -1,9 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {deform,species} from '../src/species-motion.js';
-async function at(page,p){
- const target=await page.evaluate(p=>{const range=document.querySelector('#voyage').offsetHeight-document.querySelector('.stage').offsetHeight;scrollTo(0,range*p);return +(scrollY/range).toFixed(5)},p);
- await expect.poll(async()=>+(await page.locator('.stage').getAttribute('data-progress'))).toBe(target);
-}
+import {seek as at} from "./helpers/seek.js";
 test('three approved image species replace the SVG cast and swim while scroll is stopped',async({page})=>{
  await page.goto('/');await expect(page.locator('.candle-scene .species-animal')).toHaveCount(3);
  await expect(page.locator('.candle-scene .abyss-life svg')).toHaveCount(0);
@@ -45,7 +42,7 @@ test('deformation is local and species-specific, with dark bodies and anatomical
 
 test('rendered encounter gains real visible contours before the complete painting',async({page})=>{
  await page.setViewportSize({width:1440,height:900});await page.goto('/');
- await at(page,.925);await page.locator('.encounter-image').evaluate(e=>e.decode());
+ await at(page,.965);await page.locator('.encounter-image').evaluate(e=>e.decode());
  // Sample actual composited screenshot pixels, not the source image or CSS opacity.
  const light=async()=>{
   const box=await page.locator('.encounter-image').boundingBox();
@@ -58,11 +55,11 @@ test('rendered encounter gains real visible contours before the complete paintin
    let sum=0;for(let i=0;i<data.length;i+=4)sum+=(data[i]+data[i+1]+data[i+2])/3;return sum/(data.length/4);
   },{png,box});
  };
- await at(page,.87);const dark=await light();
- await at(page,.925);const contour=await light();
+ await at(page,.93);const dark=await light();
+ await at(page,.965);const contour=await light();
  await at(page,1);const complete=await light();
  expect(contour).toBeGreaterThan(dark+1);expect(complete).toBeGreaterThan(contour+5);
- await at(page,.925);expect(await light()).toBeCloseTo(contour,0);
+ await at(page,.965);expect(await light()).toBeCloseTo(contour,0);
 });
 
 

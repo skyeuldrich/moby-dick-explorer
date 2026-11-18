@@ -1,18 +1,5 @@
 import { test, expect } from "@playwright/test";
-async function at(page, p) {
-  const expected = await page.evaluate((p) => {
-    const r =
-      document.querySelector("#voyage").offsetHeight -
-      document.querySelector(".stage").offsetHeight;
-    scrollTo(0, r * p);
-    return +(scrollY / r).toFixed(5);
-  }, p);
-  await expect
-    .poll(
-      async () => +(await page.locator(".stage").getAttribute("data-progress")),
-    )
-    .toBe(expected);
-}
+import {seek as at} from "./helpers/seek.js";
 for (const viewport of [
   { width: 1440, height: 900 },
   { width: 390, height: 844 },
