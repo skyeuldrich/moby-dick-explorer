@@ -1,89 +1,30 @@
-/* One desk surface, illuminated from the flame at its left-hand side. */
-.stage .desk {
-  background:radial-gradient(ellipse at 27% 33%, #a76c3529, #0a0809a3 76%), url('/assets/counting-desk.webp') center/cover;
+/* Hotspots share the dimensions of the photographed surface. The entire scene
+   travels as one piece on approach, then holds still for object inspection. */
+.desk-tableau {
+  position:absolute; inset:0; overflow:hidden; opacity:0; pointer-events:none;
+  mask-image:linear-gradient(to bottom,transparent 0,black var(--top-feather,0%),black 100%);
+  --lit-x:15%; --lit-y:7%; --light-radius:160%;
 }
-.stage .table-light {
-  inset:0;background:radial-gradient(ellipse at 30% 32%,#ffbb6924 0%,#c58b3f12 28%,transparent 70%);
+.desk-framing {
+  position:absolute; inset:0; overflow:hidden;
+  mask-image:radial-gradient(circle farthest-corner at var(--lit-x) var(--lit-y), black var(--light-radius), transparent calc(var(--light-radius) + 21%));
 }
-.stage .candle {left:25%;top:45%;margin:-115px 0 0 -30px;}
-.stage .candle-study {width:115px;left:-26px;top:-27px;}
-.stage .contact-shadow {top:113px;left:-33px;width:125px;height:26px;background:radial-gradient(ellipse,#090502bb,transparent 70%);transform:rotate(-7deg);}
-.stage .flame-halo {left:-165px;top:-206px;width:390px;height:460px;}
-.shipping-agreement {
- position:absolute;left:36%;top:9%;width:32%;max-width:490px;margin:0;
- transform:perspective(1500px) rotateX(12deg) rotateZ(-8deg);transform-origin:center;
- filter:drop-shadow(9px 18px 10px #030202b0);opacity:0;
+.desk-plane {
+  position:absolute; left:50%; top:0; width:max(100%,150svh); aspect-ratio:3/2;
+  transform:translateX(-50%);
 }
-.shipping-agreement img {display:block;width:100%;height:auto;filter:sepia(.65) brightness(.72) contrast(.91);}
-.shipping-agreement:after {content:"";position:absolute;inset:0;background:linear-gradient(135deg,#e8b56c30,transparent 25%,#08040282 100%);pointer-events:none;}
-.shipping-agreement figcaption {position:absolute;left:16%;top:100%;padding-top:12px;font:11px/1.4 'DM Sans',sans-serif;color:#c2b296;}
-.stage .ledger {
- top:16%;right:5%;left:auto;width:25%;max-width:340px;padding:0;transform:none;
- background:none;box-shadow:none;color:#e7d7b9;isolation:isolate;
+.desk-picture, .desk-picture img { display:block; width:100%; height:100%; }
+.desk-tableau[data-lit] .desk-picture { animation:wick-reflection 4.3s ease-in-out infinite alternate; }
+@keyframes wick-reflection {0%,46%,100%{filter:brightness(1)}30%,65%{filter:brightness(.975)}78%{filter:brightness(.987)}}
+.desk-objects {position:absolute;inset:0;pointer-events:none;}
+.desk-objects button {position:absolute;pointer-events:auto;}
+.desk-objects[inert] button {pointer-events:none;}
+.desk-objects .inspect-agreement {left:54%;top:47%;}
+.desk-objects .inspect-ledger {left:max(calc(50% - 47vw),4%);top:60%;}
+@media (orientation:portrait){
+ .desk-tableau {--lit-x:24%;--lit-y:21%;}
+ .desk-plane {width:max(100%,66.667svh);aspect-ratio:2/3;left:min(0px,calc((100% - 66.667svh) * .15));transform:none;}
+ .desk-objects .inspect-ledger {left:8%;top:61%;}
+ .desk-objects .inspect-agreement {left:46%;top:67%;}
 }
-.stage .ledger:before {content:none;}
-.stage .ledger h3 {font:400 clamp(28px,2.5vw,42px)/1.07 'Cormorant Garamond',Georgia,serif;margin:15px 0;}
-.stage .ledger h3 .stat-number {font-size:clamp(58px,6vw,90px);line-height:.9;letter-spacing:-.04em;margin-bottom:8px;}
-.stage .ledger h3 .stat-label {font-size:clamp(24px,2.5vw,35px);line-height:1.1;letter-spacing:-.02em;}
-.stage .ledger p {font:400 14px/1.5 'DM Sans',sans-serif;margin:12px 0;}
-.stage .ledger .document-label {color:#bbad95;font-size:9px;letter-spacing:.13em;}
-.stage .ledger a {display:block;color:#c6b99e;font-size:10px;line-height:1.5;text-decoration:underline;text-underline-offset:3px;}
-.stage .ledger strong {color:inherit;}
-.stage .ledger .wax-note {font-size:10px;color:#b2a38d;}
-.shares-fact {margin-top:35px;}
-@media(max-width:700px) {
- .stage .candle {left:17%;top:27%;}
- .stage .candle-study {width:92px;left:-15px;top:-15px;}
- .stage .contact-shadow {top:100px;left:-27px;width:110px;height:20px;}
- .stage .shipping-agreement {left:38%;top:10%;width:52%;max-width:none;}
- .stage .shipping-agreement figcaption {left:0;font-size:8px;padding-top:7px;}
- .stage .ledger {left:9%;right:9%;top:51%;width:auto;max-width:none;height:38%;}
- .economy-fact {position:absolute;inset:0;max-width:420px;margin:0;}
- .stage .ledger h3 {font-size:32px;margin:10px 0;}
- .stage .ledger h3 .stat-number {font-size:65px;}
- .stage .ledger h3 .stat-label {font-size:29px;}
- .stage .ledger p {font-size:14px;line-height:1.45;margin:10px 0;}
- .stage .ledger a {font-size:10px;}
- .stage .table-light {background:radial-gradient(ellipse at 20% 20%,#ffc98120,#ac793d0d 40%,transparent 75%);}
-}
-@media(max-height:700px) and (max-width:700px) {
- .stage .ledger {top:47%;}
- .stage .ledger h3 .stat-number {font-size:48px;}
- .stage .ledger h3 .stat-label {font-size:25px;}
- .stage .ledger h3 {font-size:28px;}
- .stage .ledger p {font-size:12px;margin:7px 0;}
-}
-@media(max-height:500px) and (min-width:701px) {
- .stage .shipping-agreement {width:24%;left:35%;top:4%;}
- .stage .ledger {top:7%;width:34%;}
- .stage .ledger h3 .stat-number {font-size:46px;}
- .stage .ledger h3 .stat-label {font-size:24px;}
- .stage .ledger p {font-size:11px;}
- .shares-fact {margin-top:14px;}
-}
-/* Override the earlier responsive asset dimensions as a single measured object. */
-.stage .candle {width:240px;height:360px;}
-.stage .candle .candle-study {inset:0;width:100%;height:100%;object-fit:contain;}
-.stage .contact-shadow {top:auto;bottom:5%;left:13%;width:75%;height:6%;}
-.stage .flame-halo {left:-65%;top:-48%;width:230%;height:130%;}
-.stage .flame {display:none;}
-@media(max-width:700px) {
- .stage .candle {width:100px;height:150px;}
-}
-@media(max-height:700px) and (max-width:700px) {
- .stage .shipping-agreement {width:42%;left:47%;top:6%;}
- .stage .shipping-agreement figcaption {font-size:7px;}
- .stage .ledger h3 {line-height:1.07;}
-}
-@media(max-height:500px) and (min-width:701px) {
- .stage .candle {left:12%;top:21%;margin:0;width:110px;height:165px;}
- .stage .shipping-agreement {width:21%;left:31%;top:8%;}
- .stage .shipping-agreement figcaption {font-size:8px;}
- .stage .ledger {left:59%;right:6%;width:auto;top:12%;height:72%;}
- .stage .ledger .economy-fact {position:absolute;inset:0;margin:0;}
-}
-.stage .ledger h3 br {display:block;}
-/* Keep the contact ellipse attached to the holder across legacy breakpoints. */
-.stage .candle .contact-shadow {
-  top:95%;bottom:auto;left:13%;width:75%;height:6%;transform:rotate(-7deg);
-}
+@media (prefers-reduced-motion:reduce){.desk-tableau[data-lit] .desk-picture{animation:none}}

@@ -73,3 +73,35 @@ for (const viewport of [
     );
   });
 }
+
+test("each moving gull contains ink with fully transparent surrounding paper", async ({page}) => {
+  await page.goto("/");
+  const samples = await page.locator(".engraved-gull image").evaluateAll(async images => {
+    return Promise.all(images.map(async sprite => {
+      const image = new Image();
+      image.src = sprite.href.baseVal;
+      await image.decode();
+      const canvas = document.createElement("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0);
+      const pixels = ctx.getImageData(0, 0, image.width, image.height).data;
+      let ink = 0;
+      let paper = 0;
+      for (let i = 0; i < pixels.length; i += 4) {
+        if (pixels[i + 3] > 0) {
+          ink++;
+          if (pixels[i] > 128) paper++;
+        }
+      }
+      return {ink, paper, total: pixels.length / 4};
+    }));
+  });
+  expect(samples).toHaveLength(3);
+  for (const sprite of samples) {
+    expect(sprite.ink).toBeGreaterThan(50);
+    expect(sprite.ink).toBeLessThan(sprite.total / 2);
+    expect(sprite.paper).toBe(0);
+  }
+});

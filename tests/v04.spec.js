@@ -37,20 +37,11 @@ for (const size of [
     await page.mouse.wheel(0, 25);
     await expect.poll(() => opacity(page, ".bottom-glow")).toBeGreaterThan(0.15);
     await at(page, 0.075);
-    const candle = await page.locator(".candle").boundingBox();
-    expect(candle.y).toBeGreaterThan(0);
+    await expect(page.locator(".desk-objects")).toHaveJSProperty("inert", true);
     await at(page, 0.14);
-    await expect(page.locator(".desk")).toHaveCSS("opacity", "1");
-    await expect(page.locator(".candle-scene .abyss-life")).toHaveCSS(
-      "opacity",
-      "0",
-    );
-    const num = await page.locator(".stat-number").boundingBox(),
-      label = await page.locator(".stat-label").boundingBox(),
-      paper = await page.locator(".ledger").boundingBox();
-    expect(num.y + num.height).toBeLessThan(label.y + 1);
-    expect(label.x).toBeGreaterThanOrEqual(paper.x);
-    expect(paper.y + paper.height).toBeLessThan(size.height - 25);
+    await expect(page.locator(".candle-scene .abyss-life")).toHaveCSS("opacity", "0");
+    await expect(page.locator(".inspect-agreement")).toBeInViewport();
+    await expect(page.locator(".inspect-ledger")).toBeInViewport();
     await page.screenshot({ path: `test-results/v04-desk-${size.width}.png` });
     await at(page, 0.235);
     await expect(page.locator(".harbor-scene")).toHaveCSS("opacity", "1");

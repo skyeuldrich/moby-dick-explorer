@@ -1,0 +1,81 @@
+/* Timeline supplies placement and makes these inactive outside the desk. */
+.desk-object {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  min-height: 44px;
+  padding: 0 .8rem 0 .45rem;
+  border: 1px solid #bfa27870;
+  border-radius: 2rem;
+  background: #201911ed;
+  color: #f5eedc;
+  font: 500 13px/1.2 'DM Sans', sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.desk-object-mark {
+  display: grid;
+  width: 1.55em;
+  height: 1.55em;
+  place-items: center;
+  border: 1px solid #aa9777;
+  border-radius: 50%;
+  font-size: 17px;
+}
+.desk-object:hover, .desk-object:focus-visible {background: #423526;}
+.desk-object:focus-visible, #desk-inspector :focus-visible {outline: 3px solid #be713b; outline-offset: 3px;}
+html.inspecting-desk, html.inspecting-desk body {overflow: hidden;}
+#desk-inspector {
+  width: min(940px,calc(100vw - 36px));
+  max-width: none;
+  max-height: min(90svh,930px);
+  overscroll-behavior: contain;
+  overflow-y: auto;
+  padding: 0;
+  border: 1px solid #bdb09b;
+  background: #f5f1e8;
+  color: #2a2924;
+}
+#desk-inspector::backdrop {background: #191510c7;backdrop-filter: blur(3px);}
+.inspection-bar {position: sticky; z-index: 1; top: 0; display: flex; justify-content: end; pointer-events: none; height: 0;}
+#desk-inspector .inspection-close {
+  position: static;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  height: 44px;
+  min-width: 64px;
+  margin: 8px;
+  padding-inline: .6rem;
+  background: #f5f1e8;
+  border: 1px solid #b9ad98;
+  color: #352e24;
+  font: 13px 'DM Sans', sans-serif;
+}
+.inspection-close span {font-size: 20px;}
+.inspection-content {padding: clamp(24px,4vw,52px);}
+.inspection-heading {position: static;display: block;height: auto;background: none;color: inherit;border: none;padding: 0 54px 20px 0;}
+.inspection-heading p,.inspection-reference,.inspection-facsimile figcaption {font: 12px/1.5 'DM Sans',sans-serif; color: #5f584c;}
+#desk-inspector h2 {font: 500 clamp(34px,4.6vw,58px)/1 'Cormorant Garamond',Georgia,serif; margin: 8px 0 0;}
+.inspection-columns {display: grid;grid-template-columns: minmax(0, .94fr) minmax(0,1fr);gap: clamp(20px,3vw,38px);align-items: start;}
+.inspection-facsimile {margin: 0;}
+.inspection-facsimile a {display: block;cursor: zoom-in;}
+.inspection-facsimile img {display: block; width: 100%;height: auto;box-shadow: 0 3px 10px #30241726;}
+.inspection-facsimile figcaption {margin-top: 8px;}
+.inspection-reading {font: 15px/1.55 'DM Sans',sans-serif;}
+.inspection-reading p {margin: 9px 0 18px;}
+.inspection-reading h3 {font: 600 27px/1.1 'Cormorant Garamond',Georgia,serif; margin: 0 0 5px;}
+#desk-inspector blockquote {margin: 18px 0 8px;padding-left: 14px;border-left: 2px solid #ab825b; font: 500 23px/1.23 'Cormorant Garamond',Georgia,serif;}
+#desk-inspector .inspection-sources {display: grid;gap: .5rem;margin-bottom: 0;}
+#desk-inspector .inspection-sources a {font: 13px/1.5 'DM Sans',sans-serif;color: #694c33;text-decoration: underline;text-underline-offset: 2px;}
+@media(max-width:700px) {
+  #desk-inspector {width: calc(100vw - 16px);max-height: 92svh;}
+  .inspection-content {padding: 24px 20px;}
+  .inspection-heading {padding-right: 58px;}
+  .inspection-columns {display: block;}
+  .inspection-facsimile {margin: 0 0 20px;}
+  .inspection-facsimile img {max-height: 34svh; width: auto;max-width: 100%;object-fit: contain;}
+}
