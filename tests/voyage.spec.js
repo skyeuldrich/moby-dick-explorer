@@ -311,6 +311,6 @@ test("archival assets load locally and abyss life stays restrained", async ({
   await expect(page.locator(".anatomy-scene")).toHaveCount(0);
   await expect(page.locator(".stage")).toHaveAttribute("data-scene", "threshold");
   await seek(page, 1);
-  await expect(page.locator(".abyss-return")).toHaveCSS("opacity", "0.65");
+  await expect(page.locator(".abyss-return")).toHaveCSS("opacity", "0");
   expect(failures).toEqual([]);
 });
