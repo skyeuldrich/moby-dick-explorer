@@ -1,0 +1,17 @@
+/* Scoped to the three text apparitions; the reading plateau is optically still. */
+#voyage {height:3376svh;}
+.descent-darkness {background:#000;z-index:2;}
+.creatures.encounter-artwork {z-index:3;}
+.abyss-copy {z-index:4;}
+.stage[data-black="true"] .abyss-copy::before {background:none;}
+.ocean::after {opacity:calc(.4 * var(--water-light,1));}
+.descent-quote {inset:0; width:auto; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:72px max(24px,18vw); color:#e0e3dd; pointer-events:none;}
+.descent-quote blockquote {font-size:clamp(27px,3.4vw,49px);line-height:1.3;margin:0 0 26px;max-width:850px;}
+.descent-quote p {color:#b1bbb5; font-size:12px; margin:0 0 12px;}
+.descent-quote a {pointer-events:auto;font-size:12px;}
+.stage[data-black="true"] .bottom-bar {opacity:0;pointer-events:none;}
+body:has(.stage[data-black="true"]) > #app > header {opacity:0;pointer-events:none;}
+body:has(.stage[data-black="true"]) header:focus-within {opacity:1;pointer-events:auto;}
+.quote-transcript article {margin:40px 0;}
+@media(max-width:700px){.descent-quote{inset:0;width:auto;left:0;top:0;padding:66px 26px;}.descent-quote blockquote{font-size:clamp(25px,7vw,32px);line-height:1.3;}.descent-quote p{font-size:12px;}}
+@media(prefers-reduced-motion:reduce){.descent-quote{filter:none!important;transform:none!important;mask-image:none!important;}}

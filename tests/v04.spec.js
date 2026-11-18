@@ -3,22 +3,7 @@ import { readFileSync } from "node:fs";
 const scanMask = JSON.parse(
   readFileSync(new URL("./fixtures/heather-1797-land.json", import.meta.url)),
 );
-async function at(page, p) {
-  await page.evaluate((p) => {
-    const s = document.querySelector("#voyage");
-    scrollTo(
-      0,
-      s.offsetTop +
-        (s.offsetHeight - document.querySelector(".stage").offsetHeight) * p,
-    );
-  }, p);
-  await expect
-    .poll(
-      async () => +(await page.locator(".stage").getAttribute("data-progress")),
-    )
-    .toBeCloseTo(p, 3);
-  await page.waitForTimeout(100);
-}
+import {seek as at} from "./helpers/seek.js";
 const opacity = (page, selector) =>
   page.locator(selector).evaluate((e) => +getComputedStyle(e).opacity);
 for (const size of [
@@ -68,18 +53,18 @@ for (const size of [
     expect(chartFade).toBeLessThan(1);
     await expect(page.locator(".stage")).toHaveAttribute("data-scene", "threshold");
     await page.screenshot({ path: `test-results/v04-submerging-${size.width}.png` });
-    await at(page, 0.8);
-    await expect(page.locator(".descent-quote")).toHaveCSS("opacity", "1");
+    await at(page, 0.76);
+    await expect(page.locator(".descent-quote").first()).toHaveCSS("opacity", "1");
     await expect(page.locator(".creatures")).toHaveCSS("opacity", "0");
-    const quote = await page.locator(".descent-quote").boundingBox(),
+    const quote = await page.locator(".descent-quote blockquote").first().boundingBox(),
       depth = await page.locator(".depth").boundingBox();
     expect(
       quote.y + quote.height < depth.y || quote.x + quote.width < depth.x,
     ).toBe(true);
     await page.screenshot({ path: `test-results/v04-quote-${size.width}.png` });
-    await at(page, 0.86);
-    await expect(page.locator(".descent-quote")).toHaveCSS("opacity", "0");
-    await at(page, size.width > 700 ? 0.915 : 0.945);
+    await at(page, 0.93);
+    await expect(page.locator(".descent-quote").first()).toHaveCSS("opacity", "0");
+    await at(page, 0.97);
     await page.screenshot({
       path: `test-results/v04-partial-${size.width}.png`,
     });
@@ -95,8 +80,8 @@ for (const size of [
       expect(b.y + b.height).toBeLessThan(size.height);
     }
     await page.screenshot({ path: `test-results/v04-final-${size.width}.png` });
-    await at(page, 0.8);
-    await expect(page.locator(".descent-quote")).toHaveCSS("opacity", "1");
+    await at(page, 0.76);
+    await expect(page.locator(".descent-quote").first()).toHaveCSS("opacity", "1");
     await expect(page.locator(".creatures")).toHaveCSS("opacity", "0");
     expect(errors).toEqual([]);
   });

@@ -1,13 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-async function seek(page, p) {
-  await page.evaluate(value => {
-    const voyage = document.querySelector("#voyage");
-    const range = voyage.offsetHeight - document.querySelector(".stage").offsetHeight;
-    scrollTo(0, voyage.offsetTop + range * value);
-  }, p);
-  await expect.poll(async () => Number(await page.locator(".stage").getAttribute("data-progress"))).toBeCloseTo(p, 3);
-}
+import {seek as seek} from "./helpers/seek.js";
 
 test("an object opens from the keyboard and Escape restores focus and depth", async ({ page }) => {
   await page.goto("/");

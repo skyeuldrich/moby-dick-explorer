@@ -1,4 +1,5 @@
 import { initSpeciesLife } from "./abyss.js";
+import {voices, toScroll, fromScroll} from './descent.js';
 import {
   chartWidth,
   chartHeight,
@@ -44,7 +45,6 @@ export function initVoyage() {
       "harbor-page",
       "harbor-livelihood",
       "harbor-invitation",
-      "descent-quote",
       "descent-darkness",
     ].map((name) => [name, $(`.${name}`)]),
   );
@@ -61,6 +61,8 @@ export function initVoyage() {
   };
   const updateSpecies = initSpeciesLife();
   const encounterImage = $(".encounter-image");
+  const ocean = $('.ocean');
+  const quotes = [...document.querySelectorAll('.descent-quote')];
   const gulls = [...document.querySelectorAll(".engraved-gull")];
   const landmarkNodes = [...document.querySelectorAll(".route-landmark")];
   const landmarkLabels = landmarkNodes.map((node) =>
@@ -279,11 +281,22 @@ export function initVoyage() {
     opacity("chart-waypoint", fade(p, 0.345, 0.36, 0.6, 0.615));
     opacity("map-caption", 0);
     opacity("archive-map-credit", chartOpacity * smooth(ramp(p, .299, .304)));
-    opacity("transition-copy", fade(p, 0.7, 0.73, 0.75, 0.77));
-    opacity("descent-darkness", smooth(ramp(p, 0.7, 0.91)) * 0.75);
-    opacity("descent-quote", fade(p, 0.755, 0.785, 0.825, 0.855));
-    enable(nodes["descent-quote"], p >= 0.78 && p <= 0.84);
-    const encounter = ramp(p, 0.87, 1);
+    opacity("transition-copy", fade(p, 0.7, 0.715, 0.72, 0.733));
+    const black = smooth(ramp(p,.72,.855));
+    opacity("descent-darkness", black);
+    ocean.style.setProperty('--water-light',1-black);
+    stage.dataset.black = String(p >= .855);
+    quotes.forEach((node,i) => {
+      const [a,b,c,d]=voices[i].window;
+      const visibility=fade(p,a,b,c,d);
+      const haze=1-visibility;
+      style(node,'opacity',visibility.toFixed(4));
+      style(node,'filter',reduced.matches?'none':`blur(${(haze*2).toFixed(2)}px)`);
+      style(node,'transform',reduced.matches?'none':`skewX(${(Math.sin(p*170+i)*haze*.35).toFixed(3)}deg) translateX(${(Math.sin(p*130)*haze*2).toFixed(2)}px)`);
+      style(node,'maskImage',reduced.matches||haze===0?'none':`linear-gradient(${(90+Math.sin(p*90)*8).toFixed(2)}deg,transparent,black ${haze*22}%,black ${100-haze*25}%,transparent)`);
+      enable(node,visibility>.95);
+    });
+    const encounter = ramp(p, 0.94, 1);
     const framing = reduced.matches ? 1 : (phone ? 1.18 : 1.035) - (phone ? .18 : .035) * smooth(encounter);
     stage.dataset.encounter = encounter.toFixed(5);
     opacity("creatures", .62 * smooth(encounter));
@@ -297,7 +310,8 @@ export function initVoyage() {
     style(encounterImage,"webkitMaskImage",mask);
     opacity("abyss-copy", smooth(ramp(p, 0.975, 1)));
     enable(nodes["abyss-copy"], p >= 0.99);
-    opacity("abyss-return", smooth(ramp(p, 0.615, 0.76)) * 0.65);
+    opacity("abyss-return", smooth(ramp(p, 0.615, 0.76)) * 0.65 * (1-black));
+    opacity("particles",1-black);
     transform(
       "particles",
       reduced.matches
@@ -307,7 +321,7 @@ export function initVoyage() {
     opacity("rays", 0);
     opacity(
       "depth",
-      smooth(ramp(p, 0.615, 0.72)) *
+      smooth(ramp(p, 0.615, 0.72)) * (1-black) *
         (phone ? 1 - smooth(ramp(p, 0.865, 0.91)) : 1),
     );
     style(
@@ -330,7 +344,7 @@ export function initVoyage() {
             ? "harbor"
             : p < 0.615
               ? "chart"
-              : p < 0.87
+              : p < 0.94
                 ? "threshold"
                 : "abyss";
     if (scene !== previousScene) {
@@ -376,7 +390,7 @@ export function initVoyage() {
   function tick(time) {
     frame = 0;
     if (measurePending) measure();
-    target = clamp((scrollY - geometry.top) / geometry.range);
+    target = fromScroll(clamp((scrollY - geometry.top) / geometry.range));
     const dt = Math.min(50, lastTime ? time - lastTime : 16.7);
     lastTime = time;
     // Brief visual catch-up for discrete mouse-wheel steps. Touch keeps native one-to-one motion.
@@ -420,7 +434,7 @@ export function initVoyage() {
     instant = true;
     current = target = p;
     render(p);
-    scrollTo({ top: geometry.top + geometry.range * p, behavior: "instant" });
+    scrollTo({ top: geometry.top + geometry.range * toScroll(p), behavior: "instant" });
     schedule();
   }
   function handleHash() {
@@ -464,7 +478,7 @@ export function initVoyage() {
     discovery.close();
   };
   measure();
-  target = current = clamp((scrollY - geometry.top) / geometry.range);
+  target = current = fromScroll(clamp((scrollY - geometry.top) / geometry.range));
   render(current);
   handleHash();
 }

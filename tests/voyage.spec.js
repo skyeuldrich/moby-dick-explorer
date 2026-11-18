@@ -1,23 +1,5 @@
 import { test, expect } from "@playwright/test";
-async function seek(page, p) {
-  const expected = await page.evaluate((p) => {
-    const s = document.querySelector("#voyage");
-    scrollTo(
-      0,
-      s.offsetTop +
-        (s.offsetHeight - document.querySelector(".stage").offsetHeight) * p,
-    );
-    return +(
-      scrollY /
-      (s.offsetHeight - document.querySelector(".stage").offsetHeight)
-    ).toFixed(5);
-  }, p);
-  await expect
-    .poll(async () =>
-      Number(await page.locator(".stage").getAttribute("data-progress")),
-    )
-    .toBe(expected);
-}
+import {seek as seek} from "./helpers/seek.js";
 for (const viewport of [
   { width: 1440, height: 900 },
   { width: 390, height: 844 },
@@ -329,6 +311,6 @@ test("archival assets load locally and abyss life stays restrained", async ({
   await expect(page.locator(".anatomy-scene")).toHaveCount(0);
   await expect(page.locator(".stage")).toHaveAttribute("data-scene", "threshold");
   await seek(page, 1);
-  await expect(page.locator(".abyss-return")).toHaveCSS("opacity", "0.65");
+  await expect(page.locator(".abyss-return")).toHaveCSS("opacity", "0");
   expect(failures).toEqual([]);
 });

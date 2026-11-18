@@ -1,11 +1,12 @@
 import {test, expect} from '@playwright/test';
+import {seek} from './helpers/seek.js';
 
 for (const width of [1440,390,360]) {
   test(`Beale can be inspected and returned to on ${width}px`, async ({page}) => {
     await page.setViewportSize({width,height:width===1440?900:844});
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.goto('/');
-    await page.evaluate(()=>scrollTo(0,document.querySelector('#voyage').offsetTop+.14*(document.querySelector('#voyage').offsetHeight-document.querySelector('.stage').offsetHeight)));
+    await seek(page,.14);
     const button=page.locator('.inspect-beale');
     await expect(button).toBeInViewport();
     const bounds=await button.boundingBox();

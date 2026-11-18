@@ -1,22 +1,5 @@
 import { test, expect } from "@playwright/test";
-async function at(page, p) {
-  await page.evaluate(
-    (p) =>
-      scrollTo(
-        0,
-        (document.querySelector("#voyage").offsetHeight -
-          document.querySelector(".stage").offsetHeight) *
-          p,
-      ),
-    p,
-  );
-  await expect
-    .poll(
-      async () => +(await page.locator(".stage").getAttribute("data-progress")),
-    )
-    .toBeCloseTo(p, 4);
-  await page.waitForTimeout(100);
-}
+import {seek as at} from "./helpers/seek.js";
 test("approved encounter painting remains accessible after the desk", async ({page}) => {
   await page.goto("/");
   const image = page.locator(".encounter-image");
