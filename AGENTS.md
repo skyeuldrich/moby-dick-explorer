@@ -3,14 +3,13 @@
 ## Mission
 Build an exceptional interactive companion to Herman Melville's *Moby-Dick*. Aim for historical authenticity, atmospheric visual design, intuitive exploration, literary rigor, and smooth interaction. The visitor should return to Melville's prose with greater understanding and curiosity. Treat the founder as final creative decision-maker; avoid jargon in reports.
 
-## CURRENT NEXT PUSH — November 18, 2026
+## CURRENT NEXT PUSH — November 18, 2026 (updated after D1/D2)
 
-**Read [docs/next-push-maps-and-continuity.md](docs/next-push-maps-and-continuity.md) FIRST for the next assignment.** It supersedes the outdated A/B/C queue in `docs/next-visual-push-execution-plan.md`. PR A (Beale), PR B (three quotes into black water), and PR C (candle/Smithsonian engraving inspector) **have already merged into `main`**. Do not redo them.
+**PR #28 (D1 / Issue #25) and PR #29 (D2 / Issue #26) have merged and deployed.** They join the completed Beale desk, abyss quotation, and candle inspector work. Do not reimplement any of those.
 
-The new bounded order is:
-- **Issue #25 / PR D1:** remove giant map title, restore elegant place-label typography, animate Ahab's reversible erasing/penciled hypotheses on the genuine Atlantic chart.
-- **Issue #26 / PR D2:** unify Barber's engraving/wave travel; center the emerging warm light on the candle wick and frame the candle; ensure Beale's whale is visible in the desktop desk.
-- **Issue #27 / PR E:** design an archival, **17-stage transoceanic route**. **Storyboard and missing-asset gate first; code only after founder signoff.** Use `docs/pequod-itinerary-17-stages.md`, not invented nautical fixes or a screenshot of the copyrighted Norton map.
+**CURRENT ACTIVE TASK: Issue #27 / PR E — E0 archival and design review.** Read [docs/atlas-e0-editorial-design-handoff.md](docs/atlas-e0-editorial-design-handoff.md), [docs/pequod-itinerary-17-stages.md](docs/pequod-itinerary-17-stages.md), and the original [maps-and-continuity brief](docs/next-push-maps-and-continuity.md). E0 has a committed literary/geographic storyboard and an asset/rights matrix but **lacks founder approval and complete rights-cleared chart scans**. The 1797 Heather North Atlantic file cannot be assumed to cover the South Atlantic; the existing 1844 Norie crop is eastern South Pacific and **cannot represent Japan**.
+
+**Do not start the global atlas app-code rewrite, trace the copyright-protected Norton illustration, or publish Rumsey/RMG image files without their applicable rights requirements and founder approval.** First verify rights-compatible full-coverage southern Atlantic, Indian, Sunda, and northern/western Pacific assets, then prepare chart-backed desktop/mobile compositions. No new AI-generated map art. A separate implementation scope follows founder signoff.
 
 **Founder visual constraint: no new AI-generated illustrations.** Prefer actual sourced historical maps/engravings, existing assets, optical effects and archival image edits. Animations derive from source images, not generated pictorial slides. Codex handles design, code and QA; scholar/religious interpretation is the founder's literary-agent work. **One draft PR per bounded coding assignment, founder review before merge.**
 
