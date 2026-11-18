@@ -34,16 +34,18 @@ A short **opt-in, pausable and replayable** cinematic exploration that leads bac
 
 **Historical/ethical position:** We can contrast the animals' living relationships with human industrial practices without fabricating an individual whale's emotional experience or treating all whalers as monsters. Avoid converting the experience into a moralistic quiz with a preselected answer. *What must be ignored to treat a living whale as a commodity?* is the central question.
 
-## Separate literary-analysis workflow — NOT a Codex task
+## Companion literary investigation — research delivered, later design/implementation
 
-**“The Monster We Invented” belongs to the founder's literary scholar in the ChatGPT Moby Dick Website Project.** This idea is retained here as product context, **not as a checklist or research assignment to Codex**. Codex must not compare literary critics, read Owen Chase's account, interpret Ch. 41/87, research animal behavior or launch a scholar subagent as part of the visual push.
+**November 18, 2026 update:** The founder's separate literary agent delivered its findings and exact quotation shortlist. The edited, primary-source-checked handoff is [**Who Made the Monster?**](editorial-who-made-the-monster.md). **Central distinction:** a whale may deliberately attack, a witness may infer revenge without knowing the animal's mind, and Ahab projects cosmic evil onto a physical animal. Three encounters: Ch. 41 accusation → Owen Chase's 1821 `Essex` account + Ch. 45 evidence → Ch. 87 nursing whales and wounded-whale violence. Final title preferred: **Who Made the Monster?**, not the answer-presupposing `The Monster We Invented`.
 
-The founder's scholar will evaluate Melville Ch. 41 and Ch. 87, Owen Chase's *Essex* narrative, relevant criticism and animal behavior evidence, and will provide **approved exact excerpts, contextual labels, citations, competing interpretations and an interaction brief**. **Only after that handoff** may Codex implement a separately approved interface. Until then, **do not build, research, or block on** this feature.
+The scholarly research and short excerpts are **ready for a future Codex handoff**, but **the interface art, placement, and interaction are not approved for implementation**. Do not start this feature in PR A/B/C; do not assign Codex literary research. This completed editorial deliverable is **not** an animation or feature launch.
+
+**Separate candidate for the candle experience:** Chapter 45 directly invokes **“lamps and candles”** and the human lives lost to whaling. The [editorial handoff](editorial-who-made-the-monster.md#cross-project-discovery-chapter-45-belongs-in-the-price-of-light-too) records the precise primary-source line for founder consideration; **not approved as Price of Light screen copy yet**.
 
 ## Release / handoff
 
 - **PR C, after the desk/Beale and abyss PRs:** deliver rights-reviewed inspection **if the correct full-size original can be used**; otherwise report blocked status with official source link. Deliver a founder-reviewed, historically grounded **storyboard and art manifest**, with an animation preview only if suitable assets exist.
 - **Follow-up PR (same release if tested and approved):** playable “Price of Light” 30–45s experience with historical evidence and complete usability/QA.
-- **Separate ChatGPT literary workflow:** “The Monster We Invented” will be researched and approved outside Codex. No Codex work is authorized until a finished content brief is handed off.
+- **Completed literary handoff, separate future feature:** [**Who Made the Monster?**](editorial-who-made-the-monster.md) now has verified excerpt candidates and a proposed interaction. It is **not assigned to Codex** until the founder approves a later design/implementation task.
 
 The staged checklist is deliberate: animation should not compromise the physical desk's coherence, the current site's scrolling continuity, or historical/source accuracy.
