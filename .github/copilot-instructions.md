@@ -2,6 +2,16 @@
 
 Read `AGENTS.md`, **`docs/next-visual-push-execution-plan.md`**, and the current scoped GitHub issue **before** changing code. `moby-dick-prototype-brief-v0.4.md` is the legacy prototype baseline; follow the audited execution plan for current status, supersessions and PR ordering. The founder chooses visual and literary direction, and reviews substantial visual changes before merge.
 
+## NEW active queue — November 18, 2026
+
+**PRs A, B, C are already merged** (Beale desk, three submerged quotations, and actual Smithsonian candle inspector). The older “Not done” bullets below are **historical snapshots, not active requirements**. Read **`docs/next-push-maps-and-continuity.md`** and [`docs/pequod-itinerary-17-stages.md`](../docs/pequod-itinerary-17-stages.md) before doing any next-push work.
+
+- **D1 / Issue #25:** typography, remove floating title, Ahab penciled chart calculations with reversible erasure.
+- **D2 / Issue #26:** unify moving harbor wave with Barber print; align light to candle flame, improve full-sheet Beale view on desktop.
+- **E / Issue #27:** design 17-stage world route (Atlantic → Indian → Indonesia → Pacific); **asset/storyboard gate first, do NOT start the implementation unless the founder approves**.
+- Do not generate new AI illustrations; reuse period archival originals and edit/move source images. Respect 17 stage confidence distinctions and lack of wreck coordinates. No independent scholarly/religious investigation.
+- One scoped Sol Medium Codex assignment and reviewable draft PR at a time. **Never auto-merge.**
+
 ## Current visual implementation (verified November 18, 2026)
 - `main` contains a unified landscape/portrait candlelit desk, a real (1887) shipping paper inspector, an 1842–44 Indian Chief logbook inspector, a Barber 1839 harbor scene and wave transition into the nautical chart, three animated abyss species, and the transparent whale/squid painting. **Do not redo these.**
 - **Not done:** Beale's authentic 1839 plate is still a standalone cream-colored anatomical scene. Move the **original image** to the desk and remove the standalone scene. Preserve the image source and its attribution, not the obsolete location or CSS. This supersedes the old “preserve anatomy plate” instruction where it means preserving a separate scene.
