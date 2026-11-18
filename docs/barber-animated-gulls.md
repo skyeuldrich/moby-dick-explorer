@@ -8,4 +8,6 @@ Source: [Internet Archive book and page](https://archive.org/details/historicalc
 
 The bird layers travel on different shallow arcs and rotate as native scroll progress advances through the harbor. Scrolling up reverses those transformations. Reduced motion hides the moving birds and paper repairs together to reveal the original still engraving.
 
+Issue #26 groups the original harbor, sampled water extension and passing wave under one co-moving ink parent. The harbor no longer receives an additional scroll translation. The wave’s visible hatching comes from the sampled archival water; its curved clipping edge is a modern adaptation. The independent original gull motion remains inside that group.
+
 [Compare the previous and revised gulls during movement](reviews/immersive-desk/gulls.webp).

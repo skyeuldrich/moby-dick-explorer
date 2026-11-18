@@ -63,6 +63,7 @@ export function initVoyage() {
   const updateSpecies = initSpeciesLife();
   const encounterImage = $(".encounter-image");
   const ocean = $('.ocean');
+  const deskPlane = $('.desk-plane');
   const quotes = [...document.querySelectorAll('.descent-quote')];
   const gulls = [...document.querySelectorAll(".engraved-gull")];
   const landmarkNodes = [...document.querySelectorAll(".route-landmark")];
@@ -180,8 +181,26 @@ export function initVoyage() {
     opacity("abyss-life", 1 - smooth(ramp(p, 0.025, 0.065)));
     updateSpecies(p, reduced.matches);
     opacity("desk-tableau", smooth(ramp(p, .012, .066)));
-    const travel = reduced.matches ? 0 : (1 - approach) * geometry.stageHeight * .86;
-    transform("desk-tableau", `translateY(${travel.toFixed(2)}px)`);
+    const portrait = geometry.width <= geometry.height;
+    const planeWidth = portrait ? Math.max(geometry.width,geometry.stageHeight*2/3) : Math.min(geometry.width,geometry.stageHeight*1.35);
+    const planeHeight = planeWidth * (portrait ? 1.5 : 2/3);
+    const restingX = portrait ? Math.min(0,(geometry.width-planeWidth)*.15) : (geometry.width-planeWidth)/2;
+    const restingY = portrait ? 0 : (geometry.stageHeight-planeHeight)/2;
+    const wickX = planeWidth * (portrait ? .26 : .151);
+    const wickY = planeHeight * (portrait ? .225 : .13);
+    // The camera and all four controls share the image plane. Project the
+    // source-image wick through that camera to position the approaching glow.
+    const widen = reduced.matches ? 1 : smooth(ramp(p,.045,.093));
+    const cameraScale = 1 + (1-widen)*.65;
+    deskPlane.style.setProperty('--picture-feather',`${(2+8*(1-widen)).toFixed(2)}%`);
+    const projectedX = geometry.width*.5*(1-widen)+(restingX+wickX)*widen;
+    const projectedY = reduced.matches ? restingY+wickY :
+      geometry.stageHeight*(1.13-.63*smooth(ramp(p,0,.045)))*(1-widen)+(restingY+wickY)*widen;
+    style(deskPlane,'transform',`translate3d(${(projectedX-wickX*cameraScale).toFixed(2)}px,${(projectedY-wickY*cameraScale).toFixed(2)}px,0) scale(${cameraScale.toFixed(5)})`);
+    nodes['desk-tableau'].dataset.wickX=projectedX.toFixed(2);
+    nodes['desk-tableau'].dataset.wickY=projectedY.toFixed(2);
+    nodes['desk-tableau'].style.setProperty('--lit-x',`${projectedX.toFixed(2)}px`);
+    nodes['desk-tableau'].style.setProperty('--lit-y',`${projectedY.toFixed(2)}px`);
     nodes["desk-tableau"].style.setProperty("--top-feather", `${(30 * (1 - approach)).toFixed(2)}%`);
     nodes["desk-tableau"].style.setProperty("--light-radius", `${(160 * exposure).toFixed(2)}%`);
     nodes["desk-tableau"].toggleAttribute("data-lit", p > .025 && p < .215);
@@ -192,7 +211,7 @@ export function initVoyage() {
     );
     transform(
       "bottom-glow",
-      `translate3d(0,${(-approach * 25).toFixed(2)}%,0) scale(${(1 + approach).toFixed(3)})`,
+      `translate3d(${projectedX.toFixed(2)}px,${projectedY.toFixed(2)}px,0)`,
     );
     opacity("desk-objects", fade(p, .085, .105, .182, .198));
     enable(nodes["desk-objects"], p >= .10 && p <= .189);
@@ -202,7 +221,6 @@ export function initVoyage() {
     opacity("harbor-livelihood", fade(p, .202, .215, .232, .239));
     opacity("harbor-invitation", fade(p, .239, .244, .258, .266));
     transform("harbor-page", still ? "none" : `translateY(${(-136 * swell).toFixed(3)}%)`);
-    transform("harbor-art", still ? "none" : `translateY(${(-90 * smooth(ramp(p, .251, .28))).toFixed(3)}%)`);
     if (p > .185 && p < .302) {
       gulls.forEach((bird, i) =>
         style(
