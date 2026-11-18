@@ -180,6 +180,10 @@ The founder corrected the voyage’s geography: it must begin at Nantucket and f
 - **Literary rights/source:** Melville’s nineteenth-century text is public domain in the US. Chapter 51 supplies the sequence of cruising grounds; chapters 22 and 28 anchor departure and initial southward motion. Exact ship fixes are absent. Full citations and the successfully inspected pinned Gutenberg mirror are recorded in the route reading.
 - **Limits:** this chart shows the **beginning**, ending at Cape Verde. The remaining first-half itinerary is in the accessible reading alternative and notes, not drawn onto geography the chart does not include. The single-sheet view remains static for reduced motion. The old Pacific assets remain preserved as prior-iteration sources; they are no longer displayed.
 
+## Smithsonian candle discovery — PR C
+
+The exact exhibition print, *The Whale*, published by Roake & Varty, is shown as a small overview inside the candle inspector. The source is the Smithsonian National Museum of American History’s *For Light and Fashion* page and its unmodified 800 × 697 JPEG. It is used with credit and source links under the Smithsonian terms for educational, noncommercial use. CC0 status has not been established. The founder accepted the smaller overview and deferred the storyboard. Detailed attribution, download URL, checksum, usage restrictions, resolution limits and future art requirements are recorded in [the PR C asset manifest](price-of-light-assets.md).
+
 ## Owner-supplied whale-and-squid painting
 
 - **Asset:** `public/assets/moby-dick-abyss-whale-squid.webp`.

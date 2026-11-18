@@ -11,6 +11,9 @@ export const deskObjects = `
   </button>
   <button type="button" class="desk-object inspect-beale" data-inspect="beale" aria-haspopup="dialog" aria-controls="desk-inspector">
     <span class="desk-object-mark" aria-hidden="true">+</span><span>Whale diagram</span>
+  </button>
+  <button type="button" class="desk-object inspect-candle" data-inspect="candle" aria-label="The price of light — how was this candle made?" aria-haspopup="dialog" aria-controls="desk-inspector">
+    <span class="desk-object-mark" aria-hidden="true">+</span><span>The price of light</span>
   </button>`;
 
 function documentImage(file, description, caption) {
@@ -22,6 +25,22 @@ function documentImage(file, description, caption) {
 }
 
 const readings = {
+  candle: {
+    title: 'The price of light',
+    record: 'The Whale’s “Utility to Man” · nineteenth century',
+    file: 'whale-utility-to-man-smithsonian.jpg',
+    description: 'Colored print published by Roake & Varty, London. Whale hunts occupy the center, surrounded by uses including candles, lighthouse oil, food, whalebone, manure, oil works and cosmetics.',
+    caption: 'Roake & Varty, London · Graphic Illustrations of Animals: The Whale · Smithsonian National Museum of American History. Educational, noncommercial use under Smithsonian terms. Available reproduction, 800 × 697 pixels.',
+    text: `<h3>Look toward the light</h3>
+      <p>At the upper left, a woman sits beside candles beneath the caption “For Light — Sperm. Oil &amp; Candles.” The central hunting scenes connect the living animal with the goods around it.</p>
+      <h3>From the head to the candle</h3>
+      <p>Spermaceti candles were made from material obtained from a sperm whale’s head, separated and refined ashore. Blubber was rendered into oil in the ship’s tryworks. These were distinct materials and processes.</p>
+      <p>This print gathers several whale-derived products into one view. It does not show every step of candle manufacture.</p>
+      <p class="inspection-reference">This museum reproduction is best viewed as an overview. Fine lettering is limited by the available resolution.</p>
+      <p class="inspection-sources"><a href="https://americanhistory.si.edu/explore/exhibitions/on-the-water/online/fishing-living/commercial-fishers/whaling/light-fashion" target="_blank" rel="noopener noreferrer">View the Smithsonian exhibition</a>
+      <a href="https://www.whalingmuseum.org/research/research-resources/whaling-history/whales-and-hunting/" target="_blank" rel="noopener noreferrer">Materials and processing · New Bedford Whaling Museum</a>
+      <a href="https://www.si.edu/termsofuse" target="_blank" rel="noopener noreferrer">Smithsonian image-use terms</a></p>`,
+  },
   beale: {
     title: 'Looking at a whale',
     record: 'Thomas Beale · The Natural History of the Sperm Whale · 1839',
