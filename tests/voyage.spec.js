@@ -49,7 +49,9 @@ for (const viewport of [
       await page.locator(".chart").evaluate((e) => getComputedStyle(e).opacity),
     );
     expect(chartStart).toBeGreaterThan(0);
-    expect(chartStart).toBeLessThan(1);
+    // The chart is prepared under an opaque engraved swell before it clears.
+    expect(chartStart).toBe(1);
+    await expect(page.locator('.harbor-scene')).toHaveCSS('opacity', '1');
     await seek(page, 0.35);
     await expect(page.locator(".archive-map-credit")).toBeInViewport();
     await expect(page.locator(".archive-map-credit")).toContainText(

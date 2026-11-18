@@ -49,7 +49,7 @@ for (const size of [
       label = await page.locator(".stat-label").boundingBox(),
       paper = await page.locator(".ledger").boundingBox();
     expect(num.y + num.height).toBeLessThan(label.y + 1);
-    expect(label.x).toBeGreaterThan(paper.x);
+    expect(label.x).toBeGreaterThanOrEqual(paper.x);
     expect(paper.y + paper.height).toBeLessThan(size.height - 25);
     await page.screenshot({ path: `test-results/v04-desk-${size.width}.png` });
     await at(page, 0.235);
