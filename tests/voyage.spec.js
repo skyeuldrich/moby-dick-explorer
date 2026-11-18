@@ -36,9 +36,8 @@ for (const viewport of [
     await expect(page.locator(".archive-map-credit")).toContainText(
       "1797",
     );
-    await expect(
-      page.getByRole("heading", { name: "Moby—Dick" }),
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Moby-Dick: the voyage" })).toHaveCount(1);
+    await expect(page.locator(".opening h1")).toHaveClass(/visually-hidden/);
     const start = await page
       .locator("#route")
       .evaluate((e) => +getComputedStyle(e).strokeDashoffset.replace("px", ""));
