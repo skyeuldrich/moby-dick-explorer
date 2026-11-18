@@ -10,10 +10,14 @@
   mask-image:radial-gradient(circle farthest-corner at var(--lit-x) var(--lit-y), black var(--light-radius), transparent calc(var(--light-radius) + 21%));
 }
 .desk-plane {
-  position:absolute; left:50%; top:0; width:max(100%,150svh); aspect-ratio:3/2;
-  transform:translateX(-50%);
+  position:absolute; left:0; top:0; width:min(100%,135svh); aspect-ratio:3/2;
+  transform-origin:0 0;
 }
 .desk-picture, .desk-picture img { display:block; width:100%; height:100%; }
+.desk-picture {
+  mask-image:linear-gradient(to bottom,transparent,black var(--picture-feather,2%),black calc(100% - var(--picture-feather,2%)),transparent),linear-gradient(to right,transparent,black var(--picture-feather,2%),black calc(100% - var(--picture-feather,2%)),transparent);
+  mask-composite:intersect;
+}
 .desk-tableau[data-lit] .desk-picture { animation:wick-reflection 4.3s ease-in-out infinite alternate; }
 @keyframes wick-reflection {0%,46%,100%{filter:brightness(1)}30%,65%{filter:brightness(.975)}78%{filter:brightness(.987)}}
 .desk-objects {position:absolute;inset:0;pointer-events:none;}
@@ -22,13 +26,19 @@
 .desk-objects .inspect-agreement {left:54%;top:47%;}
 .desk-objects .inspect-ledger {left:max(calc(50% - 47vw),4%);top:60%;}
 .desk-objects .inspect-candle {left:5%;top:42%;}
-.desk-objects .inspect-beale {left:68%;top:min(91%,calc(100svh - 85px));}
+.desk-objects .inspect-beale {left:68%;top:min(91%,calc(100svh - 105px));}
 @media (orientation:portrait){
  .desk-tableau {--lit-x:24%;--lit-y:21%;}
- .desk-plane {width:max(100%,66.667svh);aspect-ratio:2/3;left:min(0px,calc((100% - 66.667svh) * .15));transform:none;}
+ .desk-plane {width:max(100%,66.667svh);aspect-ratio:2/3;}
  .desk-objects .inspect-ledger {left:8%;top:61%;}
  .desk-objects .inspect-candle {left:10%;top:35%;}
  .desk-objects .inspect-agreement {left:min(46%,calc(100vw - 158px));top:67%;}
  .desk-objects .inspect-beale {left:33%;top:min(90%,calc(100svh - 85px));}
 }
 @media (prefers-reduced-motion:reduce){.desk-tableau[data-lit] .desk-picture{animation:none}}
+.candle-scene .bottom-glow {
+  left:0;top:0;bottom:auto;width:80vmax;height:80vmax;
+  margin:-40vmax 0 0 -40vmax;
+  background:radial-gradient(ellipse at center,#c7904940, #b679331c 25%,transparent 68%);
+  transform-origin:center;
+}
