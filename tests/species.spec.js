@@ -19,7 +19,12 @@ test('macro travel reverses independently, stops at candle, and reduced motion h
  await page.goto('/');await expect.poll(()=>page.locator('html').getAttribute('data-species-ready'),{timeout:20000}).toBe('true');
  const fish=page.locator('.candle-scene .organism-angler');
  await at(page,.005);const start=await fish.getAttribute('style');
- await at(page,.025);expect(await fish.getAttribute('style')).not.toBe(start);
+ const first = await fish.boundingBox();
+ await at(page,.025);
+ const descended = await fish.boundingBox();
+ expect(descended.x).toBeCloseTo(first.x, 1);
+ expect(descended.width).toBeCloseTo(first.width, 1);
+ expect(descended.y).toBeLessThan(first.y - 40);
  await at(page,.005);expect(await fish.getAttribute('style')).toBe(start);
  await at(page,.075);await expect(page.locator('.candle-scene .abyss-life')).toHaveCSS('opacity','0');
  const stopped=await fish.getAttribute('data-phase');await page.waitForTimeout(200);expect(await fish.getAttribute('data-phase')).toBe(stopped);

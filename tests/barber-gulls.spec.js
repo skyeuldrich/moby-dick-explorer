@@ -40,16 +40,24 @@ for (const viewport of [
         .locator(".engraved-gull")
         .evaluateAll((es) => es.map((e) => e.style.transform)),
     ).toEqual(first);
-    await at(page, 0.235);
-    const art = await page.locator(".barber-harbor").boundingBox(),
-      text = await page.locator(".harbor-copy").boundingBox();
-    expect(art.x).toBeGreaterThanOrEqual(-5);
-    expect(art.x + art.width).toBeLessThan(viewport.width + 5);
-    expect(text.y + text.height).toBeLessThan(art.y);
-    await expect(page.locator(".harbor-copy")).toContainText("1839");
-    await expect(page.locator(".harbor-note")).toContainText(
-      "Original engraved gulls",
-    );
+    await at(page, 0.22);
+    await expect(page.locator(".harbor-livelihood")).toHaveCSS("opacity", "1");
+    await expect(page.locator(".harbor-livelihood")).toContainText("take to the sea for a livelihood!");
+    await at(page, 0.25);
+    await expect(page.locator(".harbor-invitation")).toHaveCSS("opacity", "1");
+    await expect(page.locator(".harbor-invitation")).toContainText("Nantucket! Take out your map and look at it.");
+    await expect(page.locator(".harbor-livelihood")).toHaveCSS("opacity", "0");
+    await expect(page.locator(".harbor-copy, .harbor-note")).toHaveCount(0);
+    await at(page, 0.28);
+    await expect(page.locator(".island-quote").first()).toHaveCSS("opacity", "0");
+    await expect(page.locator(".chart")).toHaveCSS("opacity", "1");
+    const pageTransform = await page.locator(".harbor-page").getAttribute("style");
+    const wave = await page.locator(".harbor-wave").boundingBox();
+    expect(wave.y).toBeLessThan(viewport.height);
+    expect(wave.y + wave.height).toBeGreaterThan(0);
+    await at(page, 0.295);
+    await at(page, 0.28);
+    expect(await page.locator(".harbor-page").getAttribute("style")).toBe(pageTransform);
     await page.screenshot({
       path: `test-results/barber-harbor-${viewport.width}.png`,
     });

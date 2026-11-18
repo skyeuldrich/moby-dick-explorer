@@ -44,8 +44,14 @@ export function initVoyage() {
       "map-caption",
       "archive-map-credit",
       "desk",
+      "shipping-agreement",
+      "fleet-fact",
+      "shares-fact",
       "harbor-scene",
       "harbor-art",
+      "harbor-page",
+      "harbor-livelihood",
+      "harbor-invitation",
       "descent-quote",
       "descent-darkness",
     ].map((name) => [name, $(`.${name}`)]),
@@ -121,7 +127,7 @@ export function initVoyage() {
     const approach = smooth(ramp(p, 0.001, 0.075));
     const reveal = smooth(ramp(p, 0.075, 0.105));
     const chartProgress = ramp(p, 0.3, 0.6);
-    const chartOpacity = fade(p, 0.255, 0.3, 0.605, 0.635);
+    const chartOpacity = fade(p, 0.26, 0.267, 0.605, 0.635);
     opacity("candle-scene", 1 - smooth(ramp(p, 0.185, 0.235)));
     opacity("abyss-life", 1 - smooth(ramp(p, 0.025, 0.065)));
     updateSpecies(p, reduced.matches);
@@ -144,17 +150,23 @@ export function initVoyage() {
     );
     opacity("table-light", smooth(ramp(p, 0.025, 0.105)));
     opacity("ledger", reveal);
-    opacity("candle-intro", reveal);
+    opacity("candle-intro", 0);
+    opacity("shipping-agreement", smooth(ramp(p, .06, .095)));
+    const compactDesk = phone || geometry.stageHeight <= 500;
+    opacity("fleet-fact", compactDesk ? 1 - smooth(ramp(p, .13, .14)) : 1);
+    opacity("shares-fact", compactDesk ? smooth(ramp(p, .14, .15)) : 1);
+    enable(nodes["fleet-fact"], p >= .1 && p < (compactDesk ? .14 : .205));
+    enable(nodes["shares-fact"], p >= (compactDesk ? .14 : .1) && p < .205);
     opacity("candle-caption", 0);
     enable(nodes.ledger, p >= 0.1 && p < 0.205);
-    opacity("harbor-scene", fade(p, 0.185, 0.235, 0.255, 0.3));
-    if (p > 0.185 && p < 0.3) {
-      transform(
-        "harbor-art",
-        reduced.matches
-          ? "none"
-          : `translate3d(0,${((0.235 - p) * 45).toFixed(2)}px,0) scale(1.025)`,
-      );
+    const swell = smooth(ramp(p, .268, .30));
+    const still = reduced.matches;
+    opacity("harbor-scene", fade(p, .185, .215, still ? .268 : .300, still ? .3 : .301));
+    opacity("harbor-livelihood", fade(p, .202, .215, .232, .239));
+    opacity("harbor-invitation", fade(p, .239, .244, .258, .266));
+    transform("harbor-page", still ? "none" : `translateY(${(-136 * swell).toFixed(3)}%)`);
+    transform("harbor-art", still ? "none" : `translateY(${(-90 * smooth(ramp(p, .251, .28))).toFixed(3)}%)`);
+    if (p > .185 && p < .302) {
       gulls.forEach((bird, i) =>
         style(
           bird,
@@ -209,7 +221,7 @@ export function initVoyage() {
       `translate3d(${tx.toFixed(2)}px,${ty.toFixed(2)}px,0) scale(${scale})`,
     );
     style(route, "strokeDashoffset", (length * (1 - chartProgress)).toFixed(2));
-    opacity("opening", fade(p, 0.27, 0.295, 0.32, 0.345));
+    opacity("opening", fade(p, 0.30, 0.31, 0.32, 0.345));
     opacity("hotspot", fade(p, 0.29, 0.31, 0.585, 0.61));
     enable(nodes.hotspot, p >= 0.31 && p <= 0.595);
     landmarkNodes.forEach((node, i) => {
@@ -285,7 +297,7 @@ export function initVoyage() {
     text(waypoint.note, labels[index][2]);
     opacity("chart-waypoint", fade(p, 0.345, 0.36, 0.6, 0.615));
     opacity("map-caption", 0);
-    opacity("archive-map-credit", chartOpacity);
+    opacity("archive-map-credit", chartOpacity * smooth(ramp(p, .299, .304)));
     opacity("anatomy-scene", fade(p, 0.615, 0.64, 0.685, 0.72));
     enable(nodes["anatomy-scene"], p >= 0.635 && p <= 0.705);
     opacity("transition-copy", fade(p, 0.7, 0.73, 0.75, 0.77));
