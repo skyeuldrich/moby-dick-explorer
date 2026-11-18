@@ -1,5 +1,8 @@
 # Moby-Dick — Into the Unmeasured
 
+> **Project navigation:** [Current status and next task](docs/STATUS.md) · [Project charter and workflow](docs/PROJECT.md) · [Decision register](docs/DECISIONS.md) · [Codex instructions](AGENTS.md). Earlier prototype descriptions and implementation notes below are historical; use the linked status page before assigning new work.
+
+
 Prototype v0.4 follows `moby-dick-prototype-brief-v0.4.md`. See [specialist findings and implementation](docs/prototype-v04-review.md) and [current asset/source audit](docs/asset-sources.md#v04-superseding-source-audit-and-visible-assets).
 
 ## View the prototype
