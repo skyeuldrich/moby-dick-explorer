@@ -30,12 +30,9 @@ export function initVoyage() {
       "rays",
       "candle-scene",
       "abyss-life",
-      "candle-intro",
-      "candle-caption",
-      "ledger",
-      "candle",
-      "table-light",
       "bottom-glow",
+      "desk-tableau",
+      "desk-objects",
       "anatomy-scene",
       "abyss-return",
       "map",
@@ -43,10 +40,6 @@ export function initVoyage() {
       "depth",
       "map-caption",
       "archive-map-credit",
-      "desk",
-      "shipping-agreement",
-      "fleet-fact",
-      "shares-fact",
       "harbor-scene",
       "harbor-art",
       "harbor-page",
@@ -56,8 +49,7 @@ export function initVoyage() {
       "descent-darkness",
     ].map((name) => [name, $(`.${name}`)]),
   );
-  const flame = $(".flame");
-  const halo = $(".flame-halo");
+
   const route = $("#route");
   const depthValue = $(".depth-value");
   const progressLabel = $(".progress-label");
@@ -125,20 +117,18 @@ export function initVoyage() {
   function render(p) {
     const phone = geometry.width <= 700;
     const approach = smooth(ramp(p, 0.001, 0.075));
-    const reveal = smooth(ramp(p, 0.075, 0.105));
+    const exposure = smooth(ramp(p, .019, .093));
     const chartProgress = ramp(p, 0.3, 0.6);
     const chartOpacity = fade(p, 0.26, 0.267, 0.605, 0.635);
-    opacity("candle-scene", 1 - smooth(ramp(p, 0.185, 0.235)));
+    opacity("candle-scene", 1 - smooth(ramp(p, 0.185, 0.204)));
     opacity("abyss-life", 1 - smooth(ramp(p, 0.025, 0.065)));
     updateSpecies(p, reduced.matches);
-    opacity("desk", smooth(ramp(p, 0.04, 0.09)));
-    opacity("candle", smooth(ramp(p, 0.005, 0.035)));
-    const travel = reduced.matches
-      ? 0
-      : (1 - approach) * geometry.stageHeight * 1.1;
-    transform("candle", `translate3d(0,${travel.toFixed(2)}px,0) scale(1)`);
-    style(flame, "opacity", smooth(ramp(p, 0.005, 0.035)).toFixed(4));
-    style(halo, "opacity", approach.toFixed(4));
+    opacity("desk-tableau", smooth(ramp(p, .012, .066)));
+    const travel = reduced.matches ? 0 : (1 - approach) * geometry.stageHeight * .86;
+    transform("desk-tableau", `translateY(${travel.toFixed(2)}px)`);
+    nodes["desk-tableau"].style.setProperty("--top-feather", `${(30 * (1 - approach)).toFixed(2)}%`);
+    nodes["desk-tableau"].style.setProperty("--light-radius", `${(160 * exposure).toFixed(2)}%`);
+    nodes["desk-tableau"].toggleAttribute("data-lit", p > .025 && p < .215);
     opacity(
       "bottom-glow",
       (0.3 * smooth(ramp(p, 0, 0.0025)) + 0.7 * smooth(ramp(p, 0, 0.022))) *
@@ -148,20 +138,11 @@ export function initVoyage() {
       "bottom-glow",
       `translate3d(0,${(-approach * 25).toFixed(2)}%,0) scale(${(1 + approach).toFixed(3)})`,
     );
-    opacity("table-light", smooth(ramp(p, 0.025, 0.105)));
-    opacity("ledger", reveal);
-    opacity("candle-intro", 0);
-    opacity("shipping-agreement", smooth(ramp(p, .06, .095)));
-    const compactDesk = phone || geometry.stageHeight <= 500;
-    opacity("fleet-fact", compactDesk ? 1 - smooth(ramp(p, .13, .14)) : 1);
-    opacity("shares-fact", compactDesk ? smooth(ramp(p, .14, .15)) : 1);
-    enable(nodes["fleet-fact"], p >= .1 && p < (compactDesk ? .14 : .205));
-    enable(nodes["shares-fact"], p >= (compactDesk ? .14 : .1) && p < .205);
-    opacity("candle-caption", 0);
-    enable(nodes.ledger, p >= 0.1 && p < 0.205);
+    opacity("desk-objects", fade(p, .085, .105, .182, .198));
+    enable(nodes["desk-objects"], p >= .10 && p <= .189);
     const swell = smooth(ramp(p, .268, .30));
     const still = reduced.matches;
-    opacity("harbor-scene", fade(p, .185, .215, still ? .268 : .300, still ? .3 : .301));
+    opacity("harbor-scene", fade(p, .199, .217, still ? .268 : .300, still ? .3 : .301));
     opacity("harbor-livelihood", fade(p, .202, .215, .232, .239));
     opacity("harbor-invitation", fade(p, .239, .244, .258, .266));
     transform("harbor-page", still ? "none" : `translateY(${(-136 * swell).toFixed(3)}%)`);
@@ -470,7 +451,7 @@ export function initVoyage() {
     .forEach((button) => {
       button.onclick = () => notes.showModal();
     });
-  document.querySelectorAll("dialog").forEach((dialog) => {
+  document.querySelectorAll("#notes, #discovery").forEach((dialog) => {
     dialog.querySelector(".close").onclick = () => dialog.close();
     dialog.addEventListener("click", (event) => {
       if (event.target !== dialog) return;

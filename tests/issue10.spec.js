@@ -17,32 +17,16 @@ async function at(page, p) {
     .toBeCloseTo(p, 4);
   await page.waitForTimeout(100);
 }
-test("new assets retain alpha, candle stays separate from paper", async ({
-  page,
-}) => {
-  for (const viewport of [
-    { width: 1440, height: 900 },
-    { width: 390, height: 844 },
-    { width: 360, height: 640 },
-  ]) {
-    await page.setViewportSize(viewport);
-    await page.goto("/");
-    await expect(page.locator(".encounter-image")).toHaveAttribute(
-      "src",
-      /moby-dick-whale-squid-final.webp$/,
-    );
-    await expect(page.locator(".encounter-image")).toHaveAttribute("src",/final.webp$/);
-    await expect(page.locator(".candle-study")).toHaveAttribute(
-      "src",
-      /moby-dick-spermaceti-candle-study.webp$/,
-    );
-    await at(page, 0.14);
-    const candle = await page.locator(".candle").boundingBox(),
-      paper = await page.locator(".ledger").boundingBox();
-    expect(
-      candle.x + candle.width < paper.x || candle.y + candle.height < paper.y,
-    ).toBe(true);
-  }
+test("approved encounter painting remains accessible after the desk", async ({page}) => {
+  await page.goto("/");
+  const image = page.locator(".encounter-image");
+  await expect(image).toHaveAttribute("src", /moby-dick-whale-squid-final.webp$/);
+  await at(page, 1);
+  await expect(image).toBeVisible();
+  expect(await image.evaluate(async image => {
+    await image.decode();
+    return image.naturalWidth;
+  })).toBeGreaterThan(1000);
 });
 test("scroll swimming reverses and body/light share one transform", async ({
   page,

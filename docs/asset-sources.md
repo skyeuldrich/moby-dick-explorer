@@ -197,3 +197,19 @@ The founder corrected the voyage’s geography: it must begin at Nantucket and f
 - **Rights assessment** The original nineteenth-century printed form and manuscript are public domain in the United States through age. The image is a faithful two-dimensional reproduction. The archive metadata supplied no explicit rights or license statement, so this is the project’s age-based assessment, not a quoted institutional license. No modern annotations or interpretive text from the archive are reproduced.
 - **Use and adaptation** Local optimized crop of the agreement shown as the manuscript on the candlelit desk, with warm illumination and perspective applied in the browser. Its printed conditions, handwriting and columns remain from the source. Modern fleet and pay annotations are separate elements. No new signatures or terms have been invented.
 - **Desk surface** `public/assets/counting-desk.webp` is an original AI-assisted mahogany material reconstruction created for this prototype. It is used as an empty surface beneath the separately lit candle and agreement and makes no archival claim.
+
+### Transparent engraved gulls
+
+The three gulls in `public/assets/archive/barber-gulls/` come from John Warner Barber’s *South-Eastern View of Nantucket* (1839), engraved by S. E. Brown. [Unaltered scan in Internet Archive, page n480](https://archive.org/details/historicalcollec00barb_0/page/n480/mode/1up). The nineteenth-century publication is public domain in the United States.
+
+Each PNG preserves the connected ink silhouette of its bird, with transparency in the wing openings and surrounding paper. Three fixed patches restore local paper tone under the original ink strokes during animation. The original scan remains available in Field notes and supplies the still gulls in reduced-motion mode.
+
+## Immersive desk tableau
+
+Each viewport uses a single finished image. The two source plates in `art/immersive-desk/` are original AI-assisted reconstructions produced for this project, with a blank principal sheet, a worn writing surface, a lit ivory taper in a chamberstick, an inkwell and a quill. Candlelight, reflections and object shadows are part of each plate. The composition is interpretive. The records come from different voyages and dates.
+
+The crop of the Whalemen’s Shipping Paper documented above supplies the principal sheet’s actual ink. Its adjacent endorsement is dated December 1887. The secondary paper includes a detail of the illustrated page of Thomas R. Bloomfield’s *Indian Chief* log, 1842–44, Nantucket Historical Association, MS 220, Log 119. The full spread is available in the Voyage records interaction. The source describes it as public domain worldwide with no additional rights. [Original volume](https://archive.org/details/ms220log119) · [Image and rights](https://pdimagearchive.org/images/6d2ba1f4-e8ef-4085-8090-0cd89135051a/)
+
+Run `python art/immersive-desk/compose.py` from the repo root with Pillow and NumPy to reproduce the finished landscape and portrait images from the plates and archival derivatives. The script maps original ink darkness into perspective on the lit paper. The inspection views retain the scan’s own page tones.
+
+Period references include the Met’s American glass [inkwell, 1820–45](https://www.metmuseum.org/art/collection/search/4428), an American pewter [chamber candlestick, 1842–47](https://www.metmuseum.org/art/collection/search/1928), and the 1834 etching [Seated Man with Quill in his Right Hand at Desk Littered with Books](https://www.metmuseum.org/art/collection/search/812506). The candlestick provides a form comparison for the reconstructed brass holder. The collection objects were consulted as references only.

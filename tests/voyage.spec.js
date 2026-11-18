@@ -31,19 +31,16 @@ for (const viewport of [
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     await expect(page.locator(".candle-scene")).toHaveCSS("opacity", "1");
-    await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
+    await expect(page.locator(".desk-objects")).toHaveCSS("opacity", "0");
     await page.screenshot({
       path: `test-results/darkness-${viewport.width}.png`,
     });
     await seek(page, 0.14);
-    await expect(page.locator(".ledger")).toHaveCSS("opacity", "1");
+    await expect(page.locator(".desk-objects")).toHaveCSS("opacity", "1");
     await page.screenshot({
       path: `test-results/candle-${viewport.width}.png`,
     });
-    const ledger = await page.locator(".ledger").boundingBox();
-    expect(ledger.x).toBeGreaterThanOrEqual(0);
-    expect(ledger.x + ledger.width).toBeLessThanOrEqual(viewport.width);
-    expect(ledger.y + ledger.height).toBeLessThan(viewport.height - 30);
+    await expect(page.locator(".desk-objects")).toHaveJSProperty("inert", false);
     await seek(page, 0.275);
     const chartStart = Number(
       await page.locator(".chart").evaluate((e) => getComputedStyle(e).opacity),
@@ -172,9 +169,9 @@ test("refresh, resize, and reverse preserve a continuous timeline", async ({
   await seek(page, 0.14);
   await expect(page.locator(".candle-scene")).toHaveCSS("opacity", "1");
   await seek(page, 0.14);
-  await expect(page.locator(".ledger")).toHaveCSS("opacity", "1");
+  await expect(page.locator(".desk-objects")).toHaveCSS("opacity", "1");
   await seek(page, 0);
-  await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
+  await expect(page.locator(".desk-objects")).toHaveCSS("opacity", "0");
 });
 test("touch swipes advance and reverse without viewport-height remapping", async ({
   browser,
@@ -252,20 +249,24 @@ test("mouse wheel advances continuously and reverses the red route", async ({
     )
     .toBeCloseTo(0.5, 3);
 });
-test("candle document fits a short phone and landscape viewport", async ({
+test("desk inspection targets fit narrow, short and landscape phone viewports", async ({
   page,
 }) => {
   for (const size of [
+    { width: 320, height: 740 },
     { width: 360, height: 640 },
     { width: 844, height: 390 },
   ]) {
     await page.setViewportSize(size);
     await page.goto("/");
     await seek(page, 0.14);
-    const box = await page.locator(".ledger").boundingBox();
-    expect(box.y).toBeGreaterThan(0);
-    expect(box.y + box.height).toBeLessThan(size.height - 25);
-    expect(box.x + box.width).toBeLessThan(size.width);
+    for (const button of [".inspect-agreement", ".inspect-ledger"]) {
+      const box = await page.locator(button).boundingBox();
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.y).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(size.width);
+      expect(box.y + box.height).toBeLessThanOrEqual(size.height);
+    }
     await page.screenshot({
       path: `test-results/candle-${size.width}x${size.height}.png`,
     });
@@ -276,36 +277,26 @@ for (const viewport of [
   { width: 1440, height: 900 },
   { width: 390, height: 844 },
 ]) {
-  test(`candle rises from below before the manuscript at ${viewport.width}px`, async ({
-    page,
-  }) => {
+  test(`desk emerges, stabilizes for inspection, and reverses at ${viewport.width}px`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto("/");
-    const candle = page.locator(".candle");
-    const start = await candle.boundingBox();
-    expect(start.y).toBeGreaterThan(viewport.height);
+    const objects = page.locator(".desk-objects");
+    await expect(objects).toHaveJSProperty("inert", true);
     await seek(page, 0.045);
-    const approaching = await candle.boundingBox();
-    expect(approaching.y).toBeLessThan(start.y);
-    await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
-    await page.screenshot({
-      path: `test-results/approach-${viewport.width}.png`,
-    });
-    await seek(page, 0.075);
-    const centered = await candle.boundingBox();
-    expect(centered.y).toBeLessThan(approaching.y);
-    expect(centered.y + centered.height).toBeLessThan(viewport.height);
-    await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
-    await seek(page, 0.14);
-    await expect(page.locator(".ledger")).toContainText("American whaleships");
-    await expect(page.locator(".ledger")).toContainText("735");
-    await expect(page.locator(".ledger")).toContainText("$5,882");
-    await expect(page.locator(".ledger")).toContainText("$571");
-    await seek(page, 0.075);
-    await expect(page.locator(".ledger")).toHaveCSS("opacity", "0");
+    await page.screenshot({ path: `test-results/approach-${viewport.width}.png` });
+    await expect(objects).toHaveJSProperty("inert", true);
+    await seek(page, 0.12);
+    await expect(objects).toHaveJSProperty("inert", false);
+    const book = page.locator(".inspect-agreement");
+    const settled = await book.boundingBox();
+    await seek(page, 0.17);
+    expect(await book.boundingBox()).toEqual(settled);
+    await seek(page, 0.24);
+    await expect(objects).toHaveJSProperty("inert", true);
+    await seek(page, 0.12);
+    expect(await book.boundingBox()).toEqual(settled);
     await seek(page, 0.045);
-    const reversed = await candle.boundingBox();
-    expect(Math.abs(reversed.y - approaching.y)).toBeLessThan(2);
+    await expect(objects).toHaveJSProperty("inert", true);
   });
 }
 

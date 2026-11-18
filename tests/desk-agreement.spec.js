@@ -1,43 +1,56 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-async function seek(page, progress) {
-  await page.evaluate(p => scrollTo(0, p * (document.querySelector('#voyage').offsetHeight - document.querySelector('.stage').offsetHeight)), progress);
-  await expect.poll(async () => +(await page.locator('.stage').getAttribute('data-progress'))).toBeCloseTo(progress, 3);
+async function seek(page, p) {
+  await page.evaluate(value => {
+    const voyage = document.querySelector("#voyage");
+    const range = voyage.offsetHeight - document.querySelector(".stage").offsetHeight;
+    scrollTo(0, voyage.offsetTop + range * value);
+  }, p);
+  await expect.poll(async () => Number(await page.locator(".stage").getAttribute("data-progress"))).toBeCloseTo(p, 3);
 }
 
-test('authentic agreement and separate mobile facts emerge and reverse', async ({page}) => {
-  await page.setViewportSize({width:390,height:844});
-  await page.goto('/');
-  await seek(page,.04);
-  await expect(page.locator('.shipping-agreement')).toHaveCSS('opacity','0');
-  await seek(page,.11);
-  await expect(page.locator('.shipping-agreement')).toHaveCSS('opacity','1');
-  await expect(page.locator('.shipping-agreement img')).toHaveAttribute('src',/whalemens-shipping-paper.webp$/);
-  await expect(page.locator('.fleet-fact')).toHaveCSS('opacity','1');
-  await expect(page.locator('.shares-fact')).toHaveCSS('opacity','0');
-  const image = await page.locator('.shipping-agreement').boundingBox();
-  const annotation = await page.locator('.ledger').boundingBox();
-  expect(image.y + image.height).toBeLessThan(annotation.y);
-  await seek(page,.16);
-  await expect(page.locator('.fleet-fact')).toHaveCSS('opacity','0');
-  await expect(page.locator('.shares-fact')).toHaveCSS('opacity','1');
-  await expect(page.locator('.shares-fact')).toHaveCSS('pointer-events','auto');
-  await seek(page,.11);
-  await expect(page.locator('.fleet-fact')).toHaveCSS('opacity','1');
-  await expect(page.locator('.shares-fact')).toHaveCSS('opacity','0');
+test("an object opens from the keyboard and Escape restores focus and depth", async ({ page }) => {
+  await page.goto("/");
+  await seek(page, 0.14);
+  const button = page.locator(".inspect-agreement");
+  await button.focus();
+  const position = await page.evaluate(() => scrollY);
+  await page.keyboard.press("Enter");
+  const dialog = page.locator("#desk-inspector");
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toContainText(/1887/);
+  await expect(dialog.locator("blockquote")).toContainText("his share of the net proceeds of the voyage");
+  await expect(dialog.locator("img:visible").first()).toBeInViewport();
+  for (let i = 0; i < 5; i++) {
+    await page.keyboard.press("Tab");
+    expect(await dialog.evaluate(el => el.contains(document.activeElement) || document.activeElement === document.body)).toBe(true);
+  }
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(button).toBeFocused();
+  expect(await page.evaluate(() => scrollY)).toBe(position);
 });
 
-// The old responsive top offset detached the ellipse from a resized candle.
-test('contact shadow stays directly under the holder at every desk size', async ({page}) => {
-  for (const viewport of [{width:1440,height:900},{width:390,height:844},{width:844,height:390}]) {
-    await page.setViewportSize(viewport);
-    await page.goto('/');
-    await seek(page,.11);
-    const candle = await page.locator('.candle').boundingBox();
-    const shadow = await page.locator('.contact-shadow').boundingBox();
-    expect(shadow.y).toBeGreaterThan(candle.y + candle.height * .85);
-    expect(shadow.y).toBeLessThan(candle.y + candle.height);
-    expect(shadow.x).toBeGreaterThan(candle.x);
-    expect(shadow.x + shadow.width).toBeLessThan(candle.x + candle.width);
+test("phone visitors can tap voyage records with reduced motion and return to the same desk", async ({ browser, baseURL }) => {
+  const context = await browser.newContext({
+    baseURL, viewport: { width: 360, height: 640 }, isMobile: true, hasTouch: true,
+    reducedMotion: "reduce",
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto("/");
+    await seek(page, 0.14);
+    await page.locator(".inspect-ledger").tap();
+    const dialog = page.locator("#desk-inspector");
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toContainText(/735/);
+    await expect(dialog).toContainText(/1846/);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(360);
+    await dialog.locator(".close").tap();
+    await expect(dialog).not.toBeVisible();
+    await expect(page.locator(".inspect-ledger")).toBeFocused();
+    expect(Number(await page.locator(".stage").getAttribute("data-progress"))).toBeCloseTo(0.14, 3);
+  } finally {
+    await context.close();
   }
 });
