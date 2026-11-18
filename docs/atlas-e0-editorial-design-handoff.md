@@ -2,7 +2,7 @@
 
 **Date:** 18 November 2026  
 **Status:** Research and storyboard proposal **committed for founder review**. No atlas code, imagery, route coordinates, or public-site UI has been changed. This is the Stage E0 design gate of [Issue #27](https://github.com/skyeuldrich/moby-dick-explorer/issues/27).  
-**Source of geographic truth:** [approved 17-stage itinerary](pequod-itinerary-17-stages.md). The chapter references below were checked against the novel in the Project’s uploaded Norton Critical Edition (2018); the public links point to the corresponding chapters in the 1851 novel, Project Gutenberg #2701. The Norton map is *reference only* and must never become a distributed image or traced template.
+**Source of geographic truth:** [approved 17-stage itinerary](pequod-itinerary-17-stages.md). The decisive geographic wording in Chapters 51, 52, 58, 87, 109, 111, 118 and 126 was checked against the novel in the Project’s uploaded Norton Critical Edition (2018); remaining stage labels follow the founder-approved itinerary rather than a new exhaustive collation. The public links point to the 1851 novel in Project Gutenberg #2701. The Norton map is *reference only* and must never become a distributed image or traced template.
 
 ## 1. Editorial thesis and recommendation
 
