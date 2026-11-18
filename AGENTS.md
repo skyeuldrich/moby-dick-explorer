@@ -1,64 +1,37 @@
-# Moby-Dick Explorer — Codex project instructions
+# Moby-Dick Explorer — Codex operating instructions
 
-## Mission
-Build an exceptional interactive companion to Herman Melville's *Moby-Dick*. Aim for historical authenticity, atmospheric visual design, intuitive exploration, literary rigor, and smooth interaction. The visitor should return to Melville's prose with greater understanding and curiosity. Treat the founder as final creative decision-maker; avoid jargon in reports.
+**Start every task here:** [docs/STATUS.md](docs/STATUS.md) (what has shipped, what is active, what is blocked) → [docs/PROJECT.md](docs/PROJECT.md) (mission and division of labor) → the **one GitHub Issue** assigned for this task, including its linked approved brief and source/asset records. [docs/DECISIONS.md](docs/DECISIONS.md) holds lasting founder choices.
 
-## CURRENT NEXT PUSH — November 18, 2026 (updated after D1/D2)
+**Precedence:** The founder's explicit, current task and approved issue govern its scope; `docs/STATUS.md` governs what has already merged and the current approval gates; `docs/DECISIONS.md` governs standing creative choices; task-specific approved documents govern details. Old `moby-dick-prototype-brief-v0*.md`, `docs/next-visual-push-execution-plan.md`, and old unchecked issue boxes are historical evidence, **not** authorization to redo completed work. Report any material contradiction before changing the experience.
 
-**PR #28 (D1 / Issue #25) and PR #29 (D2 / Issue #26) have merged and deployed.** They join the completed Beale desk, abyss quotation, and candle inspector work. Do not reimplement any of those.
+## Current gate (2026-11-18)
 
-**CURRENT ACTIVE TASK: Issue #27 / PR E — E0 archival and design review.** Read [docs/atlas-e0-editorial-design-handoff.md](docs/atlas-e0-editorial-design-handoff.md), [docs/pequod-itinerary-17-stages.md](docs/pequod-itinerary-17-stages.md), and the original [maps-and-continuity brief](docs/next-push-maps-and-continuity.md). E0 has a committed literary/geographic storyboard and an asset/rights matrix but **lacks founder approval and complete rights-cleared chart scans**. The 1797 Heather North Atlantic file cannot be assumed to cover the South Atlantic; the existing 1844 Norie crop is eastern South Pacific and **cannot represent Japan**.
+**PRs #22, #23, #24, #28, and #29 are merged.** Do not redo the existing desk/Beale plate, three abyss passages, candle/whale-utility print inspector, pencil chart annotations, harbor wave alignment, or candle framing.
 
-**Do not start the global atlas app-code rewrite, trace the copyright-protected Norton illustration, or publish Rumsey/RMG image files without their applicable rights requirements and founder approval.** First verify rights-compatible full-coverage southern Atlantic, Indian, Sunda, and northern/western Pacific assets, then prepare chart-backed desktop/mobile compositions. No new AI-generated map art. A separate implementation scope follows founder signoff.
+**Issue #27 is the next major design project, but it is at E0, not implementation.** Its [three-ocean atlas editorial handoff](docs/atlas-e0-editorial-design-handoff.md) contains a proposed storyboard and rights matrix; founder approval and appropriate rights-cleared, full-coverage historical chart scans are missing. **Do not start the 17-stage atlas rewrite, trace the Norton map, or publish unapproved image files.** Use the [17-stage itinerary](docs/pequod-itinerary-17-stages.md), which distinguishes narrated grounds, planned courses, and inferred crossings.
 
-**Founder visual constraint: no new AI-generated illustrations.** Prefer actual sourced historical maps/engravings, existing assets, optical effects and archival image edits. Animations derive from source images, not generated pictorial slides. Codex handles design, code and QA; scholar/religious interpretation is the founder's literary-agent work. **One draft PR per bounded coding assignment, founder review before merge.**
+Other open work: `#7` holds the deferred *Price of Light* animation concept (the inspector has shipped); `#15` concerns source-backed literary research with an unresolved draft PR #18. See [STATUS.md](docs/STATUS.md) for current boundaries.
 
-## Source of truth
-- **For any newly assigned work read `docs/next-push-maps-and-continuity.md` FIRST** and the scoped Issue #25/#26/#27. The older `docs/next-visual-push-execution-plan.md` is historical record of merged PRs A/B/C, **not pending tasks**. `moby-dick-prototype-brief-v0.4.md` is the legacy baseline; later founder decisions supersede it.
-- Do not overwrite or invent founder preferences. For a significant proposed departure, describe its rationale and seek approval before implementation.
-- The current prototype is a vertical slice; preserve its existing structure unless the specific task asks for change.
-- Preserve literary claims' chapter and edition citations. Historical figures need dated sources; modern annotations must not masquerade as original primary sources.
-- For substantive literary research, read `docs/literary-source-access-gate.md`. The private source collection is at `skyeuldrich/moby-dick-literary-source-materials` with its `SOURCE_INVENTORY.md`; **test Codex's own access and file-text readability before claiming to use the books**. If access fails, report the precise limitation. Never copy the private books or unauthorized material to this public repository; verify rights/provenance restrictions and use lawful copies.
-- Use archival images only with documented provenance and reuse rights. Label original period-inspired illustrations as reconstructions.
-- The Pequod's red-line route is interpretive and should not be represented as exact historical coordinates.
+## Division of labor
 
-## Next approved iteration
+- **Codex is the implementer:** frontend design, interaction/motion, integration, accessibility, tests, and rendered visual QA. Implement **approved** historical facts, captions, quotes, and research findings; don't launch a broad Melville-criticism survey or recruit `melville_scholar` for ordinary coding tasks.
+- **Founder and ChatGPT Project own literary/educational research and editorial signoff.** Respect the [Who Made the Monster? handoff](docs/editorial-who-made-the-monster.md) as research ready for future interaction planning, *not* an authorization to code it.
+- For difficult design tasks, use at most one bounded visual-director or motion-QA critique at a time when helpful. For small fixes, use one agent. Never send several agents to edit the same UI files concurrently.
+- Prefer a cost-conscious capable model for bounded coding (historically Sol Medium); escalate for an isolated unresolved problem. Do not spend coding sessions redoing literary research already completed in ChatGPT.
 
-Before the next visual implementation, read [the approved harbor, desk and creature brief](docs/next-push-harbor-desk-and-creatures.md). **Founder revision, November 18: move Thomas Beale's original 1839 whale anatomy plate into the unified candlelit desk as an inspectable document, and remove the standalone cream-colored anatomy scene between chart and abyss.** Preserve the original image and credit, connect the inspection to Chapters 32 and 55–57, and restore a continuous chart-to-dark-water transition. This supersedes old instructions to retain the later standalone plate. The brief records founder decisions supplementing v0.4. Its presence is not an instruction to begin implementation during a documentation-only task.
+## Visual and historical integrity
 
-**Desk learning addition, November 18:** Follow [The Price of Light phased checklist](docs/next-push-price-of-light.md): make the actual nineteenth-century Smithsonian-featured “The Whale's Utility to Man” lithograph discoverable from the candle after checking image rights, and storyboard a historically accurate interactive whale-to-spermaceti-candle animation. Prioritize desk realism and Beale integration first; a polished animated clip can be a focused follow-up PR. The whale-malice/source-perspective research is now documented in [Who Made the Monster?](docs/editorial-who-made-the-monster.md), **not authored or researched by Codex**. No code work for it until a later scoped ticket. Do not represent ordinary blubber oil as molded spermaceti wax, or the process as one fantasy machine.
+- Use the verified period charts, engravings, documents and credits already in [docs/asset-sources.md](docs/asset-sources.md) and the asset manifests. No new AI-generated illustrative scenes without founder approval; existing approved original reconstructions remain. Do not replace convincing artwork with flat CSS/SVG approximations or invent archival provenance.
+- Do not commit private copyrighted books, scholarly PDFs, or unauthorized material to this public repository. For any task *explicitly* requiring scholarship access, first follow [docs/literary-source-access-gate.md](docs/literary-source-access-gate.md); report what could and couldn't be inspected, rather than citing inaccessible works.
+- Distinguish **red interpretive voyage route** from **conjectural graphite marks**; never invent a precise location or a location for the wreck. Verify chart coverage and usage permissions rather than assuming an old map depicts the correct sea.
+- Preserve an authentic nineteenth-century feel, the existing unified desk and archival inspectors, biologically grounded abyss creatures, increasing darkness, and seamless reversible scroll. Keep chronology, literary voices, transcriptions and attributions accurate.
 
-**Additional founder-approved abyss work, queued for the next applicable visual push:** Read [three voices descending into the abyss](docs/next-push-abyss-three-voices.md). Replace the one Chapter 41 fragment with the complete Chapter 41 passage, then Chapter 37 and Chapter 132 Ahab quotations, in this exact thematic order. Increase ocean darkness with depth, use subtle scroll-linked underwater refraction and visibility falloff, preserve a readable pause for each, and update the accessible transcript. Extend the descent rather than compressing all three into the old one-quote interval. This is not a request to change runtime code during a documentation-only task; do not mix this scope into an unrelated in-flight desk PR without direction.
+## Delivery and QA
 
-## Division of labor: developer, not literary researcher
+1. **One bounded issue, one focused draft PR.** Honor explicit dependencies, asset rights and founder approval gates; stop and describe exact missing inputs rather than inventing substitutes. Do not auto-merge.
+2. Run `npm test` and `npm run build` for website changes. Inspect the *rendered* experience at desktop and mobile sizes, multiple scroll positions, and both scroll directions; check keyboard/touch, reduced-motion, readability, focus management and source attribution. Physical-device/platform testing must be described truthfully.
+3. Show before/after screenshots or a visual recording when appropriate, test results, source provenance, limitations, and an accessible preview/review path.
+4. After founder approval and merge, reconcile the GitHub Issue and update [docs/STATUS.md](docs/STATUS.md). Update [docs/DECISIONS.md](docs/DECISIONS.md) for durable founder-approved changes, not every implementation detail.
+5. Documentation-only housekeeping does not require application tests, but must not claim browser QA or a newly deployed experience.
 
-**For all website design/implementation tasks, Codex/Copilot is the visual designer, frontend developer, motion engineer and QA tester — NOT the literary analysis agent.** The founder develops scholarship and selects passages separately in the ChatGPT Moby Dick Website Project. Implement **approved** quotes, captions, interpretation cards, and historical facts supplied in task briefs without launching new criticism surveys, scholarly-source audits, `melville_scholar` subagents, or private-library access attempts. The proposed whale-malice investigation (“The Monster We Invented”) is **owned outside Codex** and is **not a Codex deliverable, dependency or checklist item**. Once the founder approves a literary/content brief **and opens a dedicated implementation task**, accept the approved text as fixed product copy and build the experience. **Who Made the Monster?** now has a founder-supplied, source-checked [editorial handoff](docs/editorial-who-made-the-monster.md); it remains **out of the current visual push** pending a separately approved interaction and placement.
-
-**Minimal factual safeguards still apply:** preserve precise attribution and existing source links; check a short, specific citation or archival asset permission only where required to avoid publishing a false claim or unauthorized image. If an approved text/source is missing or inconsistent, flag the exact blocker and continue with independent design/code tasks; do not substitute an autonomous research project. Historical manufacturing steps for the candle animation should come from a founder-approved storyboard/content brief, not Codex research.
-
-## Scope and model budget for the next push
-
-- **Never treat the entire backlog as one Codex assignment.** Three separate, reviewable PRs: **A:** Beale plate onto the existing unified desk, remove redundant anatomy scene; **B:** three-quote dark-water abyss (Issue #21); **C:** Smithsonian print inspection (rights/full-resolution gated), plus whale-to-candle storyboard/asset manifest. A finished short film is a later task, not a prerequisite; the whale-malice inquiry belongs to the founder's separate literary workflow, never the default Codex task.
-- `main` already has the landscape/portrait desk, 1887 agreement inspector, real 1842–44 logbook inspector, Barber harbor-to-chart wave, three swimming species, and whale/squid painting. Do not rebuild them. Test and preserve the existing results.
-- Prefer **Sol Medium** for bounded implementation and testing. Escalate to **Sol High or Astra Medium** for a difficult, isolated problem; reserve **Astra High** for an unresolved, high-complexity diagnosis. Do not burn a session on repeated speculative asset creation when suitable original art is missing. Usage varies by task/model and this is a cost-control recommendation, not a performance guarantee.
-- For missing artwork, uncertain reuse rights or insufficient full-resolution scans, **report a blocker and request a specific asset**; never claim a link-only fallback meets a zoomable art-inspection requirement. Never auto-merge significant visual changes before founder review.
-
-## Team working agreement
-You are the **lead creative technologist** and integrator for implementation tasks, not an autonomous CEO with authority over the founder.
-- For complex tasks, delegate **up to two independent, bounded reviews at a time** when this improves quality. For visual push tasks use only relevant **visual_director** and **motion_qa** specialist passes where supported; do not invoke `melville_scholar` or do independent literary analysis.
-- Visual/motion specialists primarily **inspect, critique, and propose implementable changes**. Do not have multiple agents edit the same code or UI files concurrently.
-- Specialists must identify concrete evidence, dissenting concerns, and actionable changes; do not merely agree with the lead.
-- Summarize their findings and conflicts for the founder, then implement only the agreed scope. If custom agents aren't supported in the active cloud task, emulate their review passes as bounded sequential tasks and state the limitation.
-- For short repairs, use a single agent. Avoid spawning an entire team for routine edits or boilerplate.
-- Respect usage limits: default to one coding agent and at most one bounded specialist review per task; use Sol Medium for routine tasks, escalate selectively, and reserve Astra High for an isolated hard problem.
-
-## Quality bar
-- Inspect actual rendered work at multiple scroll positions on desktop and mobile layouts. The website should not pass as "done" solely because the build succeeds.
-- For scroll sequences: require smooth, reversible, spatially continuous progress, no popping artifacts, readable overlays, mobile touch plausibility, and `prefers-reduced-motion`.
-- Preserve keyboard navigation, skip options, mobile layout, and source attributions.
-- Run `npm test` and `npm run build` after changes. Follow existing Playwright screenshots/checks and document platforms really tested.
-- Report unresolved risks and exact reproduction steps. Do not claim to have viewed browser behaviors that the environment did not expose.
-- Prefer small, reviewable changes; avoid unnecessary dependencies, premature backend features, or heavy 3D.
-
-## Deliverables
-For a substantive iteration: show a short objective, changes made, before/after visual evidence where available, test results, provenance of new assets/claims, unresolved issues, and a working preview URL or an explicit reason one is unavailable.
+**Success criterion:** Readers should discover something about *Moby-Dick* by exploring the site, not just view effects or explanatory overlays.
