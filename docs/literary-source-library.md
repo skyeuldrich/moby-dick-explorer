@@ -2,6 +2,8 @@
 
 **Purpose:** A curated, expanding bibliographic map for the `melville_scholar` agent and the `learning_designer`. This is an **index of sources to consult**, not a claim that the agent has read their complete contents. Prefer interpretive depth and competing positions over accumulating links.
 
+**Current task reading status:** See the [2026-11-17 access ledger](literary-source-access-audit-2026-11-17.md) for per-source outcomes, chapter retrieval, and founder requests. The Standard Ebooks transcription was inspected in Ch. 36, 42 and 99; no relevant critical work was directly inspected. The three [research cards](literary-cards/) are provisional close readings, not scholarly comparisons or approved site content. The older availability descriptions below are discovery leads, not evidence of this task's access.
+
 ## Publication and rights rules
 
 This GitHub repository is **public**. Never commit copyrighted modern critical editions, full scholarly books/articles, pirated PDFs, or scraped copyrighted annotations. The 1851 novel is public domain in the United States; modern editorial apparatus, annotations, introductions, and scholarship may have independent copyright. Record metadata, stable URLs, chapter/page citations, and original paraphrases; quote modern criticism only in short, necessary excerpts with attribution and source verification.
