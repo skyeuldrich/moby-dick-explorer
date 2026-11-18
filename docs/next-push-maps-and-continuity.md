@@ -1,10 +1,10 @@
 # Next push — maps that think, and transitions that cohere
 
-**Founder-approved design brief / implementation handoff, November 18, 2026. Documentation only; do not edit the website in response to this plan itself.** This is the **next active work plan**, superseding the older `docs/next-visual-push-execution-plan.md` as a description of *pending* tasks. Earlier PRs A/B/C have merged: integrated Beale desk, three-voice abyss, and an existing candle/Smithsonian lithograph inspector. Preserve all three.
+**Founder-requested goals and proposed design/implementation handoff, November 18, 2026. Documentation only; do not edit the website in response to this plan itself. Founder reviews the resulting art/PRs before merge.** This is the **next active work plan**, superseding the older `docs/next-visual-push-execution-plan.md` as a description of *pending* tasks. Earlier PRs A/B/C have merged: integrated Beale desk, three-voice abyss, and an existing candle/Smithsonian lithograph inspector. Preserve all three.
 
 **Core aim:** Make the Atlantic map read as a captain's evolving intellectual instrument, and remove visible discontinuities between historical engraving, ocean, candle, and anatomical sheet. Expand the map beyond Cape Verde **in a later separate global itinerary feature**; do not cram 17 stops onto the old Atlantic chart or an existing short scroll window.
 
-**Scope order:** **PR D1: chart typography + Ahab's scroll-controlled annotations** → **PR D2: harbor/desk/anatomical visual continuity** → **PR E: 17-stop transoceanic atlas** (design/source and geography gate first, then implementation). A future *religious interpretation* is a founder/ChatGPT literary-agent editorial task, **not** a code task in these PRs.
+**Scope order:** [**PR D1 · Issue #25**](https://github.com/skyeuldrich/moby-dick-explorer/issues/25): chart typography + Ahab's scroll-controlled annotations → [**PR D2 · Issue #26**](https://github.com/skyeuldrich/moby-dick-explorer/issues/26): harbor/desk/anatomical visual continuity → [**PR E · Issue #27**](https://github.com/skyeuldrich/moby-dick-explorer/issues/27): 17-stop transoceanic atlas (design/source and geography gate first, then implementation). A future *religious interpretation* is a founder/ChatGPT literary-agent editorial task, **not** a code task in these PRs.
 
 ## Verified implementation baseline (main, 2026-11-18)
 
