@@ -1,0 +1,51 @@
+# Next desk push — The Price of Light
+
+**Status:** Founder-approved creative direction and prioritized implementation checklist (November 18, 2026). **Documentation only** in this commit. Add to the desk redesign plan without abandoning its realistic one-piece historical tabletop, Beale plate relocation, or the separate three-quote abyss brief.
+
+## Why this belongs here
+
+The visitor first meets a warm, beautiful **spermaceti candle**. Its light comes from an animal's death. An optional investigation should transform the sense of comfort into a sense of cost: **living whale → killing and disassembly → head matter → refined spermaceti → candle → darkness**. The horror emerges from the efficient conversion of a social animal into a consumable object, not from gore, sentimental narration or invented whaling machinery.
+
+The centerpiece is **“The Price of Light,”** an optional ~30–45-second *interactive animated engraving* accessed from the desk candle. Do not insert an obligatory extended film into the main scroll. The animation should have a direct relationship to the real tabletop candle, returning the viewer to the same scene.
+
+## Priority A — include with the desk push, after the unified desk artwork works
+
+- [ ] **Locate the exact archival print the founder approved.** It is **“The Whale's Utility to Man,”** a nineteenth-century colored lithographic plate published by **Roake & Varty, London**, shown in the Smithsonian National Museum of American History online exhibit, [For Light and Fashion](https://americanhistory.si.edu/explore/exhibitions/on-the-water/online/fishing-living/commercial-fishers/whaling/light-fashion). The central whale hunt is surrounded by scenes of whale-derived goods, including **spermaceti candles for light**. Reference thumbnail: https://americanhistory.si.edu/sites/default/files/styles/wysiwyg_images/public/4012.jpg?itok=e9rSOzh5 . **Do not substitute an unrelated engraving.** Source image file is *not* yet stored in GitHub.
+- [ ] **Verify image rights before copying into the PUBLIC repository.** NMAH [Rights & Reproductions](https://americanhistory.si.edu/collections/about/rights-and-reproductions) requires checking the object's Open Access/CC0 status or other applicable reuse basis; nineteenth-century publication is strong evidence of US public-domain status, but Smithsonian website media permissions must be assessed and documented. If the specific image cannot be cleared, link to it in an inspection view while seeking a verifiably reusable scan of the **same** original, rather than silently publishing an uncleared image or replacing it.
+- [ ] **Make the print discoverable and inspectable.** An unobtrusive **“Whale → candle / How was this light made?”** hotspot on the physical candle opens an overlay (or focussed immersive view) with the complete **original archival lithograph**, not an AI redraw. Zoom/pan or enlarge on tap; let visitors inspect the “For Light — Spermaceti Oil & Candles” vignette and the central hunt. Provide short captions, accurate date/credit, source link and a clear return to desk. Do not pretend a later-century print was physically sitting on an 1840s desk unless its date supports that.
+- [ ] **Storyboard the animated investigation using real documents, then build a lightweight preview** in the same coordinated engraving/painterly style as the desk. Founder reviews storyboard and clip before production polish. This should not delay the unified desk, document inspection or chart-to-abyss repairs.
+
+## Priority B — build The Price of Light animation (separate focused PR if needed)
+
+A short **opt-in, pausable and replayable** cinematic exploration that leads back to the exact candle on the table. If substantial to implement, split into a separate feature PR instead of crowding the ongoing desk refactor. Do not quietly drop the story after adding the print hotspot.
+
+- [ ] **1. Life:** Female sperm whale and calf swimming together; show scale, mutual proximity and movement rather than human expressions. This is an **illustrative composite**, not a claim to show one documented historical hunt. Connect on demand to Ch. 87, **“The Grand Armada”**, with close reading of Melville's nursing whales and calves.
+- [ ] **2. Hunt:** Small whaleboat and harpoon line enter the frame. Whale is struck; the calf remains nearby. Convey loss through motion, separation and sound rather than blood or cartoon villainy. Avoid making unsupported claims about what this particular calf or mother “feels” or about the exact circumstances of typical catches.
+- [ ] **3. Disassembly, historically precise:** Show the carcass alongside the ship, **cutting-in**, the **sperm whale's head case and extraction of head matter**, and separately the **tryworks used to render blubber into oil**. **Do not imply ordinary blubber oil was itself molded into spermaceti candles**. Melville's Ch. 96, **“The Try-Works,”** supplies a primary-text connection to the infernal imagery of whale processing; annotate that his fuel passage describes tryworks, not candle manufacturing.
+- [ ] **4. Manufacture:** Head matter → settling/processing and separation of spermaceti from oil → refinement/pressing and candle manufacture ashore → a finished candle. Use historical process diagrams based on verified primary and museum sources rather than a fictitious “whole whale into machine” contraption. Clearly mark compression of time/place (ship → shore).
+- [ ] **5. Consumption:** The completed candle matches the desk's actual spermaceti candle; it ignites, burns rapidly to a stub, and goes dark. A pause of blackness, then return to the same candlelit desk. Do not suggest a single whale literally yields just one candle.
+- [ ] **Optional detail layer:** A visitor can pause at each stage and reveal a compact, sourced clue (anatomy, what the tryworks did, how spermaceti differs from whale oil, or the relative industrial value). Each reveal answers a question, not a list of trivia. Use real HTML text.
+- [ ] **Historical anchor checks:** Source processing details from [New Bedford Whaling Museum, “Whales and Hunting”](https://www.whalingmuseum.org/research/research-resources/whaling-history/whales-and-hunting/) and [“The Whale Oil Trade — 5”](https://www.whalingmuseum.org/wp-content/uploads/2021/11/Old-Dartmouth-Historical-Sketches_No.79.pdf), plus Melville Chapters 87 and 96. The historical account distinguishes **head spermaceti** and **rendered body oil**. Record source dates/claims in Field notes.
+- [ ] **Animation craft:** Prototype restrained animated engravings, silhouettes, layered cutouts and dissolves before costly full-motion production. Cohesive draftsmanship, credible anatomy and economic horror are more important than hyperrealism or dramatic gore. Ambient audio optional and **muted by default**, with captions and a mute control.
+- [ ] **Usability:** Start by explicit candle activation; clear Exit, Pause, Replay, optional progress/scrub and Return to desk. Do not hijack main page scroll or make progress expire when a visitor pauses reading. Support keyboard/touch, screen readers and a static step-through storyboard for `prefers-reduced-motion`. Restore the previous scroll position on close.
+- [ ] **QA:** Show desktop, 390px and 360px mobile captures and a short recording. Confirm chronological/historical steps, no imagery falsely represented as primary documentation, no accidental page scrolling, focus return, graceful reduced-motion, performance and tests. Founder approves before merge.
+
+**Historical/ethical position:** We can contrast the animals' living relationships with human industrial practices without fabricating an individual whale's emotional experience or treating all whalers as monsters. Avoid converting the experience into a moralistic quiz with a preselected answer. *What must be ignored to treat a living whale as a commodity?* is the central question.
+
+## Priority C — research companion investigation, NOT a blocker for this push
+
+**Working title: “The Monster We Invented.”** Develop as an original editorial brief for later review, not a completed feature or a fake second optional animation.
+
+- [ ] Pair **Ch. 41** (Ishmael's narration of a whale's supposed “intelligent malignity”) with **Ch. 87** (social life of whales) and *Essex* first mate **Owen Chase's 1821 Narrative**, including the conditions and sequence of the encounter, not just language about revenge.
+- [ ] Develop **two defensible readings**, not the assertion that “all accounts of whale malice were propaganda”: (a) whale attacks interpreted through human ideas of revenge and intention, versus (b) agency and a dangerous animal whose inner motives are inaccessible. Ahab's metaphysical projection adds a third dimension.
+- [ ] Inspect a scholarly source (e.g., Sanborn, “Melville and the Nonhuman World”) before naming critics or paraphrasing their views. Research animal behavior from reputable marine-mammal science separately. Treat differences between Melville's narrating voice, Ahab's interpretation and historical whalers' accounts carefully.
+- [ ] Propose an action the visitor can take to **reorder evidence, inspect what a narrator omitted, or compare descriptions of the same event**, rather than just clicking a “malice” text popup. Link it to the final whale/squid encounter, not into the middle of the desk movie.
+- [ ] Bring a short research concept and citations back to the founder; **no implementation until concept approval**.
+
+## Release / handoff
+
+- **Next desk push:** guarantee the Smithsonian print has a clear, rights-reviewed inspection path and a founder-reviewed animation **storyboard/preview**. Finish desk realism and Beale plate relocation first.
+- **Follow-up PR (same release if tested and approved):** playable “Price of Light” 30–45s experience with historical evidence and complete usability/QA.
+- **Later literary research:** “Monster We Invented” is research-only until editorial approval.
+
+The staged checklist is deliberate: animation should not compromise the physical desk's coherence, the current site's scrolling continuity, or historical/source accuracy.
