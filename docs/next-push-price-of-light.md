@@ -34,20 +34,16 @@ A short **opt-in, pausable and replayable** cinematic exploration that leads bac
 
 **Historical/ethical position:** We can contrast the animals' living relationships with human industrial practices without fabricating an individual whale's emotional experience or treating all whalers as monsters. Avoid converting the experience into a moralistic quiz with a preselected answer. *What must be ignored to treat a living whale as a commodity?* is the central question.
 
-## Priority C — research companion investigation, NOT a blocker for this push
+## Separate literary-analysis workflow — NOT a Codex task
 
-**Working title: “The Monster We Invented.”** Develop as an original editorial brief for later review, not a completed feature or a fake second optional animation.
+**“The Monster We Invented” belongs to the founder's literary scholar in the ChatGPT Moby Dick Website Project.** This idea is retained here as product context, **not as a checklist or research assignment to Codex**. Codex must not compare literary critics, read Owen Chase's account, interpret Ch. 41/87, research animal behavior or launch a scholar subagent as part of the visual push.
 
-- [ ] Pair **Ch. 41** (Ishmael's narration of a whale's supposed “intelligent malignity”) with **Ch. 87** (social life of whales) and *Essex* first mate **Owen Chase's 1821 Narrative**, including the conditions and sequence of the encounter, not just language about revenge.
-- [ ] Develop **two defensible readings**, not the assertion that “all accounts of whale malice were propaganda”: (a) whale attacks interpreted through human ideas of revenge and intention, versus (b) agency and a dangerous animal whose inner motives are inaccessible. Ahab's metaphysical projection adds a third dimension.
-- [ ] Inspect a scholarly source (e.g., Sanborn, “Melville and the Nonhuman World”) before naming critics or paraphrasing their views. Research animal behavior from reputable marine-mammal science separately. Treat differences between Melville's narrating voice, Ahab's interpretation and historical whalers' accounts carefully.
-- [ ] Propose an action the visitor can take to **reorder evidence, inspect what a narrator omitted, or compare descriptions of the same event**, rather than just clicking a “malice” text popup. Link it to the final whale/squid encounter, not into the middle of the desk movie.
-- [ ] Bring a short research concept and citations back to the founder; **no implementation until concept approval**.
+The founder's scholar will evaluate Melville Ch. 41 and Ch. 87, Owen Chase's *Essex* narrative, relevant criticism and animal behavior evidence, and will provide **approved exact excerpts, contextual labels, citations, competing interpretations and an interaction brief**. **Only after that handoff** may Codex implement a separately approved interface. Until then, **do not build, research, or block on** this feature.
 
 ## Release / handoff
 
 - **PR C, after the desk/Beale and abyss PRs:** deliver rights-reviewed inspection **if the correct full-size original can be used**; otherwise report blocked status with official source link. Deliver a founder-reviewed, historically grounded **storyboard and art manifest**, with an animation preview only if suitable assets exist.
 - **Follow-up PR (same release if tested and approved):** playable “Price of Light” 30–45s experience with historical evidence and complete usability/QA.
-- **Later literary research:** “Monster We Invented” is research-only until editorial approval.
+- **Separate ChatGPT literary workflow:** “The Monster We Invented” will be researched and approved outside Codex. No Codex work is authorized until a finished content brief is handed off.
 
 The staged checklist is deliberate: animation should not compromise the physical desk's coherence, the current site's scrolling continuity, or historical/source accuracy.
