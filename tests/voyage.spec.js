@@ -249,10 +249,11 @@ test("mouse wheel advances continuously and reverses the red route", async ({
     )
     .toBeCloseTo(0.5, 3);
 });
-test("candle document fits a short phone and landscape viewport", async ({
+test("desk inspection targets fit narrow, short and landscape phone viewports", async ({
   page,
 }) => {
   for (const size of [
+    { width: 320, height: 740 },
     { width: 360, height: 640 },
     { width: 844, height: 390 },
   ]) {

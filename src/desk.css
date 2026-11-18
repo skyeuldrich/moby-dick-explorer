@@ -25,6 +25,6 @@
  .desk-tableau {--lit-x:24%;--lit-y:21%;}
  .desk-plane {width:max(100%,66.667svh);aspect-ratio:2/3;left:min(0px,calc((100% - 66.667svh) * .15));transform:none;}
  .desk-objects .inspect-ledger {left:8%;top:61%;}
- .desk-objects .inspect-agreement {left:46%;top:67%;}
+ .desk-objects .inspect-agreement {left:min(46%,calc(100vw - 158px));top:67%;}
 }
 @media (prefers-reduced-motion:reduce){.desk-tableau[data-lit] .desk-picture{animation:none}}
