@@ -1,5 +1,7 @@
 # Next desk push — The Price of Light
 
+**Scope clarification (implementation audit, November 18, 2026):** The unified desk, whaling-paper inspector, and authentic 1842–44 logbook inspector are **already live on `main`**. See [the controlling next-push execution plan](next-visual-push-execution-plan.md). This price-of-light brief is now **PR C**, after Beale's desk move (PR A) and the three-voice abyss (PR B), not a dependency blocking the desk. The engraving needs verified reuse rights **and a full-resolution scan** before a true in-site magnifier can be accepted. An animated preview is **conditional on production-quality assets**; an art storyboard + asset manifest is the required deliverable. The finished film is later separate work.
+
 **Status:** Founder-approved creative direction and prioritized implementation checklist (November 18, 2026). **Documentation only** in this commit. Add to the desk redesign plan without abandoning its realistic one-piece historical tabletop, Beale plate relocation, or the separate three-quote abyss brief.
 
 ## Why this belongs here
@@ -44,7 +46,7 @@ A short **opt-in, pausable and replayable** cinematic exploration that leads bac
 
 ## Release / handoff
 
-- **Next desk push:** guarantee the Smithsonian print has a clear, rights-reviewed inspection path and a founder-reviewed animation **storyboard/preview**. Finish desk realism and Beale plate relocation first.
+- **PR C, after the desk/Beale and abyss PRs:** deliver rights-reviewed inspection **if the correct full-size original can be used**; otherwise report blocked status with official source link. Deliver a founder-reviewed, historically grounded **storyboard and art manifest**, with an animation preview only if suitable assets exist.
 - **Follow-up PR (same release if tested and approved):** playable “Price of Light” 30–45s experience with historical evidence and complete usability/QA.
 - **Later literary research:** “Monster We Invented” is research-only until editorial approval.
 
