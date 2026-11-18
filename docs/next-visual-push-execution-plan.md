@@ -1,5 +1,7 @@
 # Moby-Dick Explorer — next visual push: audited execution plan
 
+> **Engineering-only scope (founder update, November 18, 2026):** The literary analysis of whale malice, comparison of Melville and Owen Chase, scholarly interpretation, and quote selection happen **in the ChatGPT research Project, not Codex/Copilot**. Codex implements founder-approved content and may perform bounded visual/source-asset checks, but must not launch literary research or delegate to `melville_scholar`. Unapproved literary material is a **future handoff**, not a task to research or a blocker for PR A/B/C. See `AGENTS.md`.
+
 **Status:** Implementation handoff; approved creative goals, revised against actual `main` on November 18, 2026. **This is documentation, not an instruction to implement the entire program in one session.** Read this before the detailed briefs. Where old briefs conflict with this audit, **this document controls execution scope and completed-work status**, while the topic-specific briefs control artistic details.
 
 ## What exists already — DO NOT rebuild
@@ -41,13 +43,13 @@ Artistic/technical brief: [whale-to-candle checklist](next-push-price-of-light.m
 
 - [ ] Find the **exact** nineteenth-century lithograph *The Whale's Utility to Man*, shown in the [Smithsonian's For Light and Fashion exhibit](https://americanhistory.si.edu/explore/exhibitions/on-the-water/online/fishing-living/commercial-fishers/whaling/light-fashion). **Verify the specific image's reproduction/right-to-publish status** and a usable full-size scan; identify source, date and rights. A webpage thumbnail is **not** an acceptable zoomable full-resolution asset. Do not invent or swap a different print.
 - [ ] If an approved image is available, add a **candle hotspot** and use the existing inspector/dialog pattern for readable enlargement, short historical context, source link and accessible return to desk. Map hotspot positions to both desk images, preserve all other hotspots. **If rights or resolution block local reproduction, link to the museum and mark the in-site high-resolution view BLOCKED**, not completed.
-- [ ] Deliver a **historically reviewed five-beat storyboard** and an asset manifest for the subsequent ~30–45-second “Price of Light” experience (mother + calf → hunt → cutting-in and head matter **versus** blubber tryworks → onshore spermaceti refining/molding → the matching candle burns out). Preview only if coherent illustration assets are available; never use crude CSS placeholder whales and declare the animation complete. **Do not build the whole movie as a prerequisite of this PR.**
-- [ ] Preserve Chapter 87/96 literary context, source distinction between sperm whale **head spermaceti** and blubber oil, physical desk continuity, responsive/caption/reduced-motion requirements. Founder approves before merge.
+- [ ] Deliver a **visual five-beat storyboard using the approved historical beats below** and an asset manifest for the subsequent ~30–45-second “Price of Light” experience (mother + calf → hunt → cutting-in and head matter **versus** blubber tryworks → onshore spermaceti refining/molding → the matching candle burns out). Preview only if coherent illustration assets are available; never use crude CSS placeholder whales and declare the animation complete. **Do not build the whole movie as a prerequisite of this PR.**
+- [ ] Preserve supplied Chapter 87/96 literary context and the stated distinction between **head spermaceti** and blubber oil; do not independently research interpretation. Implement physical desk continuity, responsive/caption/reduced-motion requirements. Founder approves before merge.
 
 ### Later, separate film/learning feature — NOT a prerequisite
 
 - [ ] Build and test the complete optional, pausable/replayable “Price of Light” animated investigation **only after storyboard and original art are approved**. Scope and controls in [the animation brief](next-push-price-of-light.md).
-- [ ] **“The Monster We Invented” is editorial research only** until a separate concept review: compare Melville Ch. 41/87, Owen Chase and reliable animal behavior evidence without claiming the whale is either morally malicious or proven defensive.
+- **Out of Codex scope — founder's literary-analysis agent only:** “The Monster We Invented” compares Melville, Owen Chase and animal-behavior scholarship. Codex must **not** research, write or schedule this investigation; an approved interpretation and exact quotations will be supplied before any future implementation ticket.
 
 ## Asset and research gates
 
@@ -63,7 +65,7 @@ Artistic/technical brief: [whale-to-candle checklist](next-push-price-of-light.m
 2. Default to **Sol at Medium** for implementation, tests, documentation and ordinary visual/timing repairs. Try **Sol High or Astra Medium** for an isolated architecture/performance diagnosis if Medium is blocked; reserve **Astra High** for a genuinely hard, bounded problem, not full-project execution.
 3. Set explicit **stop conditions**: missing asset/right → source/asset report; unverified rendering → don't declare visual success; major regression → report and pause. Do **not** spend usage repeatedly inventing alternatives.
 4. Deliver a PR with actual before/after captures, smoke/test/build results, an itemized checklist (done/blocked/deferred), and **do not auto-merge**. Review and merge before beginning the next PR.
-5. Prefer one visual + one motion/research review pass if necessary, not an open-ended multiagent swarm; skip orchestration for bounded repairs.
+5. Prefer one visual and, if needed, one motion/QA review pass; **no literary-research subagents** or open-ended multiagent swarm. Skip orchestration for bounded repairs.
 
 ## Superseded older instructions
 
