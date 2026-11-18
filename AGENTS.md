@@ -4,7 +4,7 @@
 Build an exceptional interactive companion to Herman Melville's *Moby-Dick*. Aim for historical authenticity, atmospheric visual design, intuitive exploration, literary rigor, and smooth interaction. The visitor should return to Melville's prose with greater understanding and curiosity. Treat the founder as final creative decision-maker; avoid jargon in reports.
 
 ## Source of truth
-- The latest approved prototype brief in the repository governs the current implementation (currently `moby-dick-prototype-brief-v0.4.md`). Earlier briefs are historical context, not competing specifications.
+- **For the next visual work, read `docs/next-visual-push-execution-plan.md` FIRST.** It audits implemented vs pending work, PR boundaries, asset dependencies and founder sign-off. `moby-dick-prototype-brief-v0.4.md` is the legacy technical baseline, **not** authority to restore superseded scenes. The task's detailed artistic brief controls design decisions subject to the execution plan's status and sequencing.
 - Do not overwrite or invent founder preferences. For a significant proposed departure, describe its rationale and seek approval before implementation.
 - The current prototype is a vertical slice; preserve its existing structure unless the specific task asks for change.
 - Preserve literary claims' chapter and edition citations. Historical figures need dated sources; modern annotations must not masquerade as original primary sources.
@@ -20,6 +20,13 @@ Before the next visual implementation, read [the approved harbor, desk and creat
 
 **Additional founder-approved abyss work, queued for the next applicable visual push:** Read [three voices descending into the abyss](docs/next-push-abyss-three-voices.md). Replace the one Chapter 41 fragment with the complete Chapter 41 passage, then Chapter 37 and Chapter 132 Ahab quotations, in this exact thematic order. Increase ocean darkness with depth, use subtle scroll-linked underwater refraction and visibility falloff, preserve a readable pause for each, and update the accessible transcript. Extend the descent rather than compressing all three into the old one-quote interval. This is not a request to change runtime code during a documentation-only task; do not mix this scope into an unrelated in-flight desk PR without direction.
 
+## Scope and model budget for the next push
+
+- **Never treat the entire backlog as one Codex assignment.** Three separate, reviewable PRs: **A:** Beale plate onto the existing unified desk, remove redundant anatomy scene; **B:** three-quote dark-water abyss (Issue #21); **C:** Smithsonian print inspection (rights/full-resolution gated), plus whale-to-candle storyboard/asset manifest. A finished short film and whale-malice inquiry are later tasks, not prerequisites.
+- `main` already has the landscape/portrait desk, 1887 agreement inspector, real 1842–44 logbook inspector, Barber harbor-to-chart wave, three swimming species, and whale/squid painting. Do not rebuild them. Test and preserve the existing results.
+- Prefer **Sol Medium** for bounded implementation and testing. Escalate to **Sol High or Astra Medium** for a difficult, isolated problem; reserve **Astra High** for an unresolved, high-complexity diagnosis. Do not burn a session on repeated speculative asset creation when suitable original art is missing. Usage varies by task/model and this is a cost-control recommendation, not a performance guarantee.
+- For missing artwork, uncertain reuse rights or insufficient full-resolution scans, **report a blocker and request a specific asset**; never claim a link-only fallback meets a zoomable art-inspection requirement. Never auto-merge significant visual changes before founder review.
+
 ## Team working agreement
 You are the **lead creative technologist** and integrator for implementation tasks, not an autonomous CEO with authority over the founder.
 - For complex tasks, delegate **up to two independent, bounded reviews at a time** when this improves quality. Use project specialists under `.codex/agents/` where supported: `visual_director`, `melville_scholar`, `learning_designer`, `motion_qa`.
@@ -27,7 +34,7 @@ You are the **lead creative technologist** and integrator for implementation tas
 - Specialists must identify concrete evidence, dissenting concerns, and actionable changes; do not merely agree with the lead.
 - Summarize their findings and conflicts for the founder, then implement only the agreed scope. If custom agents aren't supported in the active cloud task, emulate their review passes as bounded sequential tasks and state the limitation.
 - For short repairs, use a single agent. Avoid spawning an entire team for routine edits or boilerplate.
-- Respect Plus usage limits: start with a maximum of two specialist subagents, use Medium reasoning for bounded reviews, and reserve expensive models for hard decisions.
+- Respect usage limits: default to one coding agent and at most one bounded specialist review per task; use Sol Medium for routine tasks, escalate selectively, and reserve Astra High for an isolated hard problem.
 
 ## Quality bar
 - Inspect actual rendered work at multiple scroll positions on desktop and mobile layouts. The website should not pass as "done" solely because the build succeeds.
