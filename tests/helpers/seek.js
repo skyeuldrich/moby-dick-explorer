@@ -10,4 +10,6 @@ export async function seek(page, progress) {
     return Number((distance<=.72 ? distance : .72+(distance-.72)/3).toFixed(5));
   }, progress);
   await expect.poll(async () => Number(await page.locator('.stage').getAttribute('data-progress'))).toBe(expected);
+  // The rounded progress can settle one frame before the last sub-pixel catch-up.
+  await page.waitForTimeout(160);
 }

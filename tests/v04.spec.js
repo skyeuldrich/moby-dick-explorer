@@ -56,7 +56,7 @@ for (const size of [
     await at(page, 0.76);
     await expect(page.locator(".descent-quote").first()).toHaveCSS("opacity", "1");
     await expect(page.locator(".creatures")).toHaveCSS("opacity", "0");
-    const quote = await page.locator(".descent-quote").first().boundingBox(),
+    const quote = await page.locator(".descent-quote blockquote").first().boundingBox(),
       depth = await page.locator(".depth").boundingBox();
     expect(
       quote.y + quote.height < depth.y || quote.x + quote.width < depth.x,

@@ -4,7 +4,7 @@ export const voices = [
   {chapter:132, title:'The Symphony', speaker:'Ahab', text:'Is it Ahab, Ahab? Is it I, God, or who, that lifts this arm?', window:[.855,.87,.89,.91]},
 ];
 const link = v => `https://www.gutenberg.org/files/2701/2701-h/2701-h.htm#link2HCH${String(v.chapter).padStart(4,'0')}`;
-const content = v => `<blockquote>“${v.text}”</blockquote><p>${v.speaker}<br>Herman Melville · Chapter ${v.chapter}, “${v.title}”</p><a href="${link(v)}" target="_blank" rel="noopener noreferrer">Read Chapter ${v.chapter} ↗</a>`;
+const content = v => `<blockquote>“${v.text}”</blockquote><p>${v.speaker}<br>Herman Melville · Chapter ${v.chapter}, “${v.title}”</p><a href="${link(v)}" target="_blank" rel="noopener noreferrer">Read Chapter ${v.chapter}</a>`;
 export const descentQuotes = voices.map(v=>`<section class="descent-quote" inert aria-hidden="true">${content(v)}</section>`).join('');
 export const descentTranscript = `<details class="quote-transcript"><summary>Three voices from the descent</summary><p>Chapters 41 → 37 → 132 form a thematic sequence, rather than the order of the novel.</p>${voices.map(v=>`<article>${content(v)}</article>`).join('')}</details>`;
 // Preserve the original approach distance, tripling the physical descent range.
