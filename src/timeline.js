@@ -33,7 +33,6 @@ export function initVoyage() {
       "bottom-glow",
       "desk-tableau",
       "desk-objects",
-      "anatomy-scene",
       "abyss-return",
       "map",
       "chart-waypoint",
@@ -119,7 +118,8 @@ export function initVoyage() {
     const approach = smooth(ramp(p, 0.001, 0.075));
     const exposure = smooth(ramp(p, .019, .093));
     const chartProgress = ramp(p, 0.3, 0.6);
-    const chartOpacity = fade(p, 0.26, 0.267, 0.605, 0.635);
+    // The completed chart sinks continuously into ocean darkness.
+    const chartOpacity = fade(p, 0.26, 0.267, 0.605, 0.72);
     opacity("candle-scene", 1 - smooth(ramp(p, 0.185, 0.204)));
     opacity("abyss-life", 1 - smooth(ramp(p, 0.025, 0.065)));
     updateSpecies(p, reduced.matches);
@@ -279,8 +279,6 @@ export function initVoyage() {
     opacity("chart-waypoint", fade(p, 0.345, 0.36, 0.6, 0.615));
     opacity("map-caption", 0);
     opacity("archive-map-credit", chartOpacity * smooth(ramp(p, .299, .304)));
-    opacity("anatomy-scene", fade(p, 0.615, 0.64, 0.685, 0.72));
-    enable(nodes["anatomy-scene"], p >= 0.635 && p <= 0.705);
     opacity("transition-copy", fade(p, 0.7, 0.73, 0.75, 0.77));
     opacity("descent-darkness", smooth(ramp(p, 0.7, 0.91)) * 0.75);
     opacity("descent-quote", fade(p, 0.755, 0.785, 0.825, 0.855));
@@ -299,7 +297,7 @@ export function initVoyage() {
     style(encounterImage,"webkitMaskImage",mask);
     opacity("abyss-copy", smooth(ramp(p, 0.975, 1)));
     enable(nodes["abyss-copy"], p >= 0.99);
-    opacity("abyss-return", smooth(ramp(p, 0.71, 0.83)) * 0.65);
+    opacity("abyss-return", smooth(ramp(p, 0.615, 0.76)) * 0.65);
     transform(
       "particles",
       reduced.matches
@@ -309,19 +307,19 @@ export function initVoyage() {
     opacity("rays", 0);
     opacity(
       "depth",
-      smooth(ramp(p, 0.7, 0.74)) *
+      smooth(ramp(p, 0.615, 0.72)) *
         (phone ? 1 - smooth(ramp(p, 0.865, 0.91)) : 1),
     );
     style(
       marker,
       "transform",
-      `translate3d(0,${(ramp(p, 0.71, 1) * 120).toFixed(2)}px,0)`,
+      `translate3d(0,${(ramp(p, 0.615, 1) * 120).toFixed(2)}px,0)`,
     );
     text(
       depthValue,
-      p < 0.71
+      p < 0.615
         ? "SURFACE"
-        : `${Math.round(ramp(p, 0.71, 1) * 1800).toLocaleString("en-US")} M`,
+        : `${Math.round(ramp(p, 0.615, 1) * 1800).toLocaleString("en-US")} M`,
     );
     const scene =
       p < 0.04
@@ -330,18 +328,16 @@ export function initVoyage() {
           ? "light"
           : p < 0.28
             ? "harbor"
-            : p < 0.62
+            : p < 0.615
               ? "chart"
-              : p < 0.71
-                ? "anatomy"
-                : p < 0.87
-                  ? "threshold"
-                  : "abyss";
+              : p < 0.87
+                ? "threshold"
+                : "abyss";
     if (scene !== previousScene) {
       stage.dataset.scene = scene;
       header.classList.toggle(
         "on-paper",
-        ["harbor", "chart", "anatomy"].includes(scene),
+        ["harbor", "chart"].includes(scene),
       );
       text(
         progressLabel,
@@ -350,9 +346,8 @@ export function initVoyage() {
           light: "II · THE LIGHT",
           harbor: "III · NANTUCKET",
           chart: "IV · THE VOYAGE",
-          anatomy: "V · THE ARCHIVE",
-          threshold: "VI · THE DESCENT",
-          abyss: "VII · THE UNMEASURED",
+          threshold: "V · THE DESCENT",
+          abyss: "VI · THE UNMEASURED",
         }[scene],
       );
       text(

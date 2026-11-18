@@ -196,7 +196,7 @@ test("the early voyage begins at Nantucket and reaches named grounds in textual 
     "opacity",
     "1",
   );
-  await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
+  await expect(page.locator(".anatomy-scene")).toHaveCount(0);
   await seek(page, 0.35);
   await expect(page.locator('[data-waypoint="azores"]')).toHaveCSS(
     "opacity",

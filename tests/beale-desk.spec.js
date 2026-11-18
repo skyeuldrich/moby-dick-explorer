@@ -1,0 +1,22 @@
+import {test, expect} from '@playwright/test';
+
+for (const width of [1440,390,360]) {
+  test(`Beale can be inspected and returned to on ${width}px`, async ({page}) => {
+    await page.setViewportSize({width,height:width===1440?900:844});
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.goto('/');
+    await page.evaluate(()=>scrollTo(0,document.querySelector('#voyage').offsetTop+.14*(document.querySelector('#voyage').offsetHeight-document.querySelector('.stage').offsetHeight)));
+    const button=page.locator('.inspect-beale');
+    await expect(button).toBeInViewport();
+    await button.focus();
+    await page.keyboard.press('Enter');
+    const dialog=page.locator('#desk-inspector');
+    await expect(dialog).toBeVisible();
+    await expect(dialog).toContainText('1839');
+    await expect(dialog).toContainText('Chapters 55–57');
+    await expect(dialog.locator('img')).toHaveAttribute('src',/beale-1839-fig1.webp$/);
+    await page.keyboard.press('Escape');
+    await expect(button).toBeFocused();
+    await expect(page.locator('.anatomy-scene')).toHaveCount(0);
+  });
+}

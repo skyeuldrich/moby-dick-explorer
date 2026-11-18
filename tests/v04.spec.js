@@ -50,7 +50,7 @@ for (const size of [
     });
     await at(page, 0.47);
     await expect(page.locator(".chart")).toHaveCSS("opacity", "1");
-    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
+    await expect(page.locator(".anatomy-scene")).toHaveCount(0);
     await page.screenshot({ path: `test-results/v04-azores-${size.width}.png` });
     await page.locator(".hotspot").click();
     await page.getByRole("button", { name: "Return to the voyage" }).click();
@@ -61,11 +61,13 @@ for (const size of [
     expect(
       await page.locator("#route").evaluate((e) => +e.style.strokeDashoffset),
     ).toBe(0);
-    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
+    await expect(page.locator(".anatomy-scene")).toHaveCount(0);
     await at(page, 0.66);
-    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "1");
-    await expect(page.locator(".archival-plate")).toContainText("1839");
-    await page.screenshot({ path: `test-results/v04-beale-${size.width}.png` });
+    const chartFade = Number(await page.locator(".chart").evaluate(e => getComputedStyle(e).opacity));
+    expect(chartFade).toBeGreaterThan(0);
+    expect(chartFade).toBeLessThan(1);
+    await expect(page.locator(".stage")).toHaveAttribute("data-scene", "threshold");
+    await page.screenshot({ path: `test-results/v04-submerging-${size.width}.png` });
     await at(page, 0.8);
     await expect(page.locator(".descent-quote")).toHaveCSS("opacity", "1");
     await expect(page.locator(".creatures")).toHaveCSS("opacity", "0");

@@ -75,29 +75,34 @@ for (const viewport of [
           (e) => +getComputedStyle(e).strokeDashoffset.replace("px", ""),
         ),
     ).toBeLessThan(start);
-    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
+    await expect(page.locator(".anatomy-scene")).toHaveCount(0);
     await seek(page, 0.601);
     expect(
       await page
         .locator("#route")
         .evaluate((e) => Number(e.style.strokeDashoffset)),
     ).toBe(0);
-    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "0");
+    await expect(page.locator(".anatomy-scene")).toHaveCount(0);
     await page.screenshot({
       path: `test-results/route-complete-${viewport.width}.png`,
     });
     await seek(page, 0.66);
-    await expect(page.locator(".anatomy-scene")).toHaveCSS("opacity", "1");
-    await expect(page.locator(".chart")).toHaveCSS("opacity", "0");
+    await expect(page.locator(".anatomy-scene")).toHaveCount(0);
+    const submergedChart = Number(await page.locator(".chart").evaluate(e => getComputedStyle(e).opacity));
+    expect(submergedChart).toBeGreaterThan(0);
+    expect(submergedChart).toBeLessThan(1);
     await page.screenshot({
-      path: `test-results/anatomy-${viewport.width}.png`,
+      path: `test-results/submerging-${viewport.width}.png`,
     });
     await seek(page, 0.705);
     const opacity = await page
-      .locator(".anatomy-scene")
+      .locator(".chart")
       .evaluate((e) => +getComputedStyle(e).opacity);
     expect(opacity).toBeGreaterThan(0);
     expect(opacity).toBeLessThan(1);
+    expect(opacity).toBeLessThan(submergedChart);
+    await seek(page, 0.66);
+    await expect(page.locator(".chart")).toHaveCSS("opacity", String(submergedChart));
     await page.screenshot({
       path: `test-results/threshold-${viewport.width}.png`,
     });
@@ -321,13 +326,8 @@ test("archival assets load locally and abyss life stays restrained", async ({
   await expect.poll(()=>page.locator('html').getAttribute('data-species-ready')).toBe('true');
   await expect(page.locator('.candle-scene canvas[data-species]')).toHaveCount(3);
   await seek(page, 0.66);
-  await expect(page.locator(".archival-plate img")).toBeVisible();
-  expect(
-    await page
-      .locator(".archival-plate img")
-      .evaluate((e) => e.complete && e.naturalWidth === 1980),
-  ).toBe(true);
-  await expect(page.locator(".archival-plate")).toContainText("Thomas Beale");
+  await expect(page.locator(".anatomy-scene")).toHaveCount(0);
+  await expect(page.locator(".stage")).toHaveAttribute("data-scene", "threshold");
   await seek(page, 1);
   await expect(page.locator(".abyss-return")).toHaveCSS("opacity", "0.65");
   expect(failures).toEqual([]);

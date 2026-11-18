@@ -2,7 +2,6 @@ import { routeNotes, routeReading } from "./route-notes.js";
 import { candleScene, harborScene } from "./scenes.js";
 import {
   archivalChart,
-  archivalPlate,
   mapCredit,
 } from "./historical-assets.js";
 import { abyssLife } from "./abyss.js";
@@ -25,7 +24,7 @@ document.querySelector("#app").innerHTML = `
 <div class="ocean"><div class="descent-darkness"></div><div class="descent-quote"><blockquote>“all my means are sane, my motive and my object mad.”</blockquote><p>Ishmael imagines Ahab’s inner thinking.<br>Herman Melville · Chapter 41, “Moby Dick”</p><a href="https://www.gutenberg.org/files/2701/2701-h/2701-h.htm#link2HCH0041" target="_blank" rel="noopener noreferrer">Read the passage ↗</a></div><div class="abyss-return" aria-hidden="true">${abyssLife}</div><div class="rays"></div><div class="particles">${particles}</div><div class="depth-lines"></div>
 <figure class="creatures encounter-artwork"><img class="encounter-image" src="${import.meta.env.BASE_URL}assets/moby-dick-whale-squid-final.webp" width="1671" height="941" alt="Painterly artistic reconstruction of a sperm whale confronting a giant squid in the abyss" decoding="async"/></figure>
 <div class="abyss-copy"><p class="eyebrow">VI / THE UNMEASURED</p><h2>What the chart<br>cannot contain.</h2><p>Below the reach of sunlight,<br>the world refuses our scale.</p><button class="evidence-button">On this encounter <span>+</span></button></div></div>
-<div class="chart">${archivalChart}</div>${mapCredit}<section class="anatomy-scene" aria-label="After the voyage: an anatomical study">${archivalPlate}</section>
+<div class="chart">${archivalChart}</div>${mapCredit}
 <div class="opening"><p class="eyebrow">NANTUCKET / CHRISTMAS DEPARTURE · CHAPTER 22</p><h1>Moby<span class="title-dash">—</span>Dick</h1><p class="subtitle">Into the unmeasured.</p><div class="intro-rule"></div><p class="intro">A line across a chart.<br>A fathomless world beneath it.</p></div>
 <button class="hotspot" aria-haspopup="dialog"><span class="hotspot-mark">+</span><span><small>01 / A DISCOVERY</small>The Chart <em>Ch. 44 ↗</em></span></button>
 <div class="chart-waypoint" aria-live="off"><p class="eyebrow"></p><h2></h2><p class="waypoint-note"></p></div><div class="transition-copy"><p class="eyebrow">V / BEYOND THE CHART</p><h2>The sea keeps<br>its own counsel.</h2></div>
