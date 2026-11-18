@@ -181,7 +181,7 @@ export function initVoyage() {
     opacity("abyss-life", 1 - smooth(ramp(p, 0.025, 0.065)));
     updateSpecies(p, reduced.matches);
     opacity("desk-tableau", smooth(ramp(p, .012, .066)));
-    const portrait = geometry.width < geometry.height;
+    const portrait = geometry.width <= geometry.height;
     const planeWidth = portrait ? Math.max(geometry.width,geometry.stageHeight*2/3) : Math.min(geometry.width,geometry.stageHeight*1.35);
     const planeHeight = planeWidth * (portrait ? 1.5 : 2/3);
     const restingX = portrait ? Math.min(0,(geometry.width-planeWidth)*.15) : (geometry.width-planeWidth)/2;

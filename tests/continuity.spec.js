@@ -6,6 +6,7 @@ for(const viewport of [
   {width:1280,height:800},
   {width:390,height:844},
   {width:360,height:640},
+  {width:844,height:390},
 ]) {
   test(`desk camera settles with accessible objects and reverses at ${viewport.width}x${viewport.height}`,async({page})=>{
     await page.setViewportSize(viewport);
@@ -15,7 +16,7 @@ for(const viewport of [
       const projection=await page.locator('.desk-tableau').evaluate(node=>({x:Number(node.dataset.wickX),y:Number(node.dataset.wickY)}));
       const glow=await page.locator('.bottom-glow').boundingBox();
       const picture=await page.locator('.desk-picture img').boundingBox();
-      const portrait=viewport.width<viewport.height;
+      const portrait=viewport.width<=viewport.height;
       expect(glow.x+glow.width/2).toBeCloseTo(projection.x,1);
       expect(glow.y+glow.height/2).toBeCloseTo(projection.y,1);
       expect(picture.x+picture.width*(portrait?.26:.151)).toBeCloseTo(projection.x,1);
@@ -81,3 +82,15 @@ for(const viewport of [
     }
   });
 }
+
+test('square viewport projects the candle from its portrait source',async({page})=>{
+  await page.setViewportSize({width:600,height:600});
+  await page.goto('/');
+  for(const p of [.015,.045,.07,.045]) {
+    await seek(page,p);
+    const projection=await page.locator('.desk-tableau').evaluate(node=>({x:Number(node.dataset.wickX),y:Number(node.dataset.wickY)}));
+    const picture=await page.locator('.desk-picture img').boundingBox();
+    expect(picture.x+picture.width*.26).toBeCloseTo(projection.x,1);
+    expect(picture.y+picture.height*.225).toBeCloseTo(projection.y,1);
+  }
+});
