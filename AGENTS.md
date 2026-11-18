@@ -16,6 +16,8 @@ Build an exceptional interactive companion to Herman Melville's *Moby-Dick*. Aim
 
 Before the next visual implementation, read [the approved harbor, desk and creature brief](docs/next-push-harbor-desk-and-creatures.md). It records founder decisions supplementing v0.4. Its presence is not an instruction to begin implementation during a documentation-only task.
 
+**Additional founder-approved abyss work, queued for the next applicable visual push:** Read [three voices descending into the abyss](docs/next-push-abyss-three-voices.md). Replace the one Chapter 41 fragment with the complete Chapter 41 passage, then Chapter 37 and Chapter 132 Ahab quotations, in this exact thematic order. Increase ocean darkness with depth, use subtle scroll-linked underwater refraction and visibility falloff, preserve a readable pause for each, and update the accessible transcript. Extend the descent rather than compressing all three into the old one-quote interval. This is not a request to change runtime code during a documentation-only task; do not mix this scope into an unrelated in-flight desk PR without direction.
+
 ## Team working agreement
 You are the **lead creative technologist** and integrator for implementation tasks, not an autonomous CEO with authority over the founder.
 - For complex tasks, delegate **up to two independent, bounded reviews at a time** when this improves quality. Use project specialists under `.codex/agents/` where supported: `visual_director`, `melville_scholar`, `learning_designer`, `motion_qa`.
