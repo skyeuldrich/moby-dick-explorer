@@ -2,6 +2,8 @@
 
 Follow the flame to the desk, then select **Shipping paper** or **Voyage records**. Each opens a scan, a short transcription and its historical context. Close the reader or press Escape to resume at the same place.
 
+[Watch the 15-second phone recording](phone-descent.webm) to follow the approach, open the agreement, continue to the harbor and scroll back to the desk.
+
 | Scroll position | Desktop | Phone |
 | --- | --- | --- |
 | Previous desk | [Before](previous-desktop.webp) | [Before](previous-phone.webp) |
