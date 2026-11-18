@@ -8,6 +8,8 @@ for (const width of [1440,390,360]) {
     await page.evaluate(()=>scrollTo(0,document.querySelector('#voyage').offsetTop+.14*(document.querySelector('#voyage').offsetHeight-document.querySelector('.stage').offsetHeight)));
     const button=page.locator('.inspect-beale');
     await expect(button).toBeInViewport();
+    const bounds=await button.boundingBox();
+    expect(bounds.y + bounds.height).toBeLessThanOrEqual(page.viewportSize().height - 30);
     await button.focus();
     await page.keyboard.press('Enter');
     const dialog=page.locator('#desk-inspector');
