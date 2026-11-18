@@ -37,6 +37,7 @@ export function initVoyage() {
       "abyss-return",
       "map",
       "chart-waypoint",
+      "pencil-comparison",
       "depth",
       "map-caption",
       "archive-map-credit",
@@ -85,6 +86,20 @@ export function initVoyage() {
     return best / 256;
   });
   route.style.strokeDasharray = length;
+  const pencils = {
+    first: { group: $(".graphite-first"), path: $('[data-pencil-draw="first"]') },
+    revision: { group: $(".graphite-revision"), path: $('[data-pencil-draw="revision"]') },
+    ground: { group: $(".graphite-ground"), path: $('[data-pencil-draw="ground"]') },
+  };
+  for (const part of Object.values(pencils)) {
+    part.length = part.path.getTotalLength();
+    part.path.style.strokeDasharray = part.length;
+    part.path.style.strokeDashoffset = part.length;
+  }
+  const ghost = $(".graphite-erasure");
+  const comparisonButtons = [...document.querySelectorAll("[data-pencil-choice]")];
+  const pencilAnnouncement = $(".pencil-announcement");
+  let pencilChoice = "scroll";
   const cache = new WeakMap();
   // No selectors, layout reads, inherited custom-property writes or unchanged text writes in a frame.
   function style(node, property, value) {
@@ -97,6 +112,45 @@ export function initVoyage() {
       node.style[property] = value;
       values[property] = value;
     }
+  }
+  // First guess, erasure, substituted course and an uncertain ground.
+  // The 1797 engraving remains unchanged; all marks share the red route's SVG coordinates.
+  function updatePencils(progress) {
+    const phase =
+      pencilChoice === "first" ? 0.36 :
+      pencilChoice === "revised" ? 0.93 : progress;
+    const draw = (a, b) => reduced.matches
+      ? Number(phase >= b)
+      : smooth(ramp(phase, a, b));
+    const firstDraw = draw(0.09, 0.32);
+    const erased = draw(0.39, 0.55);
+    const secondDraw = draw(0.47, 0.72);
+    const groundDraw = draw(0.73, 0.91);
+    const firstAlpha = firstDraw * (1 - erased);
+    style(pencils.first.group, "opacity", firstAlpha.toFixed(3));
+    style(pencils.first.path, "strokeDashoffset",
+      (pencils.first.length * (1 - firstDraw)).toFixed(2));
+    style(ghost, "opacity", (erased * 0.2).toFixed(3));
+    style(pencils.revision.group, "opacity", secondDraw.toFixed(3));
+    style(pencils.revision.path, "strokeDashoffset",
+      (pencils.revision.length * (1 - secondDraw)).toFixed(2));
+    style(pencils.ground.group, "opacity", groundDraw.toFixed(3));
+    style(pencils.ground.path, "strokeDashoffset",
+      (pencils.ground.length * (1 - groundDraw)).toFixed(2));
+  }
+  for (const button of comparisonButtons) {
+    button.addEventListener("click", () => {
+      pencilChoice = button.dataset.pencilChoice;
+      for (const choice of comparisonButtons) {
+        choice.setAttribute("aria-pressed", String(choice === button));
+      }
+      pencilAnnouncement.textContent = pencilChoice === "first"
+        ? "Showing the first conjectural pencil course."
+        : pencilChoice === "revised"
+          ? "Showing an erased conjecture and a substituted course."
+          : "Pencil revisions follow your scroll position.";
+      render(current);
+    });
   }
   const opacity = (name, value) =>
     style(nodes[name], "opacity", value.toFixed(4));
@@ -204,6 +258,9 @@ export function initVoyage() {
       `translate3d(${tx.toFixed(2)}px,${ty.toFixed(2)}px,0) scale(${scale})`,
     );
     style(route, "strokeDashoffset", (length * (1 - chartProgress)).toFixed(2));
+    updatePencils(chartProgress);
+    opacity("pencil-comparison", fade(p, 0.34, 0.358, 0.574, 0.605));
+    enable(nodes["pencil-comparison"], p >= 0.355 && p <= 0.585);
     opacity("opening", fade(p, 0.30, 0.31, 0.32, 0.345));
     opacity("hotspot", fade(p, 0.29, 0.31, 0.585, 0.61));
     enable(nodes.hotspot, p >= 0.31 && p <= 0.595);
