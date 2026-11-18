@@ -21,11 +21,13 @@
 .desk-objects[inert] button {pointer-events:none;}
 .desk-objects .inspect-agreement {left:54%;top:47%;}
 .desk-objects .inspect-ledger {left:max(calc(50% - 47vw),4%);top:60%;}
+.desk-objects .inspect-candle {left:5%;top:42%;}
 .desk-objects .inspect-beale {left:68%;top:min(91%,calc(100svh - 85px));}
 @media (orientation:portrait){
  .desk-tableau {--lit-x:24%;--lit-y:21%;}
  .desk-plane {width:max(100%,66.667svh);aspect-ratio:2/3;left:min(0px,calc((100% - 66.667svh) * .15));transform:none;}
  .desk-objects .inspect-ledger {left:8%;top:61%;}
+ .desk-objects .inspect-candle {left:10%;top:35%;}
  .desk-objects .inspect-agreement {left:min(46%,calc(100vw - 158px));top:67%;}
  .desk-objects .inspect-beale {left:33%;top:min(90%,calc(100svh - 85px));}
 }
