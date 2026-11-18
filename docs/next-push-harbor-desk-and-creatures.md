@@ -1,6 +1,6 @@
 # Next visual iteration — approved creative instructions
 
-Approved by the founder on November 17, 2026. This document records the next implementation scope; adding it does not authorize starting implementation. Preserve the functioning narrative, historical sources, literary interactions, accessibility and reduced-motion support. Do not expand the scope.
+Approved by the founder on November 17, 2026. This document records the next implementation scope; adding it does not authorize starting implementation. Preserve the functioning narrative, historical sources, literary interactions, accessibility and reduced-motion support. The founder has also approved a **staged whale-to-candle learning interaction** within the desk workstream; see the linked brief below. Do not expand beyond the stated stages.
 
 ## Harbor becomes the map
 
@@ -46,12 +46,22 @@ The founder chose a whaling agreement plus separate, clearly modern annotations 
 
 **Intent:** The desk becomes an investigation into human methods of describing and exploiting whales—contracts, accounts and anatomy—before the viewer ventures into the ocean. The untouched living animal is encountered in the final abyss, beyond what the diagram can convey.
 
+## Candle discovery: “The Price of Light” — founder-approved phased checklist (November 18, 2026)
+
+**Read the full implementation checklist:** [Whale → candle, Smithsonian print, and later malice inquiry](next-push-price-of-light.md).
+
+For **this desk push**, the founder approved a **clickable inspection** of the exact Smithsonian-featured nineteenth-century lithograph **“The Whale's Utility to Man,”** showing the hunt and everyday products including spermaceti candles. Verify attribution and redistribution rights before adding the asset to this public repository; if reuse is unresolved, link to the museum source without embedding an uncleared image. Make it discoverable from the desk candle (not a random disconnected popup), inspectable at full resolution, and accessible by keyboard and on phones. **Also deliver a short, historically sourced storyboard and preview** for a 30–45-second optional interactive engraving, “The Price of Light.” Do not delay the approved unified desk and Beale plate relocation while polishing a full animated film.
+
+The optional sequence, **in a focused follow-up PR unless completed and approved without threatening this desk push**, is: sperm whale mother and calf swimming → whaleboat hunt → cutting-in/head matter extraction (different from blubber tryworks) → onshore refinement of **spermaceti** → molded candle burning to darkness → return to the actual desk candle. Historical sequences must be verified, no instant whale-to-machine fiction, unsupported mind-reading of whale emotions or gratuitous gore. Use Melville Chapters 87 and 96 and New Bedford Whaling Museum sources. Give viewers Pause/Replay/Exit, optional inspection points, reduced-motion/keyboard/text alternatives, and restore scroll position.
+
+A companion investigation, **“The Monster We Invented,”** asks whether descriptions of whales as malicious are interpretations of animal behavior; research Ch. 41, Ch. 87, Owen Chase's *Essex* account and modern scientific evidence. **Research brief only at this stage, not an implementation blocker.** Preserve genuine ambiguity about animal agency and human projection.
+
 ## Creatures remain in their ocean
 
 Retain the approved painterly assets, subtle autonomous anatomical swimming and attached bioluminescence. Remove scroll-driven sideways travel and rotation. Keep world positions stable: as the viewer descends, creatures pass upward and out of frame, without swimming backward in response to scrolling. Autonomous swimming continues when scrolling stops. Retain the fade into approaching candlelight and reduced-motion behavior.
 
 ## Implementation acceptance
 
-Keep this push limited to the four original workstreams, with the Beale plate relocation integrated into the **desk** workstream; do not add unrelated features. Inspect actual desktop and mobile output and short motion recordings. Verify seamless water-to-chart continuity, believable candle contact and illumination, readable mobile composition, creature motion independent of scrolling, and reversible transitions. Preserve the existing chart route, **Beale's archival plate asset and attribution (now within the desk)**, Ahab passage and whale/squid encounter. The earlier instruction to preserve a **later standalone anatomical scene is superseded**. Run the existing automated checks and add focused regression coverage where necessary.
+Keep this push limited to the original workstreams, with the Beale plate relocation and the prioritized **archival lithograph inspection + animation storyboard** integrated into the **desk** workstream. A polished “Price of Light” playable may go in a separate feature PR; “Monster We Invented” remains editorial research. Do not add unrelated features. Inspect actual desktop and mobile output and short motion recordings. Verify seamless water-to-chart continuity, believable candle contact and illumination, readable mobile composition, creature motion independent of scrolling, and reversible transitions. Preserve the existing chart route, **Beale's archival plate asset and attribution (now within the desk)**, Ahab passage and whale/squid encounter. The earlier instruction to preserve a **later standalone anatomical scene is superseded**. Run the existing automated checks and add focused regression coverage where necessary.
 
 The founder’s standing workflow is to merge and deploy after checks and visual inspection pass, then provide the live URL. Pause for significant unresolved artistic decisions or material failures. For this instruction-only update, do not begin the visual implementation.
