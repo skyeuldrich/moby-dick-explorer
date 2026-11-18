@@ -1,6 +1,6 @@
 # Moby-Dick Explorer — next visual push: audited execution plan
 
-> **Engineering-only scope (founder update, November 18, 2026):** The literary analysis of whale malice, comparison of Melville and Owen Chase, scholarly interpretation, and quote selection happen **in the ChatGPT research Project, not Codex/Copilot**. Codex implements founder-approved content and may perform bounded visual/source-asset checks, but must not launch literary research or delegate to `melville_scholar`. Unapproved literary material is a **future handoff**, not a task to research or a blocker for PR A/B/C. See `AGENTS.md`.
+> **Engineering-only scope (founder update, November 18, 2026):** The literary analysis of whale malice, comparison of Melville and Owen Chase, scholarly interpretation, and quote selection happen **in the ChatGPT research Project, not Codex/Copilot**. Codex implements founder-approved content and may perform bounded visual/source-asset checks, but must not launch literary research or delegate to `melville_scholar`. The literary agent has since delivered [the verified **Who Made the Monster?** excerpt/interpretation brief](editorial-who-made-the-monster.md), which remains **a future feature requiring interaction/placement approval**. It is not a task or blocker for PR A/B/C. See `AGENTS.md`.
 
 **Status:** Implementation handoff; approved creative goals, revised against actual `main` on November 18, 2026. **This is documentation, not an instruction to implement the entire program in one session.** Read this before the detailed briefs. Where old briefs conflict with this audit, **this document controls execution scope and completed-work status**, while the topic-specific briefs control artistic details.
 
@@ -49,7 +49,7 @@ Artistic/technical brief: [whale-to-candle checklist](next-push-price-of-light.m
 ### Later, separate film/learning feature — NOT a prerequisite
 
 - [ ] Build and test the complete optional, pausable/replayable “Price of Light” animated investigation **only after storyboard and original art are approved**. Scope and controls in [the animation brief](next-push-price-of-light.md).
-- **Out of Codex scope — founder's literary-analysis agent only:** “The Monster We Invented” compares Melville, Owen Chase and animal-behavior scholarship. Codex must **not** research, write or schedule this investigation; an approved interpretation and exact quotations will be supplied before any future implementation ticket.
+- **Completed outside Codex, deferred as a future feature:** [**Who Made the Monster?**](editorial-who-made-the-monster.md) has a primary-checked quotation set and the founder's literary agent's analysis. Codex must **not** research this topic or implement the concept as part of PR A/B/C; a separate art/interaction approval and future ticket are still needed.
 
 ## Asset and research gates
 
