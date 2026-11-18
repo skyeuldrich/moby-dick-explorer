@@ -42,13 +42,15 @@ export function initSpeciesLife(){
  reduced.addEventListener('change',()=>{cancelAnimationFrame(raf);raf=0;schedule()});
  return (p,isReduced=reduced.matches)=>{
   progress=p;
-  nodes.forEach((node,i)=>{
-   const opening=!!node.closest('.candle-scene'),q=opening?Math.max(0,Math.min(1,p/.065)):Math.max(0,Math.min(1,(p-.71)/.29));
-   const index=i%3,x=(index===0?-1:index===1?1:-.5)*q*(24+index*18),y=-q*(20+index*12)+Math.sin(q*2.4+index)*q*7;
-   const value=isReduced?'none':`translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0) rotate(${(Math.sin(q*2+index)*q*3).toFixed(2)}deg)`;
-   if(node.style.transform!==value)node.style.transform=value;
-   node.dataset.macro=q.toFixed(5);
-  });
+  // Descent moves the observer past a fixed school. Each animal's time
+  // cycle above continues in its own direction, including during reversal.
+  for (const {node, opening} of records) {
+    const depth = opening ? p / 0.065 : (p - 0.71) / 0.29;
+    const passage = Math.max(0, Math.min(1, depth));
+    const height = (-110 * passage).toFixed(3);
+    const transform = isReduced ? 'none' : `translateY(${height}svh)`;
+    if (node.style.transform !== transform) node.style.transform = transform;
+  }
   if((p>=.065&&p<=.71)||document.hidden){cancelAnimationFrame(raf);raf=0;last=0}else schedule();
  };
 }
