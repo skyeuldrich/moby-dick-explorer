@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moby-Dick Atlas — Folio I design review (not approved)</title>
+<style>
+:root{--ink:#302a23;--paper:#eee5d4;--red:#a64b43}*{box-sizing:border-box}
+body{margin:0;background:#dedbd4;color:var(--ink);font-family:Georgia,serif}
+button,label{font:inherit;cursor:pointer}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px max(18px,calc((100vw - 1440px)/2));border-bottom:1px solid #b7b0a4}
+header b{font:12px Arial,sans-serif;letter-spacing:.19em;text-transform:uppercase}
+header span{font:12px Arial,sans-serif;color:#665e53}
+.controls{max-width:1440px;margin:20px auto;padding:0 16px;display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.group{display:flex;background:#ede9e1;padding:3px;border:1px solid #bfb6a7}
+button,.filelabel{border:1px solid #b7ab9e;background:#f8f3e9;color:#332d25;padding:9px 13px;font:12px Arial,sans-serif}
+.group button{border:0;background:transparent}
+button[aria-pressed=true]{background:#332d25;color:#f6e7d2}
+.filelabel input{display:none}
+.note{max-width:1440px;margin:0 auto 15px;padding:0 16px;font:12px Arial,sans-serif;line-height:1.5;color:#5c5346}
+#canvas{max-width:1440px;margin:0 auto 24px;padding:0 16px}
+#viewer{height:760px;display:flex;flex-direction:column;background:var(--paper);border:1px solid #a3957c;box-shadow:0 18px 42px #3c32202e}
+#viewer.phone{width:390px;max-width:100%;height:844px;margin:0 auto}
+.bar{height:66px;display:flex;flex:0 0 auto;justify-content:space-between;align-items:center;padding:0 20px;border-bottom:1px solid #c9bba4}
+.bar small{font:11px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#685e51}
+.space{flex:1;min-height:0;display:flex}
+.chart{flex:1;min-width:0;position:relative;overflow:hidden;background:repeating-linear-gradient(135deg,#e8ddc4,#e8ddc4 9px,#e2d4b9 9px,#e2d4b9 10px)}
+.chart img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.chart img[hidden]{display:none}
+.chart .source{position:absolute;left:12px;bottom:10px;max-width:85%;background:#f5efdeec;padding:8px 11px;border:1px solid #ac9b81;font:11px Arial,sans-serif;z-index:4}
+.chart .label{position:absolute;top:18px;left:18px;z-index:4;background:#f8f0deeb;padding:9px 13px;border-left:3px solid var(--red)}
+.chart .label span{font:10px Arial,sans-serif;letter-spacing:.1em}
+.chart .label strong{display:block;font-weight:normal;font-size:22px;margin-top:3px}
+#empty{position:absolute;inset:30% 16%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#574938}
+#empty strong{font-weight:normal;font-size:23px}
+#empty p{font:12px Arial,sans-serif;line-height:1.6}
+#seam{position:absolute;inset:0;display:none}
+#seam .upper{position:absolute;inset:0 0 53%;overflow:hidden;z-index:2;box-shadow:0 14px 21px #3e322c59}
+#seam .lower{position:absolute;inset:43% 0 0;overflow:hidden}
+#seam img{width:100%;height:100%;object-fit:cover}
+#seam .upper img{object-position:center bottom}
+#seam .lower img{object-position:center center}
+#seam figcaption{position:absolute;left:20px;top:50%;z-index:3;background:#f8f2dfdf;padding:14px;border-left:3px solid var(--red);font-size:20px}
+.inspector{width:330px;flex:0 0 330px;padding:25px 24px;background:#f5eddf;border-left:1px solid #bdac91;display:flex;flex-direction:column;gap:12px}
+.inspector .eyebrow{font:11px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#986352}
+.inspector h1{font-size:34px;font-weight:normal;line-height:1.05;margin:0}
+.inspector p{font-size:14px;line-height:1.5;margin:0}
+.track{margin-top:14px;padding-top:14px;border-top:1px solid #beae94}
+.track strong{font:11px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#756b5b}
+.track .stop{font-size:14px;padding:8px 0}
+.track .stop:before{content:"◦";color:var(--red);margin-right:9px}
+.track .join{height:14px;border-left:2px dashed var(--red);margin-left:5px;opacity:.85}
+.track.textonly .join{opacity:.08}
+.footnote{margin-top:auto;border-top:1px solid #cbbba4;padding-top:10px;font:11px Arial,sans-serif;line-height:1.5;color:#655a50}
+#viewer.phone .bar{height:58px;padding:0 12px}
+#viewer.phone .space{flex-direction:column}
+#viewer.phone .chart{flex:0 0 54%;min-height:0}
+#viewer.phone .inspector{width:auto;flex:1;min-height:0;padding:12px;border-left:none;border-top:1px solid #bdac91;gap:6px}
+#viewer.phone .inspector h1{font-size:22px}
+#viewer.phone .inspector p{font-size:12px;line-height:1.4}
+#viewer.phone .track{margin-top:0;padding-top:7px}
+#viewer.phone .track .stop{display:inline-block;font-size:11px;margin-right:8px;padding:3px 0}
+#viewer.phone .track .join{display:inline-block;width:13px;height:0;border-left:0;border-top:2px dashed var(--red);margin-right:8px}
+#viewer.phone .footnote{font-size:10px;padding-top:4px}
+#viewer.phone .chart .label strong{font-size:16px}
+#viewer.phone #seam figcaption{font-size:15px}
+.details{max-width:1440px;margin:0 auto 35px;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.details article{padding:15px;background:#f4f0e7;border:1px solid #cbbfae;font:12px Arial,sans-serif;line-height:1.55}
+.details b{display:block;font:18px Georgia,serif;font-weight:normal;margin-bottom:9px}
+.details a{color:#8b4943}
+@media(max-width:700px){header{display:block}header span{display:block;margin-top:8px}.details{grid-template-columns:1fr}.controls{gap:6px}.controls button{padding:8px}}
+</style></head>
+<body>
+<header><b>The Melville Atlas / Design Review</b><span>Folio I · archival sheet transition · research only</span></header>
+<div class="controls">
+<div class="group" role="group" aria-label="Scene"><button type="button" data-scene="north" aria-pressed="true">Heather 1797</button><button type="button" data-scene="seam" aria-pressed="false">Change the sheet</button><button type="button" data-scene="south" aria-pressed="false">Collin 1818</button></div>
+<div class="group" role="group" aria-label="Viewport"><button type="button" data-mode="desktop" aria-pressed="true">Desktop</button><button type="button" data-mode="phone" aria-pressed="false">Phone</button></div>
+<div class="group" role="group" aria-label="Route status"><button type="button" data-evidence="all" aria-pressed="true">Reconstruction</button><button type="button" data-evidence="text" aria-pressed="false">Only narrated places</button></div>
+<label class="filelabel">Load downloaded Collin image<input type="file" id="file" accept="image/*"></label>
+</div>
+<p class="note" id="status" role="status">Source images are requested from BPL/Commons at runtime. If the archive image fails to load, use the file picker; this page does not include the scan or verified chart coordinates.</p>
+<div id="canvas"><div id="viewer" data-scene="north">
+<div class="bar"><small>Folio I · Atlantic</small><small id="stage">04 / 17 · Southbound</small></div>
+<div class="space"><div class="chart">
+<img id="heather" hidden alt="William Heather's original 1797 Atlantic nautical chart from BPL">
+<img id="collin" hidden alt="E. Collin's 1818 South Atlantic nautical chart from BnF/Commons">
+<div id="seam"><div class="upper"><img id="seamHeather" alt="Heather's 1797 source image"></div><div class="lower"><img id="seamCollin" alt="Collin's 1818 source image"></div><figcaption>The sheet ends. The voyage does not.</figcaption></div>
+<div id="empty"><strong id="emptyTitle">Loading the archival sheet</strong><p>If the source host is blocked, the layout stays visible. Do not read empty areas as actual map geography.</p></div>
+<div class="label"><span id="region">NORTHERN ATLANTIC</span><strong id="caption">The passage south</strong></div>
+<div class="source" id="source">William Heather · 1797 · Boston Public Library / Leventhal</div>
+</div>
+<aside class="inspector"><div class="eyebrow" id="chapter">Chapter 51 · The Spirit-Spout</div>
+<h1 id="title">The map has an edge.</h1>
+<p id="lead">Heather's genuine engraving carries the visitor toward Cape Verde. It cannot depict the later southern waters.</p>
+<div class="track" id="track"><strong>Textual sequence</strong><div class="stop">Cape Verde Ground</div><div class="join"></div><div class="stop">Plate Ground — off Río de la Plata</div><div class="join"></div><div class="stop">Carrol Ground — south of St Helena</div><div class="join"></div><div class="stop">Cape of Good Hope</div></div>
+<div class="footnote">Named regions ≠ ship fixes. Dashed links are interpretive, not logged. Ch. 44 graphite is a separate dramatic reconstruction, not printed chart ink.</div>
+</aside></div></div></div>
+<div class="details">
+<article><b>Evidence and geography</b>Source: <a href="https://www.gutenberg.org/files/2701/2701-h/2701-h.htm#link2HCH0051">Melville, chapter 51</a>. The Plate → Carrol → Cape sequence is text-based. No point on the historical sheet is yet registered to this route.</article>
+<article><b>Actual source objects</b><a href="https://collections.leventhalmap.org/search/commonwealth:kk91fr56g">Heather, 1797 (BPL)</a> · <a href="https://commons.wikimedia.org/wiki/File:Carte_r%C3%A9duite_de_l%27Oc%C3%A9an_Atlantique_M%C3%A9ridional_comprenant_depuis_l%27Equateur_jusqu%27%C3%A0_59_Degr%C3%A8s_de_Latitude_Sud_-_Collin%2C_E._-_btv1b10567560p.jpg">Collin, 1818 (BnF/Commons)</a>. Collin file rights and full-size image pixels still need approval.</article>
+<article><b>Stop before implementation</b>This is a **source-linked visual idea**, not a cleared chart image, georeferenced route, responsive production asset, or live website. See <a href="../../atlas-next-push-handoff.md">E0c next-push brief</a>.</article>
+</div>
+<script>
+(function(){
+const name="Carte_réduite_de_l'Océan_Atlantique_Méridional_comprenant_depuis_l'Equateur_jusqu'à_59_Degrès_de_Latitude_Sud_-_Collin,_E._-_btv1b10567560p.jpg";
+const commons="https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(name);
+const heather="https://skyeuldrich.github.io/moby-dick-explorer/assets/archive/heather-1797-atlantic.webp";
+const v=document.getElementById("viewer"),h=document.getElementById("heather"),c=document.getElementById("collin"),sh=document.getElementById("seamHeather"),sc=document.getElementById("seamCollin");
+const loaded={north:false,south:false};let scene="north";const $=id=>document.getElementById(id);
+function check(){h.hidden=scene!=="north"||!loaded.north;c.hidden=scene!=="south"||!loaded.south;$("seam").style.display=scene==="seam"?"block":"none";$("empty").style.display=(scene==="north"&&loaded.north)||(scene==="south"&&loaded.south)||(scene==="seam"&&loaded.north&&loaded.south)?"none":"flex";$("emptyTitle").textContent="Source image unavailable in this browser";}
+h.onload=()=>{loaded.north=true;check()};h.onerror=()=>{loaded.north=false;check()};c.onload=()=>{loaded.south=true;check()};c.onerror=()=>{loaded.south=false;check();$("status").textContent="Collin source host unavailable. Download the original Commons scan and load it above; geographic registration is still unverified."};
+h.src=heather;c.src=commons;sh.src=heather;sc.src=commons;
+const labels={north:["04 / 17 · Southbound","NORTHERN ATLANTIC","The passage south","The map has an edge.","Heather's genuine engraving carries the visitor toward Cape Verde. It cannot depict the later southern waters.","William Heather · 1797 · BPL / Leventhal"],seam:["04 → 05 / 17","THE ATLAS OPENS","Beyond the first chart","Turn the sheet.","An authentic southern sheet should appear beneath the northern chart. It is a change of historical paper, not a seamless invented projection.","Heather 1797 → Collin 1818 · separate sources"],south:["05–07 / 17","SOUTH ATLANTIC","Plate · Carrol · Cape","The route doubles back.","After the Plate Ground off South America, the narrative moves east toward Carrol south of St Helena and then toward the Cape.","E. Collin · 1818 · BnF / Commons (candidate)"]};
+function setScene(s){scene=s;v.dataset.scene=s;const a=labels[s];["stage","region","caption","title","lead","source"].forEach((id,i)=>$(id).textContent=a[i]);document.querySelectorAll("[data-scene]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.scene===s)));check()}
+document.querySelectorAll("[data-scene]").forEach(b=>b.addEventListener("click",()=>setScene(b.dataset.scene)));
+document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{v.classList.toggle("phone",b.dataset.mode==="phone");document.querySelectorAll("[data-mode]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)))}));
+document.querySelectorAll("[data-evidence]").forEach(b=>b.addEventListener("click",()=>{$("track").classList.toggle("textonly",b.dataset.evidence==="text");document.querySelectorAll("[data-evidence]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)))}));
+$("file").addEventListener("change",e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const url=URL.createObjectURL(f);c.src=url;sc.src=url;$("status").textContent="Loaded local image: "+f.name+". This permits layout review, not map-coordinate approval."});
+check();
+})();
+</script></body></html>
