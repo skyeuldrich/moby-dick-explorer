@@ -4,11 +4,11 @@
 
 **Precedence:** The founder's explicit, current task and approved issue govern its scope; `docs/STATUS.md` governs what has already merged and the current approval gates; `docs/DECISIONS.md` governs standing creative choices; task-specific approved documents govern details. Old `moby-dick-prototype-brief-v0*.md`, `docs/next-visual-push-execution-plan.md`, and old unchecked issue boxes are historical evidence, **not** authorization to redo completed work. Report any material contradiction before changing the experience.
 
-## Current gate (2026-11-18)
+## Current gate (November 18, 2026 Eastern)
 
 **PRs #22, #23, #24, #28, and #29 are merged.** Do not redo the existing desk/Beale plate, three abyss passages, candle/whale-utility print inspector, pencil chart annotations, harbor wave alignment, or candle framing.
 
-**Issue #27 is the next major design project, but it is at E0, not implementation.** Its [three-ocean atlas editorial handoff](docs/atlas-e0-editorial-design-handoff.md) contains a proposed storyboard and rights matrix; founder approval and appropriate rights-cleared, full-coverage historical chart scans are missing. **Do not start the 17-stage atlas rewrite, trace the Norton map, or publish unapproved image files.** Use the [17-stage itinerary](docs/pequod-itinerary-17-stages.md), which distinguishes narrated grounds, planned courses, and inferred crossings.
+**Issue #27 is the active atlas project at the E0c image/visual approval gate, NOT implementation.** Read the [next-push E0c brief](docs/atlas-next-push-handoff.md) FIRST, then the [E0 storyboard](docs/atlas-e0-editorial-design-handoff.md), the [E0b archive audit](docs/atlas-e0b-independent-archive-review.md), and the [17-stage itinerary](docs/pequod-itinerary-17-stages.md). A source-linked [Folio I HTML concept](docs/reviews/atlas-e0b/README.md) exists, but **Collin 1818 source bytes, geographic registration, reuse documentation, real chart-backed mockups and founder approval are missing**. The previous Copilot PR #30 was merged as documentation with placeholders, **not art approval**. The next possible assignment is **source validation and Atlantic stages 5–7 visual review only**; if the archive scan is unreachable, stop and ask for the original file. **Do not start E1/17-stage runtime code, trace the Norton map, or publish unapproved scans.**
 
 Other open work: `#7` holds the deferred *Price of Light* animation concept (the inspector has shipped); `#15` concerns source-backed literary research with an unresolved draft PR #18. See [STATUS.md](docs/STATUS.md) for current boundaries.
 
