@@ -10,7 +10,7 @@
 - **New preferred candidate for testing, not yet chosen:** E. Collin, *Carte réduite de l'Océan Atlantique Méridional* (1818), BnF/Commons file [btv1b10567560p](https://commons.wikimedia.org/wiki/File:Carte_r%C3%A9duite_de_l%27Oc%C3%A9an_Atlantique_M%C3%A9ridional_comprenant_depuis_l%27Equateur_jusqu%27%C3%A0_59_Degr%C3%A8s_de_Latitude_Sud_-_Collin%2C_E._-_btv1b10567560p.jpg). Catalogue reports **12,269 × 8,293 pixels** and equator to 59°S. Public-domain France/US notices have been reported on the Commons page; **do not infer file-level clearance without inspecting the exact item and its source terms**.
 - **Fallback:** the [1739 Dépôt de la Marine South Atlantic chart](atlas-e0b-independent-archive-review.md) (full-basin catalogue extent); the whaler-used Blunt 1834 source is historically appealing but its Rumsey digital image has reuse caveats. Do not silently substitute the incomplete 1840 Blunt portrait scan.
 
-## Only approved next *research/design* task, E0c
+## Proposed next *research/design* task, E0c
 
 **Goal:** Deliver authentic source-backed desktop (1440 × 900) and phone (390 × 844) *review images*, and a short asset decision table for the **South Atlantic stages 5–7 only**. This is a controlled **asset-selection and visual-validation** push, not the 17-stage atlas rewrite.
 
