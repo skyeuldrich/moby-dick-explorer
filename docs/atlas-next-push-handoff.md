@@ -10,6 +10,14 @@
 - **New preferred candidate for testing, not yet chosen:** E. Collin, *Carte réduite de l'Océan Atlantique Méridional* (1818), BnF/Commons file [btv1b10567560p](https://commons.wikimedia.org/wiki/File:Carte_r%C3%A9duite_de_l%27Oc%C3%A9an_Atlantique_M%C3%A9ridional_comprenant_depuis_l%27Equateur_jusqu%27%C3%A0_59_Degr%C3%A8s_de_Latitude_Sud_-_Collin%2C_E._-_btv1b10567560p.jpg). Catalogue reports **12,269 × 8,293 pixels** and equator to 59°S. Public-domain France/US notices have been reported on the Commons page; **do not infer file-level clearance without inspecting the exact item and its source terms**.
 - **Fallback:** the [1739 Dépôt de la Marine South Atlantic chart](atlas-e0b-independent-archive-review.md) (full-basin catalogue extent); the whaler-used Blunt 1834 source is historically appealing but its Rumsey digital image has reuse caveats. Do not silently substitute the incomplete 1840 Blunt portrait scan.
 
+## Network unblock for Copilot cloud agent (November 2026)
+
+**Do not assume the agent has no internet capability at all.** GitHub Copilot cloud agent has a configurable outbound firewall; repository owner can visit **Settings → Copilot → Internet access → Copilot in the cloud → Custom allowlist** and permit specific domains, e.g. `commons.wikimedia.org`, `upload.wikimedia.org`, `gallica.bnf.fr`, `www.davidrumsey.com`, `www.loc.gov`. [GitHub's documentation](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-the-firewall). Prefer narrowly allowed archive domains over disabling the firewall. **The user must change GitHub settings; this document does not change or confirm network access.** Retry download and confirm actual image pixels after enabling. If DNS or HTTPS still fails, report the exact host, command and error; only then request founder download/alternate network.
+
+**License approval remains separate.** A Copilot agent's statement that it “takes” founder acceptance of Rumsey's CC BY-NC-SA 3.0 is **not itself a signed-off project decision**. Do not record blanket permission or treat Rumsey scans as cleared unless the founder explicitly authorizes the conditions for derivatives; review actual terms and particular scan regardless.
+
+**Scope priority:** The next coherent visual gate is **Collin 1818 South Atlantic source-backed desktop/phone review for stages 5–7**. A historical older E0b agent task requesting *four scans across all oceans* should not override this focus or be interpreted as permission to implement the atlas.
+
 ## Proposed next *research/design* task, E0c
 
 **Goal:** Deliver authentic source-backed desktop (1440 × 900) and phone (390 × 844) *review images*, and a short asset decision table for the **South Atlantic stages 5–7 only**. This is a controlled **asset-selection and visual-validation** push, not the 17-stage atlas rewrite.
